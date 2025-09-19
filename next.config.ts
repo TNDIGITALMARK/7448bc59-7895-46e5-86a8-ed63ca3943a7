@@ -22,10 +22,7 @@ const nextConfig: NextConfig = {
     return 'phoenix-build'
   },
   
-  experimental: {
-    // Skip problematic static page generation
-    skipTrailingSlashRedirect: true,
-  },
+  skipTrailingSlashRedirect: true,
   
   // Flexible iframe embedding
   async headers() {

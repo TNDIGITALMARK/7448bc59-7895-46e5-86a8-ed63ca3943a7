@@ -11,7 +11,7 @@ export function PhoenixTracker() {
       link.rel = 'stylesheet';
       link.href = '/phoenix-tracking.css';
       document.head.appendChild(link);
-      
+
       return () => {
         // Cleanup
         if (document.head.contains(link)) {
@@ -21,10 +21,10 @@ export function PhoenixTracker() {
     }
   }, []);
 
-  return (
-    <Script
-      src="/phoenix-tracking.js"
-      strategy="afterInteractive"
-    />
-  );
+  return (/*#__PURE__*/
+    React.createElement(Script, {
+      src: "/phoenix-tracking.js",
+      strategy: "afterInteractive", "data-phoenix-id": "phoenix-7448bc59-1" }
+    ));
+
 }
