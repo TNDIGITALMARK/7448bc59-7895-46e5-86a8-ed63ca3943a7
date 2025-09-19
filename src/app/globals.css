@@ -1,39 +1,49 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap');
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
 All colors MUST be HSL.
 */
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
+  /* Cow Portal Earthy Theme with Bright Accents */
+  --background: 48 20% 97%; /* Warm cream background */
+  --foreground: 25 35% 15%; /* Deep brown text */
 
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
+  --card: 48 25% 95%; /* Light beige cards */
+  --card-foreground: 25 35% 15%;
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
+  --popover: 48 25% 95%;
+  --popover-foreground: 25 35% 15%;
 
-  --primary: 222.2 47.4% 11.2%;
-  --primary-foreground: 210 40% 98%;
+  --primary: 25 60% 35%; /* Rich earth brown */
+  --primary-foreground: 48 20% 97%;
 
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 45 50% 75%; /* Warm tan */
+  --secondary-foreground: 25 35% 15%;
 
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
+  --muted: 45 25% 88%; /* Soft beige */
+  --muted-foreground: 25 25% 45%;
 
-  --accent: 210 40% 96.1%;
-  --accent-foreground: 222.2 47.4% 11.2%;
+  --accent: 120 60% 50%; /* Bright grass green accent */
+  --accent-foreground: 48 20% 97%;
 
   --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive-foreground: 48 20% 97%;
 
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 222.2 84% 4.9%;
+  --border: 45 25% 85%; /* Light tan borders */
+  --input: 45 25% 85%;
+  --ring: 120 60% 50%; /* Green focus ring */
 
-  --radius: 0.5rem;
+  /* Cow Portal Custom Colors */
+  --cow-brown: 25 60% 35%;
+  --cow-cream: 48 25% 95%;
+  --grass-green: 120 60% 50%;
+  --barn-red: 0 65% 55%;
+  --sky-blue: 200 70% 60%;
+  --golden-wheat: 45 75% 65%;
+
+  --radius: 0.75rem;
 
   --sidebar-background: 0 0% 98%;
   --sidebar-foreground: 240 5.3% 26.1%;
@@ -160,4 +170,97 @@ All colors MUST be HSL.
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
+  font-family: 'Merriweather', serif;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Cow Portal Specific Styles */
+.hero-gradient {
+  background: linear-gradient(135deg, hsl(var(--cow-brown)) 0%, hsl(var(--golden-wheat)) 50%, hsl(var(--grass-green)) 100%);
+}
+
+.cow-card {
+  background: hsl(var(--cow-cream));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+
+.cow-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: hsl(var(--grass-green));
+}
+
+.stat-counter {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: hsl(var(--cow-brown));
+}
+
+.breed-tag {
+  background: hsl(var(--grass-green));
+  color: hsl(var(--accent-foreground));
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--cow-brown));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--grass-green));
+}
+
+/* Animation classes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes countUp {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-count-up {
+  animation: countUp 0.8s ease-out;
 }
