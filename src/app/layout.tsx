@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import React from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -11,29 +11,27 @@ import { Footer } from "@/components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: ["latin"]
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: ["latin"]
 });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Pasture Perfect - Comprehensive Cow Information Portal",
-  description: "Discover cattle breeds, fascinating cow facts, and educational resources about the world of cattle. Your ultimate guide to bovine knowledge.",
+  description: "Discover cattle breeds, fascinating cow facts, and educational resources about the world of cattle. Your ultimate guide to bovine knowledge."
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
+  children
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <QueryProvider>
           <ThemeProvider
             attribute="class"

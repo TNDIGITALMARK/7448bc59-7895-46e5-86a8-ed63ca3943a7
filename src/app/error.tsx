@@ -1,17 +1,19 @@
-'use client'
+'use client';
 
-export const dynamic = 'force-dynamic'
+import React from 'react';
+
+export const dynamic = 'force-dynamic';
 
 export default function Error() {
-  return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">500 - Server Error</h1>
-        <p className="text-xl mb-4">Something went wrong. Please try again later.</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
-        </a>
-      </div>
-    </div>
-  );
+  return (/*#__PURE__*/
+    React.createElement("div", { className: "min-h-screen flex items-center justify-center", "data-phoenix-id": "phoenix-7448bc59-1" }, /*#__PURE__*/
+    React.createElement("div", { className: "text-center", "data-phoenix-id": "phoenix-7448bc59-2" }, /*#__PURE__*/
+    React.createElement("h1", { className: "text-4xl font-bold mb-4", "data-phoenix-id": "phoenix-7448bc59-3" }, "500 - Server Error"), /*#__PURE__*/
+    React.createElement("p", { className: "text-xl mb-4", "data-phoenix-id": "phoenix-7448bc59-4" }, "Something went wrong. Please try again later."), /*#__PURE__*/
+    React.createElement("a", { href: "/", className: "text-blue-500 hover:text-blue-700 underline", "data-phoenix-id": "phoenix-7448bc59-5" }, "Return to Home"
+
+    )
+    )
+    ));
+
 }

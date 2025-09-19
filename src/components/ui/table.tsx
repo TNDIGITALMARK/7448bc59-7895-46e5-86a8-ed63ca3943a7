@@ -1,109 +1,109 @@
-import * as React from "react"
+function _extends() {return _extends = Object.assign ? Object.assign.bind() : function (n) {for (var e = 1; e < arguments.length; e++) {var t = arguments[e];for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]);}return n;}, _extends.apply(null, arguments);}import * as React from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-const Table = React.forwardRef<
-  HTMLTableElement,
-  React.HTMLAttributes<HTMLTableElement>
->(({ className, ...props }, ref) => (
-  <div className="relative w-full overflow-auto">
-    <table
-      ref={ref}
-      className={cn("w-full caption-bottom text-sm", className)}
-      {...props}
-    />
-  </div>
-))
-Table.displayName = "Table"
+const Table = /*#__PURE__*/React.forwardRef(
 
-const TableHeader = React.forwardRef<
-  HTMLTableSectionElement,
-  React.HTMLAttributes<HTMLTableSectionElement>
->(({ className, ...props }, ref) => (
-  <thead ref={ref} className={cn("[&_tr]:border-b", className)} {...props} />
-))
-TableHeader.displayName = "TableHeader"
 
-const TableBody = React.forwardRef<
-  HTMLTableSectionElement,
-  React.HTMLAttributes<HTMLTableSectionElement>
->(({ className, ...props }, ref) => (
-  <tbody
-    ref={ref}
-    className={cn("[&_tr:last-child]:border-0", className)}
-    {...props}
-  />
-))
-TableBody.displayName = "TableBody"
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement("div", { className: "relative w-full overflow-auto", "data-phoenix-id": "phoenix-7448bc59-1" }, /*#__PURE__*/
+  React.createElement("table", _extends({
+    ref: ref,
+    className: cn("w-full caption-bottom text-sm", className) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-2" })
+  )
+  )
+);
+Table.displayName = "Table";
 
-const TableFooter = React.forwardRef<
-  HTMLTableSectionElement,
-  React.HTMLAttributes<HTMLTableSectionElement>
->(({ className, ...props }, ref) => (
-  <tfoot
-    ref={ref}
-    className={cn(
+const TableHeader = /*#__PURE__*/React.forwardRef(
+
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement("thead", _extends({ ref: ref, className: cn("[&_tr]:border-b", className) }, props, { "data-phoenix-id": "phoenix-7448bc59-3" }))
+);
+TableHeader.displayName = "TableHeader";
+
+const TableBody = /*#__PURE__*/React.forwardRef(
+
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement("tbody", _extends({
+    ref: ref,
+    className: cn("[&_tr:last-child]:border-0", className) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-4" })
+  )
+);
+TableBody.displayName = "TableBody";
+
+const TableFooter = /*#__PURE__*/React.forwardRef(
+
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement("tfoot", _extends({
+    ref: ref,
+    className: cn(
       "border-t bg-muted/50 font-medium [&>tr]:last:border-b-0",
       className
-    )}
-    {...props}
-  />
-))
-TableFooter.displayName = "TableFooter"
+    ) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-5" })
+  )
+);
+TableFooter.displayName = "TableFooter";
 
-const TableRow = React.forwardRef<
-  HTMLTableRowElement,
-  React.HTMLAttributes<HTMLTableRowElement>
->(({ className, ...props }, ref) => (
-  <tr
-    ref={ref}
-    className={cn(
+const TableRow = /*#__PURE__*/React.forwardRef(
+
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement("tr", _extends({
+    ref: ref,
+    className: cn(
       "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
       className
-    )}
-    {...props}
-  />
-))
-TableRow.displayName = "TableRow"
+    ) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-6" })
+  )
+);
+TableRow.displayName = "TableRow";
 
-const TableHead = React.forwardRef<
-  HTMLTableCellElement,
-  React.ThHTMLAttributes<HTMLTableCellElement>
->(({ className, ...props }, ref) => (
-  <th
-    ref={ref}
-    className={cn(
+const TableHead = /*#__PURE__*/React.forwardRef(
+
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement("th", _extends({
+    ref: ref,
+    className: cn(
       "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
       className
-    )}
-    {...props}
-  />
-))
-TableHead.displayName = "TableHead"
+    ) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-7" })
+  )
+);
+TableHead.displayName = "TableHead";
 
-const TableCell = React.forwardRef<
-  HTMLTableCellElement,
-  React.TdHTMLAttributes<HTMLTableCellElement>
->(({ className, ...props }, ref) => (
-  <td
-    ref={ref}
-    className={cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className)}
-    {...props}
-  />
-))
-TableCell.displayName = "TableCell"
+const TableCell = /*#__PURE__*/React.forwardRef(
 
-const TableCaption = React.forwardRef<
-  HTMLTableCaptionElement,
-  React.HTMLAttributes<HTMLTableCaptionElement>
->(({ className, ...props }, ref) => (
-  <caption
-    ref={ref}
-    className={cn("mt-4 text-sm text-muted-foreground", className)}
-    {...props}
-  />
-))
-TableCaption.displayName = "TableCaption"
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement("td", _extends({
+    ref: ref,
+    className: cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-8" })
+  )
+);
+TableCell.displayName = "TableCell";
+
+const TableCaption = /*#__PURE__*/React.forwardRef(
+
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement("caption", _extends({
+    ref: ref,
+    className: cn("mt-4 text-sm text-muted-foreground", className) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-9" })
+  )
+);
+TableCaption.displayName = "TableCaption";
 
 export {
   Table,
@@ -113,5 +113,4 @@ export {
   TableHead,
   TableRow,
   TableCell,
-  TableCaption,
-}
+  TableCaption };

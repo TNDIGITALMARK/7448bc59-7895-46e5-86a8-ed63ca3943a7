@@ -1,48 +1,48 @@
-import * as React from "react"
-import * as AvatarPrimitive from "@radix-ui/react-avatar"
+function _extends() {return _extends = Object.assign ? Object.assign.bind() : function (n) {for (var e = 1; e < arguments.length; e++) {var t = arguments[e];for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]);}return n;}, _extends.apply(null, arguments);}import * as React from "react";
+import * as AvatarPrimitive from "@radix-ui/react-avatar";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-const Avatar = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Root
-    ref={ref}
-    className={cn(
+const Avatar = /*#__PURE__*/React.forwardRef(
+
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement(AvatarPrimitive.Root, _extends({
+    ref: ref,
+    className: cn(
       "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
       className
-    )}
-    {...props}
-  />
-))
-Avatar.displayName = AvatarPrimitive.Root.displayName
+    ) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-1" })
+  )
+);
+Avatar.displayName = AvatarPrimitive.Root.displayName;
 
-const AvatarImage = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Image>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Image
-    ref={ref}
-    className={cn("aspect-square h-full w-full", className)}
-    {...props}
-  />
-))
-AvatarImage.displayName = AvatarPrimitive.Image.displayName
+const AvatarImage = /*#__PURE__*/React.forwardRef(
 
-const AvatarFallback = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Fallback>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Fallback
-    ref={ref}
-    className={cn(
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement(AvatarPrimitive.Image, _extends({
+    ref: ref,
+    className: cn("aspect-square h-full w-full", className) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-2" })
+  )
+);
+AvatarImage.displayName = AvatarPrimitive.Image.displayName;
+
+const AvatarFallback = /*#__PURE__*/React.forwardRef(
+
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement(AvatarPrimitive.Fallback, _extends({
+    ref: ref,
+    className: cn(
       "flex h-full w-full items-center justify-center rounded-full bg-muted",
       className
-    )}
-    {...props}
-  />
-))
-AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName
+    ) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-3" })
+  )
+);
+AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 
-export { Avatar, AvatarImage, AvatarFallback }
+export { Avatar, AvatarImage, AvatarFallback };

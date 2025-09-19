@@ -1,144 +1,144 @@
-import * as React from "react"
-import { type DialogProps } from "@radix-ui/react-dialog"
-import { Command as CommandPrimitive } from "cmdk"
-import { Search } from "lucide-react"
+function _extends() {return _extends = Object.assign ? Object.assign.bind() : function (n) {for (var e = 1; e < arguments.length; e++) {var t = arguments[e];for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]);}return n;}, _extends.apply(null, arguments);}import * as React from "react";
 
-import { cn } from "@/lib/utils"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { Command as CommandPrimitive } from "cmdk";
+import { Search } from "lucide-react";
 
-const Command = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive>
->(({ className, ...props }, ref) => (
-  <CommandPrimitive
-    ref={ref}
-    className={cn(
+import { cn } from "@/lib/utils";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+
+const Command = /*#__PURE__*/React.forwardRef(
+
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement(CommandPrimitive, _extends({
+    ref: ref,
+    className: cn(
       "flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground",
       className
-    )}
-    {...props}
-  />
-))
-Command.displayName = CommandPrimitive.displayName
-
-type CommandDialogProps = DialogProps
-
-const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
-  return (
-    <Dialog {...props}>
-      <DialogContent className="overflow-hidden p-0 shadow-lg">
-        <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
-          {children}
-        </Command>
-      </DialogContent>
-    </Dialog>
+    ) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-1" })
   )
-}
+);
+Command.displayName = CommandPrimitive.displayName;
 
-const CommandInput = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive.Input>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
->(({ className, ...props }, ref) => (
-  <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
-    <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
-    <CommandPrimitive.Input
-      ref={ref}
-      className={cn(
-        "flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
-        className
-      )}
-      {...props}
-    />
-  </div>
-))
 
-CommandInput.displayName = CommandPrimitive.Input.displayName
 
-const CommandList = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive.List>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive.List>
->(({ className, ...props }, ref) => (
-  <CommandPrimitive.List
-    ref={ref}
-    className={cn("max-h-[300px] overflow-y-auto overflow-x-hidden", className)}
-    {...props}
-  />
-))
+const CommandDialog = ({ children, ...props }) => {
+  return (/*#__PURE__*/
+    React.createElement(Dialog, _extends({}, props, { "data-phoenix-id": "phoenix-7448bc59-2" }), /*#__PURE__*/
+    React.createElement(DialogContent, { className: "overflow-hidden p-0 shadow-lg", "data-phoenix-id": "phoenix-7448bc59-3" }, /*#__PURE__*/
+    React.createElement(Command, { className: "[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5", "data-phoenix-id": "phoenix-7448bc59-4" },
+    children
+    )
+    )
+    ));
 
-CommandList.displayName = CommandPrimitive.List.displayName
+};
 
-const CommandEmpty = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive.Empty>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Empty>
->((props, ref) => (
-  <CommandPrimitive.Empty
-    ref={ref}
-    className="py-6 text-center text-sm"
-    {...props}
-  />
-))
+const CommandInput = /*#__PURE__*/React.forwardRef(
 
-CommandEmpty.displayName = CommandPrimitive.Empty.displayName
 
-const CommandGroup = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive.Group>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Group>
->(({ className, ...props }, ref) => (
-  <CommandPrimitive.Group
-    ref={ref}
-    className={cn(
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement("div", { className: "flex items-center border-b px-3", "cmdk-input-wrapper": "", "data-phoenix-id": "phoenix-7448bc59-5" }, /*#__PURE__*/
+  React.createElement(Search, { className: "mr-2 h-4 w-4 shrink-0 opacity-50", "data-phoenix-id": "phoenix-7448bc59-6" }), /*#__PURE__*/
+  React.createElement(CommandPrimitive.Input, _extends({
+    ref: ref,
+    className: cn(
+      "flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+      className
+    ) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-7" })
+  )
+  )
+);
+
+CommandInput.displayName = CommandPrimitive.Input.displayName;
+
+const CommandList = /*#__PURE__*/React.forwardRef(
+
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement(CommandPrimitive.List, _extends({
+    ref: ref,
+    className: cn("max-h-[300px] overflow-y-auto overflow-x-hidden", className) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-8" })
+  )
+);
+
+CommandList.displayName = CommandPrimitive.List.displayName;
+
+const CommandEmpty = /*#__PURE__*/React.forwardRef(
+
+
+  (props, ref) => /*#__PURE__*/
+  React.createElement(CommandPrimitive.Empty, _extends({
+    ref: ref,
+    className: "py-6 text-center text-sm" },
+  props, { "data-phoenix-id": "phoenix-7448bc59-9" })
+  )
+);
+
+CommandEmpty.displayName = CommandPrimitive.Empty.displayName;
+
+const CommandGroup = /*#__PURE__*/React.forwardRef(
+
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement(CommandPrimitive.Group, _extends({
+    ref: ref,
+    className: cn(
       "overflow-hidden p-1 text-foreground [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground",
       className
-    )}
-    {...props}
-  />
-))
+    ) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-10" })
+  )
+);
 
-CommandGroup.displayName = CommandPrimitive.Group.displayName
+CommandGroup.displayName = CommandPrimitive.Group.displayName;
 
-const CommandSeparator = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive.Separator>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Separator>
->(({ className, ...props }, ref) => (
-  <CommandPrimitive.Separator
-    ref={ref}
-    className={cn("-mx-1 h-px bg-border", className)}
-    {...props}
-  />
-))
-CommandSeparator.displayName = CommandPrimitive.Separator.displayName
+const CommandSeparator = /*#__PURE__*/React.forwardRef(
 
-const CommandItem = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Item>
->(({ className, ...props }, ref) => (
-  <CommandPrimitive.Item
-    ref={ref}
-    className={cn(
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement(CommandPrimitive.Separator, _extends({
+    ref: ref,
+    className: cn("-mx-1 h-px bg-border", className) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-11" })
+  )
+);
+CommandSeparator.displayName = CommandPrimitive.Separator.displayName;
+
+const CommandItem = /*#__PURE__*/React.forwardRef(
+
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement(CommandPrimitive.Item, _extends({
+    ref: ref,
+    className: cn(
       "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none data-[disabled=true]:pointer-events-none data-[selected='true']:bg-accent data-[selected=true]:text-accent-foreground data-[disabled=true]:opacity-50",
       className
-    )}
-    {...props}
-  />
-))
+    ) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-12" })
+  )
+);
 
-CommandItem.displayName = CommandPrimitive.Item.displayName
+CommandItem.displayName = CommandPrimitive.Item.displayName;
 
 const CommandShortcut = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLSpanElement>) => {
-  return (
-    <span
-      className={cn(
+}) => {
+  return (/*#__PURE__*/
+    React.createElement("span", _extends({
+      className: cn(
         "ml-auto text-xs tracking-widest text-muted-foreground",
         className
-      )}
-      {...props}
-    />
-  )
-}
-CommandShortcut.displayName = "CommandShortcut"
+      ) },
+    props, { "data-phoenix-id": "phoenix-7448bc59-13" })
+    ));
+
+};
+CommandShortcut.displayName = "CommandShortcut";
 
 export {
   Command,
@@ -149,5 +149,4 @@ export {
   CommandGroup,
   CommandItem,
   CommandShortcut,
-  CommandSeparator,
-}
+  CommandSeparator };

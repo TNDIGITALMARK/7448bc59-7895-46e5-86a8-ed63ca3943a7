@@ -1,128 +1,128 @@
-import * as React from "react"
-import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog"
+function _extends() {return _extends = Object.assign ? Object.assign.bind() : function (n) {for (var e = 1; e < arguments.length; e++) {var t = arguments[e];for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]);}return n;}, _extends.apply(null, arguments);}import * as React from "react";
+import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
 
-import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
 
-const AlertDialog = AlertDialogPrimitive.Root
+const AlertDialog = AlertDialogPrimitive.Root;
 
-const AlertDialogTrigger = AlertDialogPrimitive.Trigger
+const AlertDialogTrigger = AlertDialogPrimitive.Trigger;
 
-const AlertDialogPortal = AlertDialogPrimitive.Portal
+const AlertDialogPortal = AlertDialogPrimitive.Portal;
 
-const AlertDialogOverlay = React.forwardRef<
-  React.ElementRef<typeof AlertDialogPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Overlay>
->(({ className, ...props }, ref) => (
-  <AlertDialogPrimitive.Overlay
-    className={cn(
+const AlertDialogOverlay = /*#__PURE__*/React.forwardRef(
+
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement(AlertDialogPrimitive.Overlay, _extends({
+    className: cn(
       "fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       className
-    )}
-    {...props}
-    ref={ref}
-  />
-))
-AlertDialogOverlay.displayName = AlertDialogPrimitive.Overlay.displayName
+    ) },
+  props, {
+    ref: ref, "data-phoenix-id": "phoenix-7448bc59-1" })
+  )
+);
+AlertDialogOverlay.displayName = AlertDialogPrimitive.Overlay.displayName;
 
-const AlertDialogContent = React.forwardRef<
-  React.ElementRef<typeof AlertDialogPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Content>
->(({ className, ...props }, ref) => (
-  <AlertDialogPortal>
-    <AlertDialogOverlay />
-    <AlertDialogPrimitive.Content
-      ref={ref}
-      className={cn(
-        "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
-        className
-      )}
-      {...props}
-    />
-  </AlertDialogPortal>
-))
-AlertDialogContent.displayName = AlertDialogPrimitive.Content.displayName
+const AlertDialogContent = /*#__PURE__*/React.forwardRef(
+
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement(AlertDialogPortal, { "data-phoenix-id": "phoenix-7448bc59-2" }, /*#__PURE__*/
+  React.createElement(AlertDialogOverlay, { "data-phoenix-id": "phoenix-7448bc59-3" }), /*#__PURE__*/
+  React.createElement(AlertDialogPrimitive.Content, _extends({
+    ref: ref,
+    className: cn(
+      "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
+      className
+    ) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-4" })
+  )
+  )
+);
+AlertDialogContent.displayName = AlertDialogPrimitive.Content.displayName;
 
 const AlertDialogHeader = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn(
-      "flex flex-col space-y-2 text-center sm:text-left",
-      className
-    )}
-    {...props}
-  />
-)
-AlertDialogHeader.displayName = "AlertDialogHeader"
+}) => /*#__PURE__*/
+React.createElement("div", _extends({
+  className: cn(
+    "flex flex-col space-y-2 text-center sm:text-left",
+    className
+  ) },
+props, { "data-phoenix-id": "phoenix-7448bc59-5" })
+);
+
+AlertDialogHeader.displayName = "AlertDialogHeader";
 
 const AlertDialogFooter = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn(
-      "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
-      className
-    )}
-    {...props}
-  />
-)
-AlertDialogFooter.displayName = "AlertDialogFooter"
+}) => /*#__PURE__*/
+React.createElement("div", _extends({
+  className: cn(
+    "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
+    className
+  ) },
+props, { "data-phoenix-id": "phoenix-7448bc59-6" })
+);
 
-const AlertDialogTitle = React.forwardRef<
-  React.ElementRef<typeof AlertDialogPrimitive.Title>,
-  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Title>
->(({ className, ...props }, ref) => (
-  <AlertDialogPrimitive.Title
-    ref={ref}
-    className={cn("text-lg font-semibold", className)}
-    {...props}
-  />
-))
-AlertDialogTitle.displayName = AlertDialogPrimitive.Title.displayName
+AlertDialogFooter.displayName = "AlertDialogFooter";
 
-const AlertDialogDescription = React.forwardRef<
-  React.ElementRef<typeof AlertDialogPrimitive.Description>,
-  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Description>
->(({ className, ...props }, ref) => (
-  <AlertDialogPrimitive.Description
-    ref={ref}
-    className={cn("text-sm text-muted-foreground", className)}
-    {...props}
-  />
-))
+const AlertDialogTitle = /*#__PURE__*/React.forwardRef(
+
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement(AlertDialogPrimitive.Title, _extends({
+    ref: ref,
+    className: cn("text-lg font-semibold", className) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-7" })
+  )
+);
+AlertDialogTitle.displayName = AlertDialogPrimitive.Title.displayName;
+
+const AlertDialogDescription = /*#__PURE__*/React.forwardRef(
+
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement(AlertDialogPrimitive.Description, _extends({
+    ref: ref,
+    className: cn("text-sm text-muted-foreground", className) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-8" })
+  )
+);
 AlertDialogDescription.displayName =
-  AlertDialogPrimitive.Description.displayName
+AlertDialogPrimitive.Description.displayName;
 
-const AlertDialogAction = React.forwardRef<
-  React.ElementRef<typeof AlertDialogPrimitive.Action>,
-  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Action>
->(({ className, ...props }, ref) => (
-  <AlertDialogPrimitive.Action
-    ref={ref}
-    className={cn(buttonVariants(), className)}
-    {...props}
-  />
-))
-AlertDialogAction.displayName = AlertDialogPrimitive.Action.displayName
+const AlertDialogAction = /*#__PURE__*/React.forwardRef(
 
-const AlertDialogCancel = React.forwardRef<
-  React.ElementRef<typeof AlertDialogPrimitive.Cancel>,
-  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Cancel>
->(({ className, ...props }, ref) => (
-  <AlertDialogPrimitive.Cancel
-    ref={ref}
-    className={cn(
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement(AlertDialogPrimitive.Action, _extends({
+    ref: ref,
+    className: cn(buttonVariants(), className) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-9" })
+  )
+);
+AlertDialogAction.displayName = AlertDialogPrimitive.Action.displayName;
+
+const AlertDialogCancel = /*#__PURE__*/React.forwardRef(
+
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement(AlertDialogPrimitive.Cancel, _extends({
+    ref: ref,
+    className: cn(
       buttonVariants({ variant: "outline" }),
       "mt-2 sm:mt-0",
       className
-    )}
-    {...props}
-  />
-))
-AlertDialogCancel.displayName = AlertDialogPrimitive.Cancel.displayName
+    ) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-10" })
+  )
+);
+AlertDialogCancel.displayName = AlertDialogPrimitive.Cancel.displayName;
 
 export {
   AlertDialog,
@@ -135,5 +135,4 @@ export {
   AlertDialogTitle,
   AlertDialogDescription,
   AlertDialogAction,
-  AlertDialogCancel,
-}
+  AlertDialogCancel };

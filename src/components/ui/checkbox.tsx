@@ -1,28 +1,28 @@
-import * as React from "react"
-import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
-import { Check } from "lucide-react"
+function _extends() {return _extends = Object.assign ? Object.assign.bind() : function (n) {for (var e = 1; e < arguments.length; e++) {var t = arguments[e];for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]);}return n;}, _extends.apply(null, arguments);}import * as React from "react";
+import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
+import { Check } from "lucide-react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-const Checkbox = React.forwardRef<
-  React.ElementRef<typeof CheckboxPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
->(({ className, ...props }, ref) => (
-  <CheckboxPrimitive.Root
-    ref={ref}
-    className={cn(
+const Checkbox = /*#__PURE__*/React.forwardRef(
+
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement(CheckboxPrimitive.Root, _extends({
+    ref: ref,
+    className: cn(
       "peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground",
       className
-    )}
-    {...props}
-  >
-    <CheckboxPrimitive.Indicator
-      className={cn("flex items-center justify-center text-current")}
-    >
-      <Check className="h-4 w-4" />
-    </CheckboxPrimitive.Indicator>
-  </CheckboxPrimitive.Root>
-))
-Checkbox.displayName = CheckboxPrimitive.Root.displayName
+    ) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-1" }), /*#__PURE__*/
 
-export { Checkbox }
+  React.createElement(CheckboxPrimitive.Indicator, {
+    className: cn("flex items-center justify-center text-current"), "data-phoenix-id": "phoenix-7448bc59-2" }, /*#__PURE__*/
+
+  React.createElement(Check, { className: "h-4 w-4", "data-phoenix-id": "phoenix-7448bc59-3" })
+  )
+  )
+);
+Checkbox.displayName = CheckboxPrimitive.Root.displayName;
+
+export { Checkbox };

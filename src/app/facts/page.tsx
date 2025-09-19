@@ -1,57 +1,47 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { cowFacts, cowStatistics, quizQuestions, factCategories, type CowFact } from '@/lib/data/cow-facts';
+import { cowFacts, cowStatistics, quizQuestions, factCategories } from '@/lib/data/cow-facts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
-  TrendingUp,
   Brain,
-  Trophy,
   Share,
   RotateCcw,
   ChevronRight,
   ChevronLeft,
   CheckCircle,
   XCircle,
-  Lightbulb
+  Lightbulb,
 } from 'lucide-react';
-
-interface QuizState {
-  currentQuestion: number;
-  answers: (number | null)[];
-  showResults: boolean;
-  score: number;
-}
 
 export default function FactsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
   const [animateCounters, setAnimateCounters] = useState(false);
-  const [quiz, setQuiz] = useState<QuizState>({
+  const [quiz, setQuiz] = useState({
     currentQuestion: 0,
     answers: new Array(quizQuestions.length).fill(null),
     showResults: false,
     score: 0
   });
 
-  const filteredFacts = selectedCategory === 'all'
-    ? cowFacts
-    : cowFacts.filter(fact => fact.category === selectedCategory);
+  const filteredFacts = selectedCategory === 'all' ?
+    cowFacts :
+    cowFacts.filter((fact) => fact.category === selectedCategory);
 
   useEffect(() => {
     setAnimateCounters(true);
   }, []);
 
-  const handleQuizAnswer = (answerIndex: number) => {
+  const handleQuizAnswer = (answerIndex) => {
     const newAnswers = [...quiz.answers];
     newAnswers[quiz.currentQuestion] = answerIndex;
 
     if (quiz.currentQuestion === quizQuestions.length - 1) {
-      // Calculate final score
       const score = newAnswers.reduce((total, answer, index) => {
         return answer === quizQuestions[index].correctAnswer ? total + 1 : total;
       }, 0);
@@ -82,7 +72,7 @@ export default function FactsPage() {
 
   const goToPreviousQuestion = () => {
     if (quiz.currentQuestion > 0) {
-      setQuiz(prev => ({
+      setQuiz((prev) => ({
         ...prev,
         currentQuestion: prev.currentQuestion - 1
       }));
@@ -112,20 +102,17 @@ export default function FactsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-amber-50">
-      {/* Header Section */}
       <section className="py-16 bg-gradient-to-r from-amber-600 to-amber-700">
         <div className="container mx-auto px-4 lg:px-8 text-center">
           <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
             Amazing Cow Facts
           </h1>
           <p className="text-xl text-amber-100 max-w-3xl mx-auto leading-relaxed">
-            Discover fascinating facts about cows, test your knowledge with interactive quizzes,
-            and explore amazing statistics about these incredible animals.
+            Discover fascinating facts about cows, test your knowledge with interactive quizzes, and explore amazing statistics about these incredible animals.
           </p>
         </div>
       </section>
 
-      {/* Statistics Section */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12">
@@ -166,7 +153,6 @@ export default function FactsPage() {
         </div>
       </section>
 
-      {/* Main Content Tabs */}
       <section className="py-12">
         <div className="container mx-auto px-4 lg:px-8">
           <Tabs defaultValue="facts" className="w-full">
@@ -181,10 +167,8 @@ export default function FactsPage() {
               </TabsTrigger>
             </TabsList>
 
-            {/* Facts Tab */}
             <TabsContent value="facts">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Category Filter */}
                 <div className="lg:col-span-1">
                   <Card>
                     <CardHeader>
@@ -211,14 +195,13 @@ export default function FactsPage() {
                   </Card>
                 </div>
 
-                {/* Current Fact Display */}
                 <div className="lg:col-span-2">
                   {filteredFacts.length > 0 && (
                     <Card className="cow-card">
                       <CardHeader className="text-center">
                         <div className="flex items-center justify-between">
                           <Badge variant="secondary">
-                            {factCategories.find(c => c.id === filteredFacts[currentFactIndex]?.category)?.name}
+                            {factCategories.find((c) => c.id === filteredFacts[currentFactIndex]?.category)?.name}
                           </Badge>
                           <div className="flex gap-2">
                             <Button size="sm" variant="ghost" onClick={shareCurrentFact}>
@@ -269,7 +252,6 @@ export default function FactsPage() {
               </div>
             </TabsContent>
 
-            {/* Quiz Tab */}
             <TabsContent value="quiz">
               <div className="max-w-4xl mx-auto">
                 {!quiz.showResults ? (
@@ -321,15 +303,15 @@ export default function FactsPage() {
                   <Card className="cow-card text-center">
                     <CardHeader>
                       <div className="text-6xl mb-4">
-                        {quiz.score >= quizQuestions.length * 0.8 ? '🏆' : quiz.score >= quizQuestions.length * 0.6 ? '🎉' : '📚'}
+                        {quiz.score >= quizQuestions.length * 0.8 ? '🏆' :
+                         quiz.score >= quizQuestions.length * 0.6 ? '🎉' : '📚'}
                       </div>
                       <CardTitle className="text-3xl">
-                        {quiz.score >= quizQuestions.length * 0.8
-                          ? 'Excellent! You\'re a cow expert!'
-                          : quiz.score >= quizQuestions.length * 0.6
-                          ? 'Good job! You know your cows!'
-                          : 'Keep learning about these amazing animals!'
-                        }
+                        {quiz.score >= quizQuestions.length * 0.8 ?
+                          'Excellent! You\'re a cow expert!' :
+                          quiz.score >= quizQuestions.length * 0.6 ?
+                            'Good job! You know your cows!' :
+                            'Keep learning about these amazing animals!'}
                       </CardTitle>
                       <div className="text-2xl font-bold text-green-600 mt-4">
                         {quiz.score} out of {quizQuestions.length} correct
@@ -341,9 +323,9 @@ export default function FactsPage() {
                           <div
                             key={index}
                             className={`p-4 rounded-lg border-2 ${
-                              quiz.answers[index] === question.correctAnswer
-                                ? 'border-green-200 bg-green-50'
-                                : 'border-red-200 bg-red-50'
+                              quiz.answers[index] === question.correctAnswer ?
+                                'border-green-200 bg-green-50' :
+                                'border-red-200 bg-red-50'
                             }`}
                           >
                             <div className="flex items-start gap-3">

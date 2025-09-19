@@ -1,4 +1,5 @@
 'use client';
+import React from 'react';
 
 import { useState } from 'react';
 import Link from 'next/link';
@@ -10,171 +11,171 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
-} from '@/components/ui/navigation-menu';
+  NavigationMenuTrigger } from
+'@/components/ui/navigation-menu';
 
 const navigation = [
-  {
-    name: 'Breeds',
-    href: '/breeds',
-    description: 'Explore different cattle breeds',
-    submenu: [
-      { name: 'All Breeds', href: '/breeds', description: 'Browse all cattle breeds' },
-      { name: 'Dairy Breeds', href: '/breeds?category=dairy', description: 'Milk-producing breeds' },
-      { name: 'Beef Breeds', href: '/breeds?category=beef', description: 'Meat-producing breeds' },
-      { name: 'Compare Breeds', href: '/breeds/compare', description: 'Side-by-side comparison' }
-    ]
-  },
-  {
-    name: 'Facts',
-    href: '/facts',
-    description: 'Amazing cow facts and statistics'
-  },
-  {
-    name: 'Gallery',
-    href: '/gallery',
-    description: 'Beautiful cow photography'
-  },
-  {
-    name: 'Contact',
-    href: '/contact',
-    description: 'Get in touch with us'
-  }
-];
+{
+  name: 'Breeds',
+  href: '/breeds',
+  description: 'Explore different cattle breeds',
+  submenu: [
+  { name: 'All Breeds', href: '/breeds', description: 'Browse all cattle breeds' },
+  { name: 'Dairy Breeds', href: '/breeds?category=dairy', description: 'Milk-producing breeds' },
+  { name: 'Beef Breeds', href: '/breeds?category=beef', description: 'Meat-producing breeds' },
+  { name: 'Compare Breeds', href: '/breeds/compare', description: 'Side-by-side comparison' }]
+
+},
+{
+  name: 'Facts',
+  href: '/facts',
+  description: 'Amazing cow facts and statistics'
+},
+{
+  name: 'Gallery',
+  href: '/gallery',
+  description: 'Beautiful cow photography'
+},
+{
+  name: 'Contact',
+  href: '/contact',
+  description: 'Get in touch with us'
+}];
+
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
-      <nav className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="text-2xl">🐄</div>
-              <div>
-                <span className="text-xl font-bold text-gray-900">Pasture</span>
-                <span className="text-xl font-bold text-green-600">Perfect</span>
-              </div>
-            </Link>
-          </div>
+  return (/*#__PURE__*/
+    React.createElement("header", { className: "sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200", "data-phoenix-id": "phoenix-7448bc59-1" }, /*#__PURE__*/
+    React.createElement("nav", { className: "container mx-auto px-4 lg:px-8", "data-phoenix-id": "phoenix-7448bc59-2" }, /*#__PURE__*/
+    React.createElement("div", { className: "flex items-center justify-between h-16", "data-phoenix-id": "phoenix-7448bc59-3" }, /*#__PURE__*/
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:block">
-            <NavigationMenu>
-              <NavigationMenuList className="space-x-2">
-                {navigation.map((item) => (
-                  <NavigationMenuItem key={item.name}>
-                    {item.submenu ? (
-                      <>
-                        <NavigationMenuTrigger className="font-medium text-gray-700 hover:text-green-600 transition-colors">
-                          {item.name}
-                        </NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                          <div className="w-80 p-6">
-                            <div className="mb-4">
-                              <h4 className="text-lg font-semibold text-gray-900 mb-2">{item.name}</h4>
-                              <p className="text-sm text-gray-600">{item.description}</p>
-                            </div>
-                            <ul className="space-y-3">
-                              {item.submenu.map((subItem) => (
-                                <li key={subItem.name}>
-                                  <NavigationMenuLink asChild>
-                                    <Link
-                                      href={subItem.href}
-                                      className="block p-3 rounded-lg hover:bg-gray-50 transition-colors"
-                                    >
-                                      <div className="font-medium text-gray-900 mb-1">
-                                        {subItem.name}
-                                      </div>
-                                      <div className="text-sm text-gray-600">
-                                        {subItem.description}
-                                      </div>
-                                    </Link>
-                                  </NavigationMenuLink>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </NavigationMenuContent>
-                      </>
-                    ) : (
-                      <NavigationMenuLink asChild>
-                        <Link
-                          href={item.href}
-                          className="font-medium text-gray-700 hover:text-green-600 transition-colors px-3 py-2 rounded-md"
-                        >
-                          {item.name}
-                        </Link>
-                      </NavigationMenuLink>
-                    )}
-                  </NavigationMenuItem>
-                ))}
-              </NavigationMenuList>
-            </NavigationMenu>
-          </div>
+    React.createElement("div", { className: "flex items-center", "data-phoenix-id": "phoenix-7448bc59-4" }, /*#__PURE__*/
+    React.createElement(Link, { href: "/", className: "flex items-center space-x-2", "data-phoenix-id": "phoenix-7448bc59-5" }, /*#__PURE__*/
+    React.createElement("div", { className: "text-2xl", "data-phoenix-id": "phoenix-7448bc59-6" }, "\uD83D\uDC04"), /*#__PURE__*/
+    React.createElement("div", { "data-phoenix-id": "phoenix-7448bc59-7" }, /*#__PURE__*/
+    React.createElement("span", { className: "text-xl font-bold text-gray-900", "data-phoenix-id": "phoenix-7448bc59-8" }, "Pasture"), /*#__PURE__*/
+    React.createElement("span", { className: "text-xl font-bold text-green-600", "data-phoenix-id": "phoenix-7448bc59-9" }, "Perfect")
+    )
+    )
+    ), /*#__PURE__*/
 
-          {/* Search and CTA */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <Button variant="ghost" size="icon">
-              <Search className="h-5 w-5" />
-            </Button>
-            <Button className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white">
-              Learn More
-            </Button>
-          </div>
 
-          {/* Mobile menu button */}
-          <div className="lg:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
-          </div>
-        </div>
+    React.createElement("div", { className: "hidden lg:block", "data-phoenix-id": "phoenix-7448bc59-10" }, /*#__PURE__*/
+    React.createElement(NavigationMenu, { "data-phoenix-id": "phoenix-7448bc59-11" }, /*#__PURE__*/
+    React.createElement(NavigationMenuList, { className: "space-x-2", "data-phoenix-id": "phoenix-7448bc59-12" },
+    navigation.map((item) => /*#__PURE__*/
+    React.createElement(NavigationMenuItem, { key: item.name, "data-phoenix-id": "phoenix-7448bc59-13" },
+    item.submenu ? /*#__PURE__*/
+    React.createElement(React.Fragment, null, /*#__PURE__*/
+    React.createElement(NavigationMenuTrigger, { className: "font-medium text-gray-700 hover:text-green-600 transition-colors", "data-phoenix-id": "phoenix-7448bc59-14" },
+    item.name
+    ), /*#__PURE__*/
+    React.createElement(NavigationMenuContent, { "data-phoenix-id": "phoenix-7448bc59-15" }, /*#__PURE__*/
+    React.createElement("div", { className: "w-80 p-6", "data-phoenix-id": "phoenix-7448bc59-16" }, /*#__PURE__*/
+    React.createElement("div", { className: "mb-4", "data-phoenix-id": "phoenix-7448bc59-17" }, /*#__PURE__*/
+    React.createElement("h4", { className: "text-lg font-semibold text-gray-900 mb-2", "data-phoenix-id": "phoenix-7448bc59-18" }, item.name), /*#__PURE__*/
+    React.createElement("p", { className: "text-sm text-gray-600", "data-phoenix-id": "phoenix-7448bc59-19" }, item.description)
+    ), /*#__PURE__*/
+    React.createElement("ul", { className: "space-y-3", "data-phoenix-id": "phoenix-7448bc59-20" },
+    item.submenu.map((subItem) => /*#__PURE__*/
+    React.createElement("li", { key: subItem.name, "data-phoenix-id": "phoenix-7448bc59-21" }, /*#__PURE__*/
+    React.createElement(NavigationMenuLink, { asChild: true, "data-phoenix-id": "phoenix-7448bc59-22" }, /*#__PURE__*/
+    React.createElement(Link, {
+      href: subItem.href,
+      className: "block p-3 rounded-lg hover:bg-gray-50 transition-colors", "data-phoenix-id": "phoenix-7448bc59-23" }, /*#__PURE__*/
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden border-t border-gray-200 py-4">
-            <div className="space-y-4">
-              {navigation.map((item) => (
-                <div key={item.name} className="space-y-2">
-                  <Link
-                    href={item.href}
-                    className="block font-medium text-gray-700 hover:text-green-600 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                  {item.submenu && (
-                    <div className="ml-4 space-y-2">
-                      {item.submenu.map((subItem) => (
-                        <Link
-                          key={subItem.name}
-                          href={subItem.href}
-                          className="block text-sm text-gray-600 hover:text-green-600 transition-colors"
-                          onClick={() => setIsMenuOpen(false)}
-                        >
-                          {subItem.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-              <div className="pt-4 border-t border-gray-200">
-                <Button className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white">
-                  Learn More
-                </Button>
-              </div>
-            </div>
-          </div>
-        )}
-      </nav>
-    </header>
-  );
+    React.createElement("div", { className: "font-medium text-gray-900 mb-1", "data-phoenix-id": "phoenix-7448bc59-24" },
+    subItem.name
+    ), /*#__PURE__*/
+    React.createElement("div", { className: "text-sm text-gray-600", "data-phoenix-id": "phoenix-7448bc59-25" },
+    subItem.description
+    )
+    )
+    )
+    )
+    )
+    )
+    )
+    )
+    ) : /*#__PURE__*/
+
+    React.createElement(NavigationMenuLink, { asChild: true, "data-phoenix-id": "phoenix-7448bc59-26" }, /*#__PURE__*/
+    React.createElement(Link, {
+      href: item.href,
+      className: "font-medium text-gray-700 hover:text-green-600 transition-colors px-3 py-2 rounded-md", "data-phoenix-id": "phoenix-7448bc59-27" },
+
+    item.name
+    )
+    )
+
+    )
+    )
+    )
+    )
+    ), /*#__PURE__*/
+
+
+    React.createElement("div", { className: "hidden lg:flex items-center space-x-4", "data-phoenix-id": "phoenix-7448bc59-28" }, /*#__PURE__*/
+    React.createElement(Button, { variant: "ghost", size: "icon", "data-phoenix-id": "phoenix-7448bc59-29" }, /*#__PURE__*/
+    React.createElement(Search, { className: "h-5 w-5", "data-phoenix-id": "phoenix-7448bc59-30" })
+    ), /*#__PURE__*/
+    React.createElement(Button, { className: "bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white", "data-phoenix-id": "phoenix-7448bc59-31" }, "Learn More"
+
+    )
+    ), /*#__PURE__*/
+
+
+    React.createElement("div", { className: "lg:hidden", "data-phoenix-id": "phoenix-7448bc59-32" }, /*#__PURE__*/
+    React.createElement(Button, {
+      variant: "ghost",
+      size: "icon",
+      onClick: () => setIsMenuOpen(!isMenuOpen), "data-phoenix-id": "phoenix-7448bc59-33" },
+
+    isMenuOpen ? /*#__PURE__*/React.createElement(X, { className: "h-6 w-6", "data-phoenix-id": "phoenix-7448bc59-34" }) : /*#__PURE__*/React.createElement(Menu, { className: "h-6 w-6", "data-phoenix-id": "phoenix-7448bc59-35" })
+    )
+    )
+    ),
+
+
+    isMenuOpen && /*#__PURE__*/
+    React.createElement("div", { className: "lg:hidden border-t border-gray-200 py-4", "data-phoenix-id": "phoenix-7448bc59-36" }, /*#__PURE__*/
+    React.createElement("div", { className: "space-y-4", "data-phoenix-id": "phoenix-7448bc59-37" },
+    navigation.map((item) => /*#__PURE__*/
+    React.createElement("div", { key: item.name, className: "space-y-2", "data-phoenix-id": "phoenix-7448bc59-38" }, /*#__PURE__*/
+    React.createElement(Link, {
+      href: item.href,
+      className: "block font-medium text-gray-700 hover:text-green-600 transition-colors",
+      onClick: () => setIsMenuOpen(false), "data-phoenix-id": "phoenix-7448bc59-39" },
+
+    item.name
+    ),
+    item.submenu && /*#__PURE__*/
+    React.createElement("div", { className: "ml-4 space-y-2", "data-phoenix-id": "phoenix-7448bc59-40" },
+    item.submenu.map((subItem) => /*#__PURE__*/
+    React.createElement(Link, {
+      key: subItem.name,
+      href: subItem.href,
+      className: "block text-sm text-gray-600 hover:text-green-600 transition-colors",
+      onClick: () => setIsMenuOpen(false), "data-phoenix-id": "phoenix-7448bc59-41" },
+
+    subItem.name
+    )
+    )
+    )
+
+    )
+    ), /*#__PURE__*/
+    React.createElement("div", { className: "pt-4 border-t border-gray-200", "data-phoenix-id": "phoenix-7448bc59-42" }, /*#__PURE__*/
+    React.createElement(Button, { className: "w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white", "data-phoenix-id": "phoenix-7448bc59-43" }, "Learn More"
+
+    )
+    )
+    )
+    )
+
+    )
+    ));
+
 }

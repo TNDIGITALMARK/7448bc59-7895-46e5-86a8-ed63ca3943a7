@@ -1,26 +1,26 @@
-import * as React from "react"
-import * as SliderPrimitive from "@radix-ui/react-slider"
+function _extends() {return _extends = Object.assign ? Object.assign.bind() : function (n) {for (var e = 1; e < arguments.length; e++) {var t = arguments[e];for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]);}return n;}, _extends.apply(null, arguments);}import * as React from "react";
+import * as SliderPrimitive from "@radix-ui/react-slider";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-const Slider = React.forwardRef<
-  React.ElementRef<typeof SliderPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
->(({ className, ...props }, ref) => (
-  <SliderPrimitive.Root
-    ref={ref}
-    className={cn(
+const Slider = /*#__PURE__*/React.forwardRef(
+
+
+  ({ className, ...props }, ref) => /*#__PURE__*/
+  React.createElement(SliderPrimitive.Root, _extends({
+    ref: ref,
+    className: cn(
       "relative flex w-full touch-none select-none items-center",
       className
-    )}
-    {...props}
-  >
-    <SliderPrimitive.Track className="relative h-2 w-full grow overflow-hidden rounded-full bg-secondary">
-      <SliderPrimitive.Range className="absolute h-full bg-primary" />
-    </SliderPrimitive.Track>
-    <SliderPrimitive.Thumb className="block h-5 w-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" />
-  </SliderPrimitive.Root>
-))
-Slider.displayName = SliderPrimitive.Root.displayName
+    ) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-1" }), /*#__PURE__*/
 
-export { Slider }
+  React.createElement(SliderPrimitive.Track, { className: "relative h-2 w-full grow overflow-hidden rounded-full bg-secondary", "data-phoenix-id": "phoenix-7448bc59-2" }, /*#__PURE__*/
+  React.createElement(SliderPrimitive.Range, { className: "absolute h-full bg-primary", "data-phoenix-id": "phoenix-7448bc59-3" })
+  ), /*#__PURE__*/
+  React.createElement(SliderPrimitive.Thumb, { className: "block h-5 w-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50", "data-phoenix-id": "phoenix-7448bc59-4" })
+  )
+);
+Slider.displayName = SliderPrimitive.Root.displayName;
+
+export { Slider };

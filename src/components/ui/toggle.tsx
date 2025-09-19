@@ -1,8 +1,8 @@
-import * as React from "react"
-import * as TogglePrimitive from "@radix-ui/react-toggle"
-import { cva, type VariantProps } from "class-variance-authority"
+function _extends() {return _extends = Object.assign ? Object.assign.bind() : function (n) {for (var e = 1; e < arguments.length; e++) {var t = arguments[e];for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]);}return n;}, _extends.apply(null, arguments);}import * as React from "react";
+import * as TogglePrimitive from "@radix-ui/react-toggle";
+import { cva } from "class-variance-authority";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 const toggleVariants = cva(
   "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground",
@@ -11,33 +11,33 @@ const toggleVariants = cva(
       variant: {
         default: "bg-transparent",
         outline:
-          "border border-input bg-transparent hover:bg-accent hover:text-accent-foreground",
+        "border border-input bg-transparent hover:bg-accent hover:text-accent-foreground"
       },
       size: {
         default: "h-10 px-3",
         sm: "h-9 px-2.5",
-        lg: "h-11 px-5",
-      },
+        lg: "h-11 px-5"
+      }
     },
     defaultVariants: {
       variant: "default",
-      size: "default",
-    },
+      size: "default"
+    }
   }
-)
+);
 
-const Toggle = React.forwardRef<
-  React.ElementRef<typeof TogglePrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root> &
-    VariantProps<typeof toggleVariants>
->(({ className, variant, size, ...props }, ref) => (
-  <TogglePrimitive.Root
-    ref={ref}
-    className={cn(toggleVariants({ variant, size, className }))}
-    {...props}
-  />
-))
+const Toggle = /*#__PURE__*/React.forwardRef(
 
-Toggle.displayName = TogglePrimitive.Root.displayName
 
-export { Toggle, toggleVariants }
+
+  ({ className, variant, size, ...props }, ref) => /*#__PURE__*/
+  React.createElement(TogglePrimitive.Root, _extends({
+    ref: ref,
+    className: cn(toggleVariants({ variant, size, className })) },
+  props, { "data-phoenix-id": "phoenix-7448bc59-1" })
+  )
+);
+
+Toggle.displayName = TogglePrimitive.Root.displayName;
+
+export { Toggle, toggleVariants };
