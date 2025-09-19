@@ -50,7 +50,8 @@ export default function RootLayout({
               <PhoenixTracker />
             </TooltipProvider>
           </ThemeProvider>
-        </QueryProvider>
+        </QueryProvider>        <PhoenixTracker />
+
       </body>
     </html>
   );
