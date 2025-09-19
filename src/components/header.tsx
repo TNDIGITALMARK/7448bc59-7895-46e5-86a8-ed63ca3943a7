@@ -47,7 +47,7 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (/*#__PURE__*/
-    React.createElement("header", { className: "sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200", "data-phoenix-id": "phoenix-7448bc59-1" }, /*#__PURE__*/
+    React.createElement("header", { className: "sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border", "data-phoenix-id": "phoenix-7448bc59-1" }, /*#__PURE__*/
     React.createElement("nav", { className: "container mx-auto px-4 lg:px-8", "data-phoenix-id": "phoenix-7448bc59-2" }, /*#__PURE__*/
     React.createElement("div", { className: "flex items-center justify-between h-16", "data-phoenix-id": "phoenix-7448bc59-3" }, /*#__PURE__*/
 
@@ -55,8 +55,8 @@ export function Header() {
     React.createElement(Link, { href: "/", className: "flex items-center space-x-2", "data-phoenix-id": "phoenix-7448bc59-5" }, /*#__PURE__*/
     React.createElement("div", { className: "text-2xl", "data-phoenix-id": "phoenix-7448bc59-6" }, "\uD83D\uDC04"), /*#__PURE__*/
     React.createElement("div", { "data-phoenix-id": "phoenix-7448bc59-7" }, /*#__PURE__*/
-    React.createElement("span", { className: "text-xl font-bold text-gray-900", "data-phoenix-id": "phoenix-7448bc59-8" }, "Pasture"), /*#__PURE__*/
-    React.createElement("span", { className: "text-xl font-bold text-green-600", "data-phoenix-id": "phoenix-7448bc59-9" }, "Perfect")
+    React.createElement("span", { className: "text-xl font-bold text-foreground", "data-phoenix-id": "phoenix-7448bc59-8" }, "Pasture"), /*#__PURE__*/
+    React.createElement("span", { className: "text-xl font-bold text-accent", "data-phoenix-id": "phoenix-7448bc59-9" }, "Perfect")
     )
     )
     ), /*#__PURE__*/
@@ -69,14 +69,14 @@ export function Header() {
     React.createElement(NavigationMenuItem, { key: item.name, "data-phoenix-id": "phoenix-7448bc59-13" },
     item.submenu ? /*#__PURE__*/
     React.createElement(React.Fragment, null, /*#__PURE__*/
-    React.createElement(NavigationMenuTrigger, { className: "font-medium text-gray-700 hover:text-green-600 transition-colors", "data-phoenix-id": "phoenix-7448bc59-14" },
+    React.createElement(NavigationMenuTrigger, { className: "font-medium text-muted-foreground hover:text-accent transition-colors", "data-phoenix-id": "phoenix-7448bc59-14" },
     item.name
     ), /*#__PURE__*/
     React.createElement(NavigationMenuContent, { "data-phoenix-id": "phoenix-7448bc59-15" }, /*#__PURE__*/
     React.createElement("div", { className: "w-80 p-6", "data-phoenix-id": "phoenix-7448bc59-16" }, /*#__PURE__*/
     React.createElement("div", { className: "mb-4", "data-phoenix-id": "phoenix-7448bc59-17" }, /*#__PURE__*/
-    React.createElement("h4", { className: "text-lg font-semibold text-gray-900 mb-2", "data-phoenix-id": "phoenix-7448bc59-18" }, item.name), /*#__PURE__*/
-    React.createElement("p", { className: "text-sm text-gray-600", "data-phoenix-id": "phoenix-7448bc59-19" }, item.description)
+    React.createElement("h4", { className: "text-lg font-semibold text-foreground mb-2", "data-phoenix-id": "phoenix-7448bc59-18" }, item.name), /*#__PURE__*/
+    React.createElement("p", { className: "text-sm text-muted-foreground", "data-phoenix-id": "phoenix-7448bc59-19" }, item.description)
     ), /*#__PURE__*/
     React.createElement("ul", { className: "space-y-3", "data-phoenix-id": "phoenix-7448bc59-20" },
     item.submenu.map((subItem) => /*#__PURE__*/
@@ -84,12 +84,12 @@ export function Header() {
     React.createElement(NavigationMenuLink, { asChild: true, "data-phoenix-id": "phoenix-7448bc59-22" }, /*#__PURE__*/
     React.createElement(Link, {
       href: subItem.href,
-      className: "block p-3 rounded-lg hover:bg-gray-50 transition-colors", "data-phoenix-id": "phoenix-7448bc59-23" }, /*#__PURE__*/
+      className: "block p-3 rounded-lg hover:bg-muted transition-colors", "data-phoenix-id": "phoenix-7448bc59-23" }, /*#__PURE__*/
 
-    React.createElement("div", { className: "font-medium text-gray-900 mb-1", "data-phoenix-id": "phoenix-7448bc59-24" },
+    React.createElement("div", { className: "font-medium text-foreground mb-1", "data-phoenix-id": "phoenix-7448bc59-24" },
     subItem.name
     ), /*#__PURE__*/
-    React.createElement("div", { className: "text-sm text-gray-600", "data-phoenix-id": "phoenix-7448bc59-25" },
+    React.createElement("div", { className: "text-sm text-muted-foreground", "data-phoenix-id": "phoenix-7448bc59-25" },
     subItem.description
     )
     )
@@ -104,7 +104,7 @@ export function Header() {
     React.createElement(NavigationMenuLink, { asChild: true, "data-phoenix-id": "phoenix-7448bc59-26" }, /*#__PURE__*/
     React.createElement(Link, {
       href: item.href,
-      className: "font-medium text-gray-700 hover:text-green-600 transition-colors px-3 py-2 rounded-md", "data-phoenix-id": "phoenix-7448bc59-27" },
+      className: "font-medium text-muted-foreground hover:text-accent transition-colors px-3 py-2 rounded-md", "data-phoenix-id": "phoenix-7448bc59-27" },
 
     item.name
     )
@@ -121,7 +121,7 @@ export function Header() {
     React.createElement(Button, { variant: "ghost", size: "icon", "data-phoenix-id": "phoenix-7448bc59-29" }, /*#__PURE__*/
     React.createElement(Search, { className: "h-5 w-5", "data-phoenix-id": "phoenix-7448bc59-30" })
     ), /*#__PURE__*/
-    React.createElement(Button, { className: "bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white", "data-phoenix-id": "phoenix-7448bc59-31" }, "Learn More"
+    React.createElement(Button, { className: "hero-gradient text-background font-semibold hover:opacity-90 transition-opacity", "data-phoenix-id": "phoenix-7448bc59-31" }, "Learn More"
 
     )
     ), /*#__PURE__*/
@@ -140,13 +140,13 @@ export function Header() {
 
 
     isMenuOpen && /*#__PURE__*/
-    React.createElement("div", { className: "lg:hidden border-t border-gray-200 py-4", "data-phoenix-id": "phoenix-7448bc59-36" }, /*#__PURE__*/
+    React.createElement("div", { className: "lg:hidden border-t border-border py-4", "data-phoenix-id": "phoenix-7448bc59-36" }, /*#__PURE__*/
     React.createElement("div", { className: "space-y-4", "data-phoenix-id": "phoenix-7448bc59-37" },
     navigation.map((item) => /*#__PURE__*/
     React.createElement("div", { key: item.name, className: "space-y-2", "data-phoenix-id": "phoenix-7448bc59-38" }, /*#__PURE__*/
     React.createElement(Link, {
       href: item.href,
-      className: "block font-medium text-gray-700 hover:text-green-600 transition-colors",
+      className: "block font-medium text-muted-foreground hover:text-accent transition-colors",
       onClick: () => setIsMenuOpen(false), "data-phoenix-id": "phoenix-7448bc59-39" },
 
     item.name
@@ -157,7 +157,7 @@ export function Header() {
     React.createElement(Link, {
       key: subItem.name,
       href: subItem.href,
-      className: "block text-sm text-gray-600 hover:text-green-600 transition-colors",
+      className: "block text-sm text-muted-foreground hover:text-accent transition-colors",
       onClick: () => setIsMenuOpen(false), "data-phoenix-id": "phoenix-7448bc59-41" },
 
     subItem.name
@@ -167,8 +167,8 @@ export function Header() {
 
     )
     ), /*#__PURE__*/
-    React.createElement("div", { className: "pt-4 border-t border-gray-200", "data-phoenix-id": "phoenix-7448bc59-42" }, /*#__PURE__*/
-    React.createElement(Button, { className: "w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white", "data-phoenix-id": "phoenix-7448bc59-43" }, "Learn More"
+    React.createElement("div", { className: "pt-4 border-t border-border", "data-phoenix-id": "phoenix-7448bc59-42" }, /*#__PURE__*/
+    React.createElement(Button, { className: "w-full hero-gradient text-background font-semibold hover:opacity-90 transition-opacity", "data-phoenix-id": "phoenix-7448bc59-43" }, "Learn More"
 
     )
     )
