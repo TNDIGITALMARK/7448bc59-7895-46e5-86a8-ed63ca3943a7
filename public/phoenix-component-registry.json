@@ -2,15 +2,15 @@
   "projectId": "7448bc59-7895-46e5-86a8-ed63ca3943a7",
   "userId": "2luDlbgjvhO32uRKNns0OwSKemA3",
   "version": "1.0.0",
-  "generatedAt": "2025-09-19T15:32:00.381Z",
+  "generatedAt": "2025-09-19T16:12:01.637Z",
   "components": {
-    "phoenix-1758295920366": {
-      "phoenixId": "phoenix-1758295920366",
+    "phoenix-1758298321622": {
+      "phoenixId": "phoenix-1758298321622",
       "componentName": "CompareBreeds",
       "filePath": "src/app/breeds/compare/page.tsx",
       "lineNumber": 20,
       "columnNumber": 15,
-      "sourceCode": "export default function CompareBreeds() {\n  const searchParams = useSearchParams();\n  const [selectedBreeds, setSelectedBreeds] = useState([]);\n  const [availableBreeds, setAvailableBreeds] = useState([]);\n\n  useEffect(() => {\n    const breedIds = searchParams.get('breeds')?.split(',') || [];\n    const breeds = breedIds.\n    map((id) => cowBreeds.find((breed) => breed.id === id)).\n    filter(Boolean);\n\n    setSelectedBreeds(breeds);\n    setAvailableBreeds(cowBreeds);\n  }, [searchParams]);\n\n  const addBreed = (breedId) => {\n    const breed = cowBreeds.find((b) => b.id === breedId);\n    if (breed && selectedBreeds.length < 4 && !selectedBreeds.find((b) => b.id === breed.id)) {\n      setSelectedBreeds([...selectedBreeds, breed]);\n    }\n  };\n\n  const removeBreed = (breedId) => {\n    setSelectedBreeds(selectedBreeds.filter((breed) => breed.id !== breedId));\n  };\n\n  const comparisonRows = [\n    {\n      label: 'Origin',\n      key: 'origin',\n      icon: <MapPin className=\"w-4 h-4\" />,\n      type: 'text'\n    },\n    {\n      label: 'Primary Use',\n      key: 'primaryUse',\n      icon: <Heart className=\"w-4 h-4\" />,\n      type: 'badge'\n    },\n    {\n      label: 'Average Weight (Cow)',\n      key: 'avgWeight',\n      icon: <Scale className=\"w-4 h-4\" />,\n      type: 'weight'\n    },\n    {\n      label: 'Average Height',\n      key: 'avgHeight',\n      icon: <Scale className=\"w-4 h-4\" />,\n      type: 'text'\n    },\n    {\n      label: 'Milk Production',\n      key: 'milkProduction',\n      icon: <Scale className=\"w-4 h-4\" />,\n      type: 'text'\n    },\n    {\n      label: 'Temperament',\n      key: 'temperament',\n      icon: <Heart className=\"w-4 h-4\" />,\n      type: 'text'\n    },\n    {\n      label: 'Lifespan',\n      key: 'lifespan',\n      icon: <Timer className=\"w-4 h-4\" />,\n      type: 'text'\n    },\n    {\n      label: 'Horn Type',\n      key: 'hornType',\n      icon: <Scale className=\"w-4 h-4\" />,\n      type: 'text'\n    }\n  ];\n\n  const renderComparisonValue = (breed, row) => {\n    const value = breed[row.key];\n\n    switch (row.type) {\n      case 'badge':\n        const colors = {\n          'Dairy': 'bg-blue-100 text-blue-800',\n          'Beef': 'bg-red-100 text-red-800',\n          'Dual-Purpose': 'bg-green-100 text-green-800'\n        };\n        return (\n          <Badge className={colors[value] || 'bg-gray-100 text-gray-800'}>\n            {value}\n          </Badge>\n        );\n      case 'weight':\n        return breed.avgWeight?.cow || 'N/A';\n      case 'text':\n        return value || 'N/A';\n      default:\n        return value || 'N/A';\n    }\n  };\n\n  return (\n    <div className=\"min-h-screen bg-gradient-to-b from-white to-amber-50\">\n      <section className=\"py-12 bg-gradient-to-r from-green-600 to-green-700\">\n        <div className=\"container mx-auto px-4 lg:px-8\">\n          <div className=\"flex items-center gap-4 mb-6\">\n            <Button variant=\"outline\" size=\"sm\" asChild className=\"bg-white/10 border-white/20 text-white hover:bg-white hover:text-green-700\">\n              <Link href=\"/breeds\">\n                <ArrowLeft className=\"w-4 h-4 mr-2\" />\n                Back to Breeds\n              </Link>\n            </Button>\n          </div>\n          <h1 className=\"text-4xl lg:text-5xl font-bold text-white mb-4\">\n            Compare Cattle Breeds\n          </h1>\n          <p className=\"text-xl text-green-100 max-w-3xl\">\n            Compare different cattle breeds side by side to find the perfect match for your needs. Select up to 4 breeds to see detailed comparisons.\n          </p>\n        </div>\n      </section>\n\n      <section className=\"py-8 bg-white border-b\">\n        <div className=\"container mx-auto px-4 lg:px-8\">\n          <div className=\"flex flex-col lg:flex-row gap-6 items-center justify-between\">\n            <div>\n              <h2 className=\"text-xl font-semibold text-gray-900 mb-2\">\n                Selected Breeds ({selectedBreeds.length}/4)\n              </h2>\n              <p className=\"text-gray-600\">\n                Choose breeds to compare their characteristics and specifications\n              </p>\n            </div>\n\n            {selectedBreeds.length < 4 && (\n              <div className=\"flex items-center gap-4\">\n                <Select onValueChange={addBreed}>\n                  <SelectTrigger className=\"w-64\">\n                    <SelectValue placeholder=\"Add a breed to compare\" />\n                  </SelectTrigger>\n                  <SelectContent>\n                    {availableBreeds.\n                    filter((breed) => !selectedBreeds.find((s) => s.id === breed.id)).\n                    map((breed) => (\n                      <SelectItem key={breed.id} value={breed.id}>\n                        {breed.name} - {breed.origin}\n                      </SelectItem>\n                    ))}\n                  </SelectContent>\n                </Select>\n                <Button size=\"icon\" variant=\"outline\">\n                  <Plus className=\"w-4 h-4\" />\n                </Button>\n              </div>\n            )}\n\n            {selectedBreeds.length > 0 && (\n              <div className=\"flex flex-wrap gap-3 mt-6\">\n                {selectedBreeds.map((breed) => (\n                  <div key={breed.id} className=\"flex items-center gap-2 bg-green-50 text-green-700 px-3 py-2 rounded-full\">\n                    <span className=\"font-medium\">{breed.name}</span>\n                    <Button\n                      variant=\"ghost\"\n                      size=\"icon\"\n                      className=\"h-5 w-5 text-green-600 hover:text-green-800\"\n                      onClick={() => removeBreed(breed.id)}\n                    >\n                      <X className=\"w-3 h-3\" />\n                    </Button>\n                  </div>\n                ))}\n              </div>\n            )}\n          </div>\n        </div>\n      </section>\n\n      {selectedBreeds.length === 0 ? (\n        <section className=\"py-20\">\n          <div className=\"container mx-auto px-4 lg:px-8 text-center\">\n            <div className=\"text-6xl mb-6\">🐄</div>\n            <h3 className=\"text-2xl font-semibold text-gray-900 mb-4\">\n              No breeds selected for comparison\n            </h3>\n            <p className=\"text-gray-600 mb-8 max-w-md mx-auto\">\n              Select at least 2 breeds from the dropdown above or go back to the breeds page to choose breeds to compare.\n            </p>\n            <div className=\"flex gap-4 justify-center\">\n              <Button asChild>\n                <Link href=\"/breeds\">Browse Breeds</Link>\n              </Button>\n            </div>\n          </div>\n        </section>\n      ) : (\n        <section className=\"py-12\">\n          <div className=\"container mx-auto px-4 lg:px-8\">\n            <div className=\"mb-12\">\n              <div className={`grid gap-6 ${\n                selectedBreeds.length === 1 ? 'grid-cols-1 max-w-md mx-auto' :\n                selectedBreeds.length === 2 ? 'grid-cols-1 md:grid-cols-2' :\n                selectedBreeds.length === 3 ? 'grid-cols-1 md:grid-cols-3' :\n                'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'\n              }`}>\n                {selectedBreeds.map((breed) => (\n                  <Card key={breed.id} className=\"cow-card overflow-hidden\">\n                    <div className=\"relative aspect-[4/3]\">\n                      <Image\n                        src={breed.image}\n                        alt={breed.name}\n                        fill\n                        className=\"object-cover\"\n                      />\n                      <Button\n                        variant=\"outline\"\n                        size=\"icon\"\n                        className=\"absolute top-3 right-3 bg-white/90 hover:bg-white\"\n                        onClick={() => removeBreed(breed.id)}\n                      >\n                        <X className=\"w-4 h-4\" />\n                      </Button>\n                    </div>\n                    <CardContent className=\"p-6 text-center\">\n                      <h3 className=\"text-xl font-bold text-gray-900 mb-2\">{breed.name}</h3>\n                      <p className=\"text-gray-600 text-sm mb-3\">{breed.origin}</p>\n                      <Badge className={\n                        breed.primaryUse === 'Dairy' ? 'bg-blue-100 text-blue-800' :\n                        breed.primaryUse === 'Beef' ? 'bg-red-100 text-red-800' :\n                        'bg-green-100 text-green-800'\n                      }>\n                        {breed.primaryUse}\n                      </Badge>\n                    </CardContent>\n                  </Card>\n                ))}\n              </div>\n\n              {selectedBreeds.length > 1 && (\n                <Card className=\"cow-card\">\n                  <CardHeader>\n                    <CardTitle className=\"text-2xl text-center\">\n                      Detailed Comparison\n                    </CardTitle>\n                  </CardHeader>\n                  <CardContent>\n                    <div className=\"overflow-x-auto\">\n                      <table className=\"w-full\">\n                        <thead>\n                          <tr className=\"border-b\">\n                            <th className=\"text-left p-4 font-semibold text-gray-900\">\n                              Characteristic\n                            </th>\n                            {selectedBreeds.map((breed) => (\n                              <th key={breed.id} className=\"text-center p-4 font-semibold text-gray-900 min-w-[200px]\">\n                                {breed.name}\n                              </th>\n                            ))}\n                          </tr>\n                        </thead>\n                        <tbody>\n                          {comparisonRows.map((row, index) => (\n                            <tr key={row.label} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>\n                              <td className=\"p-4\">\n                                <div className=\"flex items-center gap-2 font-medium text-gray-900\">\n                                  {row.icon}\n                                  {row.label}\n                                </div>\n                              </td>\n                              {selectedBreeds.map((breed) => (\n                                <td key={breed.id} className=\"p-4 text-center\">\n                                  {renderComparisonValue(breed, row)}\n                                </td>\n                              ))}\n                            </tr>\n                          ))}\n                        </tbody>\n                      </table>\n                    </div>\n                  </CardContent>\n                </Card>\n              )}\n\n              {selectedBreeds.length > 1 && (\n                <div className=\"mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8\">\n                  <Card className=\"cow-card\">\n                    <CardHeader>\n                      <CardTitle className=\"flex items-center gap-2\">\n                        <Heart className=\"w-5 h-5\" />\n                        Key Characteristics\n                      </CardTitle>\n                    </CardHeader>\n                    <CardContent>\n                      <div className=\"space-y-6\">\n                        {selectedBreeds.map((breed) => (\n                          <div key={breed.id}>\n                            <h4 className=\"font-semibold text-gray-900 mb-3\">{breed.name}</h4>\n                            <div className=\"flex flex-wrap gap-2\">\n                              {breed.characteristics.map((char, index) => (\n                                <Badge key={index} variant=\"outline\" className=\"text-xs\">\n                                  {char}\n                                </Badge>\n                              ))}\n                            </div>\n                          </div>\n                        ))}\n                      </div>\n                    </CardContent>\n                  </Card>\n\n                  <Card className=\"cow-card\">\n                    <CardHeader>\n                      <CardTitle>Colors</CardTitle>\n                    </CardHeader>\n                    <CardContent>\n                      <div className=\"space-y-6\">\n                        {selectedBreeds.map((breed) => (\n                          <div key={breed.id}>\n                            <h4 className=\"font-semibold text-gray-900 mb-3\">{breed.name}</h4>\n                            <div className=\"flex flex-wrap gap-2\">\n                              {breed.colors.map((color, index) => (\n                                <Badge key={index} variant=\"secondary\" className=\"text-xs\">\n                                  {color}\n                                </Badge>\n                              ))}\n                            </div>\n                          </div>\n                        ))}\n                      </div>\n                    </CardContent>\n                  </Card>\n                </div>\n              )}\n\n              {selectedBreeds.length > 0 && (\n                <div className=\"mt-12\">\n                  <h3 className=\"text-2xl font-bold text-gray-900 mb-8 text-center\">\n                    Fun Facts About Your Selected Breeds\n                  </h3>\n                  <div className={`grid gap-8 ${\n                    selectedBreeds.length === 1 ? 'grid-cols-1' :\n                    selectedBreeds.length === 2 ? 'grid-cols-1 lg:grid-cols-2' :\n                    'grid-cols-1 lg:grid-cols-2 xl:grid-cols-3'\n                  }`}>\n                    {selectedBreeds.map((breed) => (\n                      <Card key={breed.id} className=\"cow-card\">\n                        <CardHeader>\n                          <CardTitle className=\"text-lg\">{breed.name} Fun Facts</CardTitle>\n                        </CardHeader>\n                        <CardContent>\n                          <ul className=\"space-y-3\">\n                            {breed.funFacts.map((fact, index) => (\n                              <li key={index} className=\"text-sm text-gray-700 flex items-start gap-2\">\n                                <span className=\"text-green-600 font-bold\">•</span>\n                                {fact}\n                              </li>\n                            ))}\n                          </ul>\n                        </CardContent>\n                      </Card>\n                    ))}\n                  </div>\n                </div>\n              )}\n            </div>\n          </div>\n        </section>\n      )}\n    </div>\n  );\n}",
+      "sourceCode": "export default function CompareBreeds() {\n  const searchParams = useSearchParams();\n  const [selectedBreeds, setSelectedBreeds] = useState([]);\n  const [availableBreeds, setAvailableBreeds] = useState([]);\n\n  useEffect(() => {\n    const breedIds = searchParams.get('breeds')?.split(',') || [];\n    const breeds = breedIds.\n    map((id) => cowBreeds.find((breed) => breed.id === id)).\n    filter(Boolean);\n\n    setSelectedBreeds(breeds);\n    setAvailableBreeds(cowBreeds);\n  }, [searchParams]);\n\n  const addBreed = (breedId) => {\n    const breed = cowBreeds.find((b) => b.id === breedId);\n    if (breed && selectedBreeds.length < 4 && !selectedBreeds.find((b) => b.id === breed.id)) {\n      setSelectedBreeds([...selectedBreeds, breed]);\n    }\n  };\n\n  const removeBreed = (breedId) => {\n    setSelectedBreeds(selectedBreeds.filter((breed) => breed.id !== breedId));\n  };\n\n  const comparisonRows = [\n  {\n    label: 'Origin',\n    key: 'origin',\n    icon: <MapPin className=\"w-4 h-4\" data-phoenix-id=\"phoenix-7448bc59-1\" />,\n    type: 'text'\n  },\n  {\n    label: 'Primary Use',\n    key: 'primaryUse',\n    icon: <Heart className=\"w-4 h-4\" data-phoenix-id=\"phoenix-7448bc59-2\" />,\n    type: 'badge'\n  },\n  {\n    label: 'Average Weight (Cow)',\n    key: 'avgWeight',\n    icon: <Scale className=\"w-4 h-4\" data-phoenix-id=\"phoenix-7448bc59-3\" />,\n    type: 'weight'\n  },\n  {\n    label: 'Average Height',\n    key: 'avgHeight',\n    icon: <Scale className=\"w-4 h-4\" data-phoenix-id=\"phoenix-7448bc59-4\" />,\n    type: 'text'\n  },\n  {\n    label: 'Milk Production',\n    key: 'milkProduction',\n    icon: <Scale className=\"w-4 h-4\" data-phoenix-id=\"phoenix-7448bc59-5\" />,\n    type: 'text'\n  },\n  {\n    label: 'Temperament',\n    key: 'temperament',\n    icon: <Heart className=\"w-4 h-4\" data-phoenix-id=\"phoenix-7448bc59-6\" />,\n    type: 'text'\n  },\n  {\n    label: 'Lifespan',\n    key: 'lifespan',\n    icon: <Timer className=\"w-4 h-4\" data-phoenix-id=\"phoenix-7448bc59-7\" />,\n    type: 'text'\n  },\n  {\n    label: 'Horn Type',\n    key: 'hornType',\n    icon: <Scale className=\"w-4 h-4\" data-phoenix-id=\"phoenix-7448bc59-8\" />,\n    type: 'text'\n  }];\n\n\n  const renderComparisonValue = (breed, row) => {\n    const value = breed[row.key];\n\n    switch (row.type) {\n      case 'badge':\n        const colors = {\n          'Dairy': 'bg-blue-100 text-blue-800',\n          'Beef': 'bg-red-100 text-red-800',\n          'Dual-Purpose': 'bg-green-100 text-green-800'\n        };\n        return (/*#__PURE__*/\n          React.createElement(Badge, { className: colors[value] || 'bg-gray-100 text-gray-800', \"data-phoenix-id\": \"phoenix-7448bc59-9\" },\n          value\n          ));\n\n      case 'weight':\n        return breed.avgWeight?.cow || 'N/A';\n      case 'text':\n        return value || 'N/A';\n      default:\n        return value || 'N/A';\n    }\n  };\n\n  return (/*#__PURE__*/\n    React.createElement(\"div\", { className: \"min-h-screen bg-gradient-to-b from-white to-amber-50\", \"data-phoenix-id\": \"phoenix-7448bc59-10\" }, /*#__PURE__*/\n    React.createElement(\"section\", { className: \"py-12 bg-gradient-to-r from-green-600 to-green-700\", \"data-phoenix-id\": \"phoenix-7448bc59-11\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"container mx-auto px-4 lg:px-8\", \"data-phoenix-id\": \"phoenix-7448bc59-12\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex items-center gap-4 mb-6\", \"data-phoenix-id\": \"phoenix-7448bc59-13\" }, /*#__PURE__*/\n    React.createElement(Button, { variant: \"outline\", size: \"sm\", asChild: true, className: \"bg-white/10 border-white/20 text-white hover:bg-white hover:text-green-700\", \"data-phoenix-id\": \"phoenix-7448bc59-14\" }, /*#__PURE__*/\n    React.createElement(Link, { href: \"/breeds\", \"data-phoenix-id\": \"phoenix-7448bc59-15\" }, /*#__PURE__*/\n    React.createElement(ArrowLeft, { className: \"w-4 h-4 mr-2\", \"data-phoenix-id\": \"phoenix-7448bc59-16\" }), \"Back to Breeds\"\n\n    )\n    )\n    ), /*#__PURE__*/\n    React.createElement(\"h1\", { className: \"text-4xl lg:text-5xl font-bold text-white mb-4\", \"data-phoenix-id\": \"phoenix-7448bc59-17\" }, \"Compare Cattle Breeds\"\n\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-xl text-green-100 max-w-3xl\", \"data-phoenix-id\": \"phoenix-7448bc59-18\" }, \"Compare different cattle breeds side by side to find the perfect match for your needs. Select up to 4 breeds to see detailed comparisons.\"\n\n    )\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(\"section\", { className: \"py-8 bg-white border-b\", \"data-phoenix-id\": \"phoenix-7448bc59-19\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"container mx-auto px-4 lg:px-8\", \"data-phoenix-id\": \"phoenix-7448bc59-20\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex flex-col lg:flex-row gap-6 items-center justify-between\", \"data-phoenix-id\": \"phoenix-7448bc59-21\" }, /*#__PURE__*/\n    React.createElement(\"div\", { \"data-phoenix-id\": \"phoenix-7448bc59-22\" }, /*#__PURE__*/\n    React.createElement(\"h2\", { className: \"text-xl font-semibold text-gray-900 mb-2\", \"data-phoenix-id\": \"phoenix-7448bc59-23\" }, \"Selected Breeds (\",\n    selectedBreeds.length, \"/4)\"\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-gray-600\", \"data-phoenix-id\": \"phoenix-7448bc59-24\" }, \"Choose breeds to compare their characteristics and specifications\"\n\n    )\n    ),\n\n    selectedBreeds.length < 4 && /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex items-center gap-4\", \"data-phoenix-id\": \"phoenix-7448bc59-25\" }, /*#__PURE__*/\n    React.createElement(Select, { onValueChange: addBreed, \"data-phoenix-id\": \"phoenix-7448bc59-26\" }, /*#__PURE__*/\n    React.createElement(SelectTrigger, { className: \"w-64\", \"data-phoenix-id\": \"phoenix-7448bc59-27\" }, /*#__PURE__*/\n    React.createElement(SelectValue, { placeholder: \"Add a breed to compare\", \"data-phoenix-id\": \"phoenix-7448bc59-28\" })\n    ), /*#__PURE__*/\n    React.createElement(SelectContent, { \"data-phoenix-id\": \"phoenix-7448bc59-29\" },\n    availableBreeds.\n    filter((breed) => !selectedBreeds.find((s) => s.id === breed.id)).\n    map((breed) => /*#__PURE__*/\n    React.createElement(SelectItem, { key: breed.id, value: breed.id, \"data-phoenix-id\": \"phoenix-7448bc59-30\" },\n    breed.name, \" - \", breed.origin\n    )\n    )\n    )\n    ), /*#__PURE__*/\n    React.createElement(Button, { size: \"icon\", variant: \"outline\", \"data-phoenix-id\": \"phoenix-7448bc59-31\" }, /*#__PURE__*/\n    React.createElement(Plus, { className: \"w-4 h-4\", \"data-phoenix-id\": \"phoenix-7448bc59-32\" })\n    )\n    ),\n\n\n    selectedBreeds.length > 0 && /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex flex-wrap gap-3 mt-6\", \"data-phoenix-id\": \"phoenix-7448bc59-33\" },\n    selectedBreeds.map((breed) => /*#__PURE__*/\n    React.createElement(\"div\", { key: breed.id, className: \"flex items-center gap-2 bg-green-50 text-green-700 px-3 py-2 rounded-full\", \"data-phoenix-id\": \"phoenix-7448bc59-34\" }, /*#__PURE__*/\n    React.createElement(\"span\", { className: \"font-medium\", \"data-phoenix-id\": \"phoenix-7448bc59-35\" }, breed.name), /*#__PURE__*/\n    React.createElement(Button, {\n      variant: \"ghost\",\n      size: \"icon\",\n      className: \"h-5 w-5 text-green-600 hover:text-green-800\",\n      onClick: () => removeBreed(breed.id), \"data-phoenix-id\": \"phoenix-7448bc59-36\" }, /*#__PURE__*/\n\n    React.createElement(X, { className: \"w-3 h-3\", \"data-phoenix-id\": \"phoenix-7448bc59-37\" })\n    )\n    )\n    )\n    )\n\n    )\n    )\n    ),\n\n    selectedBreeds.length === 0 ? /*#__PURE__*/\n    React.createElement(\"section\", { className: \"py-20\", \"data-phoenix-id\": \"phoenix-7448bc59-38\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"container mx-auto px-4 lg:px-8 text-center\", \"data-phoenix-id\": \"phoenix-7448bc59-39\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-6xl mb-6\", \"data-phoenix-id\": \"phoenix-7448bc59-40\" }, \"\\uD83D\\uDC04\"), /*#__PURE__*/\n    React.createElement(\"h3\", { className: \"text-2xl font-semibold text-gray-900 mb-4\", \"data-phoenix-id\": \"phoenix-7448bc59-41\" }, \"No breeds selected for comparison\"\n\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-gray-600 mb-8 max-w-md mx-auto\", \"data-phoenix-id\": \"phoenix-7448bc59-42\" }, \"Select at least 2 breeds from the dropdown above or go back to the breeds page to choose breeds to compare.\"\n\n    ), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex gap-4 justify-center\", \"data-phoenix-id\": \"phoenix-7448bc59-43\" }, /*#__PURE__*/\n    React.createElement(Button, { asChild: true, \"data-phoenix-id\": \"phoenix-7448bc59-44\" }, /*#__PURE__*/\n    React.createElement(Link, { href: \"/breeds\", \"data-phoenix-id\": \"phoenix-7448bc59-45\" }, \"Browse Breeds\")\n    )\n    )\n    )\n    ) : /*#__PURE__*/\n\n    React.createElement(\"section\", { className: \"py-12\", \"data-phoenix-id\": \"phoenix-7448bc59-46\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"container mx-auto px-4 lg:px-8\", \"data-phoenix-id\": \"phoenix-7448bc59-47\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"mb-12\", \"data-phoenix-id\": \"phoenix-7448bc59-48\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: `grid gap-6 ${\n      selectedBreeds.length === 1 ? 'grid-cols-1 max-w-md mx-auto' :\n      selectedBreeds.length === 2 ? 'grid-cols-1 md:grid-cols-2' :\n      selectedBreeds.length === 3 ? 'grid-cols-1 md:grid-cols-3' :\n      'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'}`, \"data-phoenix-id\": \"phoenix-7448bc59-49\" },\n\n    selectedBreeds.map((breed) => /*#__PURE__*/\n    React.createElement(Card, { key: breed.id, className: \"cow-card overflow-hidden\", \"data-phoenix-id\": \"phoenix-7448bc59-50\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"relative aspect-[4/3]\", \"data-phoenix-id\": \"phoenix-7448bc59-51\" }, /*#__PURE__*/\n    React.createElement(Image, {\n      src: breed.image,\n      alt: breed.name,\n      fill: true,\n      className: \"object-cover\", \"data-phoenix-id\": \"phoenix-7448bc59-52\" }\n    ), /*#__PURE__*/\n    React.createElement(Button, {\n      variant: \"outline\",\n      size: \"icon\",\n      className: \"absolute top-3 right-3 bg-white/90 hover:bg-white\",\n      onClick: () => removeBreed(breed.id), \"data-phoenix-id\": \"phoenix-7448bc59-53\" }, /*#__PURE__*/\n\n    React.createElement(X, { className: \"w-4 h-4\", \"data-phoenix-id\": \"phoenix-7448bc59-54\" })\n    )\n    ), /*#__PURE__*/\n    React.createElement(CardContent, { className: \"p-6 text-center\", \"data-phoenix-id\": \"phoenix-7448bc59-55\" }, /*#__PURE__*/\n    React.createElement(\"h3\", { className: \"text-xl font-bold text-gray-900 mb-2\", \"data-phoenix-id\": \"phoenix-7448bc59-56\" }, breed.name), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-gray-600 text-sm mb-3\", \"data-phoenix-id\": \"phoenix-7448bc59-57\" }, breed.origin), /*#__PURE__*/\n    React.createElement(Badge, { className:\n      breed.primaryUse === 'Dairy' ? 'bg-blue-100 text-blue-800' :\n      breed.primaryUse === 'Beef' ? 'bg-red-100 text-red-800' :\n      'bg-green-100 text-green-800', \"data-phoenix-id\": \"phoenix-7448bc59-58\" },\n\n    breed.primaryUse\n    )\n    )\n    )\n    )\n    ),\n\n    selectedBreeds.length > 1 && /*#__PURE__*/\n    React.createElement(Card, { className: \"cow-card\", \"data-phoenix-id\": \"phoenix-7448bc59-59\" }, /*#__PURE__*/\n    React.createElement(CardHeader, { \"data-phoenix-id\": \"phoenix-7448bc59-60\" }, /*#__PURE__*/\n    React.createElement(CardTitle, { className: \"text-2xl text-center\", \"data-phoenix-id\": \"phoenix-7448bc59-61\" }, \"Detailed Comparison\"\n\n    )\n    ), /*#__PURE__*/\n    React.createElement(CardContent, { \"data-phoenix-id\": \"phoenix-7448bc59-62\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"overflow-x-auto\", \"data-phoenix-id\": \"phoenix-7448bc59-63\" }, /*#__PURE__*/\n    React.createElement(\"table\", { className: \"w-full\", \"data-phoenix-id\": \"phoenix-7448bc59-64\" }, /*#__PURE__*/\n    React.createElement(\"thead\", { \"data-phoenix-id\": \"phoenix-7448bc59-65\" }, /*#__PURE__*/\n    React.createElement(\"tr\", { className: \"border-b\", \"data-phoenix-id\": \"phoenix-7448bc59-66\" }, /*#__PURE__*/\n    React.createElement(\"th\", { className: \"text-left p-4 font-semibold text-gray-900\", \"data-phoenix-id\": \"phoenix-7448bc59-67\" }, \"Characteristic\"\n\n    ),\n    selectedBreeds.map((breed) => /*#__PURE__*/\n    React.createElement(\"th\", { key: breed.id, className: \"text-center p-4 font-semibold text-gray-900 min-w-[200px]\", \"data-phoenix-id\": \"phoenix-7448bc59-68\" },\n    breed.name\n    )\n    )\n    )\n    ), /*#__PURE__*/\n    React.createElement(\"tbody\", { \"data-phoenix-id\": \"phoenix-7448bc59-69\" },\n    comparisonRows.map((row, index) => /*#__PURE__*/\n    React.createElement(\"tr\", { key: row.label, className: index % 2 === 0 ? 'bg-gray-50' : 'bg-white', \"data-phoenix-id\": \"phoenix-7448bc59-70\" }, /*#__PURE__*/\n    React.createElement(\"td\", { className: \"p-4\", \"data-phoenix-id\": \"phoenix-7448bc59-71\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex items-center gap-2 font-medium text-gray-900\", \"data-phoenix-id\": \"phoenix-7448bc59-72\" },\n    row.icon,\n    row.label\n    )\n    ),\n    selectedBreeds.map((breed) => /*#__PURE__*/\n    React.createElement(\"td\", { key: breed.id, className: \"p-4 text-center\", \"data-phoenix-id\": \"phoenix-7448bc59-73\" },\n    renderComparisonValue(breed, row)\n    )\n    )\n    )\n    )\n    )\n    )\n    )\n    )\n    ),\n\n\n    selectedBreeds.length > 1 && /*#__PURE__*/\n    React.createElement(\"div\", { className: \"mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8\", \"data-phoenix-id\": \"phoenix-7448bc59-74\" }, /*#__PURE__*/\n    React.createElement(Card, { className: \"cow-card\", \"data-phoenix-id\": \"phoenix-7448bc59-75\" }, /*#__PURE__*/\n    React.createElement(CardHeader, { \"data-phoenix-id\": \"phoenix-7448bc59-76\" }, /*#__PURE__*/\n    React.createElement(CardTitle, { className: \"flex items-center gap-2\", \"data-phoenix-id\": \"phoenix-7448bc59-77\" }, /*#__PURE__*/\n    React.createElement(Heart, { className: \"w-5 h-5\", \"data-phoenix-id\": \"phoenix-7448bc59-78\" }), \"Key Characteristics\"\n\n    )\n    ), /*#__PURE__*/\n    React.createElement(CardContent, { \"data-phoenix-id\": \"phoenix-7448bc59-79\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"space-y-6\", \"data-phoenix-id\": \"phoenix-7448bc59-80\" },\n    selectedBreeds.map((breed) => /*#__PURE__*/\n    React.createElement(\"div\", { key: breed.id, \"data-phoenix-id\": \"phoenix-7448bc59-81\" }, /*#__PURE__*/\n    React.createElement(\"h4\", { className: \"font-semibold text-gray-900 mb-3\", \"data-phoenix-id\": \"phoenix-7448bc59-82\" }, breed.name), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex flex-wrap gap-2\", \"data-phoenix-id\": \"phoenix-7448bc59-83\" },\n    breed.characteristics.map((char, index) => /*#__PURE__*/\n    React.createElement(Badge, { key: index, variant: \"outline\", className: \"text-xs\", \"data-phoenix-id\": \"phoenix-7448bc59-84\" },\n    char\n    )\n    )\n    )\n    )\n    )\n    )\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(Card, { className: \"cow-card\", \"data-phoenix-id\": \"phoenix-7448bc59-85\" }, /*#__PURE__*/\n    React.createElement(CardHeader, { \"data-phoenix-id\": \"phoenix-7448bc59-86\" }, /*#__PURE__*/\n    React.createElement(CardTitle, { \"data-phoenix-id\": \"phoenix-7448bc59-87\" }, \"Colors\")\n    ), /*#__PURE__*/\n    React.createElement(CardContent, { \"data-phoenix-id\": \"phoenix-7448bc59-88\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"space-y-6\", \"data-phoenix-id\": \"phoenix-7448bc59-89\" },\n    selectedBreeds.map((breed) => /*#__PURE__*/\n    React.createElement(\"div\", { key: breed.id, \"data-phoenix-id\": \"phoenix-7448bc59-90\" }, /*#__PURE__*/\n    React.createElement(\"h4\", { className: \"font-semibold text-gray-900 mb-3\", \"data-phoenix-id\": \"phoenix-7448bc59-91\" }, breed.name), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex flex-wrap gap-2\", \"data-phoenix-id\": \"phoenix-7448bc59-92\" },\n    breed.colors.map((color, index) => /*#__PURE__*/\n    React.createElement(Badge, { key: index, variant: \"secondary\", className: \"text-xs\", \"data-phoenix-id\": \"phoenix-7448bc59-93\" },\n    color\n    )\n    )\n    )\n    )\n    )\n    )\n    )\n    )\n    ),\n\n\n    selectedBreeds.length > 0 && /*#__PURE__*/\n    React.createElement(\"div\", { className: \"mt-12\", \"data-phoenix-id\": \"phoenix-7448bc59-94\" }, /*#__PURE__*/\n    React.createElement(\"h3\", { className: \"text-2xl font-bold text-gray-900 mb-8 text-center\", \"data-phoenix-id\": \"phoenix-7448bc59-95\" }, \"Fun Facts About Your Selected Breeds\"\n\n    ), /*#__PURE__*/\n    React.createElement(\"div\", { className: `grid gap-8 ${\n      selectedBreeds.length === 1 ? 'grid-cols-1' :\n      selectedBreeds.length === 2 ? 'grid-cols-1 lg:grid-cols-2' :\n      'grid-cols-1 lg:grid-cols-2 xl:grid-cols-3'}`, \"data-phoenix-id\": \"phoenix-7448bc59-96\" },\n\n    selectedBreeds.map((breed) => /*#__PURE__*/\n    React.createElement(Card, { key: breed.id, className: \"cow-card\", \"data-phoenix-id\": \"phoenix-7448bc59-97\" }, /*#__PURE__*/\n    React.createElement(CardHeader, { \"data-phoenix-id\": \"phoenix-7448bc59-98\" }, /*#__PURE__*/\n    React.createElement(CardTitle, { className: \"text-lg\", \"data-phoenix-id\": \"phoenix-7448bc59-99\" }, breed.name, \" Fun Facts\")\n    ), /*#__PURE__*/\n    React.createElement(CardContent, { \"data-phoenix-id\": \"phoenix-7448bc59-100\" }, /*#__PURE__*/\n    React.createElement(\"ul\", { className: \"space-y-3\", \"data-phoenix-id\": \"phoenix-7448bc59-101\" },\n    breed.funFacts.map((fact, index) => /*#__PURE__*/\n    React.createElement(\"li\", { key: index, className: \"text-sm text-gray-700 flex items-start gap-2\", \"data-phoenix-id\": \"phoenix-7448bc59-102\" }, /*#__PURE__*/\n    React.createElement(\"span\", { className: \"text-green-600 font-bold\", \"data-phoenix-id\": \"phoenix-7448bc59-103\" }, \"\\u2022\"),\n    fact\n    )\n    )\n    )\n    )\n    )\n    )\n    )\n    )\n\n    )\n    )\n    )\n\n    ));\n\n}",
       "props": [],
       "imports": [],
       "modificationHints": [
@@ -33,13 +33,13 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758295920367": {
-      "phoenixId": "phoenix-1758295920367",
+    "phoenix-1758298321623": {
+      "phoenixId": "phoenix-1758298321623",
       "componentName": "BreedsPage",
       "filePath": "src/app/breeds/page.tsx",
       "lineNumber": 20,
       "columnNumber": 15,
-      "sourceCode": "export default function BreedsPage() {\n  const [searchQuery, setSearchQuery] = useState('');\n  const [selectedCategory, setSelectedCategory] = useState('all');\n  const [sortBy, setSortBy] = useState('name');\n  const [selectedBreeds, setSelectedBreeds] = useState([]);\n  const [showFilters, setShowFilters] = useState(false);\n\n  // Filter and sort breeds\n  const filteredAndSortedBreeds = useMemo(() => {\n    let filtered = cowBreeds;\n\n    // Filter by category\n    if (selectedCategory !== 'all') {\n      filtered = filtered.filter((breed) =>\n        breed.primaryUse.toLowerCase() === selectedCategory\n      );\n    }\n\n    // Filter by search query\n    if (searchQuery.trim()) {\n      filtered = filtered.filter((breed) =>\n        breed.name.toLowerCase().includes(searchQuery.toLowerCase()) ||\n        breed.origin.toLowerCase().includes(searchQuery.toLowerCase()) ||\n        breed.description.toLowerCase().includes(searchQuery.toLowerCase()) ||\n        breed.characteristics.some((char) =>\n          char.toLowerCase().includes(searchQuery.toLowerCase())\n        )\n      );\n    }\n\n    // Sort breeds\n    return filtered.sort((a, b) => {\n      switch (sortBy) {\n        case 'name':\n          return a.name.localeCompare(b.name);\n        case 'origin':\n          return a.origin.localeCompare(b.origin);\n        case 'weight':\n          return parseInt(a.avgWeight.cow) - parseInt(b.avgWeight.cow);\n        case 'milk':\n          if (!a.milkProduction || !b.milkProduction) return 0;\n          return parseInt(a.milkProduction) - parseInt(b.milkProduction);\n        default:\n          return 0;\n      }\n    });\n  }, [searchQuery, selectedCategory, sortBy]);\n\n  const handleCompareBreed = (breed) => {\n    setSelectedBreeds((prev) => {\n      const isAlreadySelected = prev.find((b) => b.id === breed.id);\n      if (isAlreadySelected) {\n        return prev.filter((b) => b.id !== breed.id);\n      } else if (prev.length < 3) {\n        return [...prev, breed];\n      }\n      return prev;\n    });\n  };\n\n  const clearSelectedBreeds = () => {\n    setSelectedBreeds([]);\n  };\n\n  const clearAllFilters = () => {\n    setSearchQuery('');\n    setSelectedCategory('all');\n    setSortBy('name');\n  };\n\n  return (\n    <div className=\"min-h-screen bg-gradient-to-b from-white to-amber-50\">\n      <section className=\"py-16 bg-gradient-to-r from-green-600 to-green-700\">\n        <div className=\"container mx-auto px-4 lg:px-8 text-center\">\n          <h1 className=\"text-4xl lg:text-6xl font-bold text-white mb-6\">\n            Cattle Breeds Explorer\n          </h1>\n          <p className=\"text-xl text-green-100 max-w-3xl mx-auto leading-relaxed\">\n            Discover detailed information about cattle breeds from around the world. Compare breeds, learn about their characteristics, and find the perfect match for your needs.\n          </p>\n        </div>\n      </section>\n\n      <section className=\"py-8 bg-white border-b\">\n        <div className=\"container mx-auto px-4 lg:px-8\">\n          <div className=\"flex flex-col lg:flex-row gap-4 items-center justify-between\">\n            <div className=\"relative flex-1 max-w-md\">\n              <Search className=\"absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5\" />\n              <Input\n                placeholder=\"Search breeds, origins, or characteristics...\"\n                value={searchQuery}\n                onChange={(e) => setSearchQuery(e.target.value)}\n                className=\"pl-10\"\n              />\n            </div>\n\n            <div className=\"flex flex-wrap gap-4 items-center\">\n              <Select value={selectedCategory} onValueChange={setSelectedCategory}>\n                <SelectTrigger className=\"w-40\">\n                  <SelectValue placeholder=\"Category\" />\n                </SelectTrigger>\n                <SelectContent>\n                  {breedCategories.map((category) => (\n                    <SelectItem key={category.id} value={category.id}>\n                      {category.name} ({category.count})\n                    </SelectItem>\n                  ))}\n                </SelectContent>\n              </Select>\n\n              <Select value={sortBy} onValueChange={setSortBy}>\n                <SelectTrigger className=\"w-40\">\n                  <SelectValue placeholder=\"Sort by\" />\n                </SelectTrigger>\n                <SelectContent>\n                  <SelectItem value=\"name\">Name</SelectItem>\n                  <SelectItem value=\"origin\">Origin</SelectItem>\n                  <SelectItem value=\"weight\">Weight</SelectItem>\n                  <SelectItem value=\"milk\">Milk Production</SelectItem>\n                </SelectContent>\n              </Select>\n\n              <Button\n                variant=\"outline\"\n                size=\"icon\"\n                onClick={() => setShowFilters(!showFilters)}\n              >\n                <Filter className=\"w-4 h-4\" />\n              </Button>\n\n              {(searchQuery || selectedCategory !== 'all' || sortBy !== 'name') && (\n                <Button variant=\"ghost\" onClick={clearAllFilters} size=\"sm\">\n                  <X className=\"w-4 h-4 mr-2\" />\n                  Clear Filters\n                </Button>\n              )}\n            </div>\n          </div>\n\n          {(searchQuery || selectedCategory !== 'all') && (\n            <div className=\"flex flex-wrap gap-2 mt-4\">\n              {searchQuery && (\n                <Badge variant=\"secondary\">\n                  Search: {searchQuery}\n                  <X\n                    className=\"w-3 h-3 ml-2 cursor-pointer\"\n                    onClick={() => setSearchQuery('')}\n                  />\n                </Badge>\n              )}\n              {selectedCategory !== 'all' && (\n                <Badge variant=\"secondary\">\n                  Category: {breedCategories.find((c) => c.id === selectedCategory)?.name}\n                  <X\n                    className=\"w-3 h-3 ml-2 cursor-pointer\"\n                    onClick={() => setSelectedCategory('all')}\n                  />\n                </Badge>\n              )}\n            </div>\n          )}\n        </div>\n      </section>\n\n      {selectedBreeds.length > 0 && (\n        <section className=\"py-4 bg-green-50 border-b\">\n          <div className=\"container mx-auto px-4 lg:px-8\">\n            <div className=\"flex items-center justify-between\">\n              <div className=\"flex items-center gap-4\">\n                <div className=\"flex items-center gap-2\">\n                  <GitCompare className=\"w-5 h-5 text-green-600\" />\n                  <span className=\"font-medium\">\n                    Comparing {selectedBreeds.length}/3 breeds\n                  </span>\n                </div>\n                <div className=\"flex gap-2\">\n                  {selectedBreeds.map((breed) => (\n                    <Badge key={breed.id} variant=\"secondary\">\n                      {breed.name}\n                      <X\n                        className=\"w-3 h-3 ml-2 cursor-pointer\"\n                        onClick={() => handleCompareBreed(breed)}\n                      />\n                    </Badge>\n                  ))}\n                </div>\n              </div>\n              <div className=\"flex gap-2\">\n                <Button size=\"sm\" asChild disabled={selectedBreeds.length < 2}>\n                  <Link href={`/breeds/compare?breeds=${selectedBreeds.map((b) => b.id).join(',')}`}>\n                    Compare Now\n                  </Link>\n                </Button>\n                <Button variant=\"ghost\" size=\"sm\" onClick={clearSelectedBreeds}>\n                  Clear All\n                </Button>\n              </div>\n            </div>\n          </div>\n        </section>\n      )}\n\n      <section className=\"py-12\">\n        <div className=\"container mx-auto px-4 lg:px-8\">\n          <div className=\"flex items-center justify-between mb-8\">\n            <div>\n              <h2 className=\"text-2xl font-bold text-gray-900\">\n                {filteredAndSortedBreeds.length} Breeds Found\n              </h2>\n              <p className=\"text-gray-600 mt-1\">\n                {selectedCategory !== 'all'\n                  ? `Showing ${breedCategories.find((c) => c.id === selectedCategory)?.name.toLowerCase()} breeds`\n                  : 'Showing all cattle breeds'}\n              </p>\n            </div>\n            <div className=\"flex items-center gap-2 text-sm text-gray-500\">\n              <ArrowUpDown className=\"w-4 h-4\" />\n              Sorted by {sortBy}\n            </div>\n          </div>\n\n          {filteredAndSortedBreeds.length === 0 ? (\n            <Card className=\"text-center py-12\">\n              <CardContent>\n                <div className=\"text-6xl mb-4\">🐄</div>\n                <h3 className=\"text-xl font-semibold text-gray-900 mb-2\">\n                  No breeds found\n                </h3>\n                <p className=\"text-gray-600 mb-4\">\n                  Try adjusting your search criteria or clearing filters.\n                </p>\n                <Button onClick={clearAllFilters}>Clear All Filters</Button>\n              </CardContent>\n            </Card>\n          ) : (\n            <div className=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8\">\n              {filteredAndSortedBreeds.map((breed) => (\n                <BreedCard\n                  key={breed.id}\n                  breed={breed}\n                  onCompare={handleCompareBreed}\n                  isSelected={selectedBreeds.some((b) => b.id === breed.id)}\n                />\n              ))}\n            </div>\n          )}\n        </div>\n      </section>\n\n      <section className=\"py-12 bg-white\">\n        <div className=\"container mx-auto px-4 lg:px-8\">\n          <h2 className=\"text-2xl font-bold text-gray-900 text-center mb-8\">\n            Breed Categories\n          </h2>\n          <div className=\"grid grid-cols-2 lg:grid-cols-4 gap-6\">\n            {breedCategories.slice(1).map((category) => (\n              <Card\n                key={category.id}\n                className={`cursor-pointer transition-all hover:shadow-lg ${\n                  selectedCategory === category.id ? 'ring-2 ring-green-500' : ''\n                }`}\n                onClick={() => setSelectedCategory(category.id)}\n              >\n                <CardHeader className=\"text-center\">\n                  <CardTitle className=\"text-lg\">{category.name}</CardTitle>\n                  <div className=\"text-3xl font-bold text-green-600\">\n                    {category.count}\n                  </div>\n                  <p className=\"text-sm text-gray-600\">breeds available</p>\n                </CardHeader>\n              </Card>\n            ))}\n          </div>\n        </div>\n      </section>\n    </div>\n  );\n}",
+      "sourceCode": "export default function BreedsPage() {\n  const [searchQuery, setSearchQuery] = useState('');\n  const [selectedCategory, setSelectedCategory] = useState('all');\n  const [sortBy, setSortBy] = useState('name');\n  const [selectedBreeds, setSelectedBreeds] = useState([]);\n  const [showFilters, setShowFilters] = useState(false);\n\n  // Filter and sort breeds\n  const filteredAndSortedBreeds = useMemo(() => {\n    let filtered = cowBreeds;\n\n    // Filter by category\n    if (selectedCategory !== 'all') {\n      filtered = filtered.filter((breed) =>\n      breed.primaryUse.toLowerCase() === selectedCategory\n      );\n    }\n\n    // Filter by search query\n    if (searchQuery.trim()) {\n      filtered = filtered.filter((breed) =>\n      breed.name.toLowerCase().includes(searchQuery.toLowerCase()) ||\n      breed.origin.toLowerCase().includes(searchQuery.toLowerCase()) ||\n      breed.description.toLowerCase().includes(searchQuery.toLowerCase()) ||\n      breed.characteristics.some((char) =>\n      char.toLowerCase().includes(searchQuery.toLowerCase())\n      )\n      );\n    }\n\n    // Sort breeds\n    return filtered.sort((a, b) => {\n      switch (sortBy) {\n        case 'name':\n          return a.name.localeCompare(b.name);\n        case 'origin':\n          return a.origin.localeCompare(b.origin);\n        case 'weight':\n          return parseInt(a.avgWeight.cow) - parseInt(b.avgWeight.cow);\n        case 'milk':\n          if (!a.milkProduction || !b.milkProduction) return 0;\n          return parseInt(a.milkProduction) - parseInt(b.milkProduction);\n        default:\n          return 0;\n      }\n    });\n  }, [searchQuery, selectedCategory, sortBy]);\n\n  const handleCompareBreed = (breed) => {\n    setSelectedBreeds((prev) => {\n      const isAlreadySelected = prev.find((b) => b.id === breed.id);\n      if (isAlreadySelected) {\n        return prev.filter((b) => b.id !== breed.id);\n      } else if (prev.length < 3) {\n        return [...prev, breed];\n      }\n      return prev;\n    });\n  };\n\n  const clearSelectedBreeds = () => {\n    setSelectedBreeds([]);\n  };\n\n  const clearAllFilters = () => {\n    setSearchQuery('');\n    setSelectedCategory('all');\n    setSortBy('name');\n  };\n\n  return (/*#__PURE__*/\n    React.createElement(\"div\", { className: \"min-h-screen bg-gradient-to-b from-white to-amber-50\", \"data-phoenix-id\": \"phoenix-7448bc59-1\" }, /*#__PURE__*/\n    React.createElement(\"section\", { className: \"py-16 bg-gradient-to-r from-green-600 to-green-700\", \"data-phoenix-id\": \"phoenix-7448bc59-2\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"container mx-auto px-4 lg:px-8 text-center\", \"data-phoenix-id\": \"phoenix-7448bc59-3\" }, /*#__PURE__*/\n    React.createElement(\"h1\", { className: \"text-4xl lg:text-6xl font-bold text-white mb-6\", \"data-phoenix-id\": \"phoenix-7448bc59-4\" }, \"Cattle Breeds Explorer\"\n\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-xl text-green-100 max-w-3xl mx-auto leading-relaxed\", \"data-phoenix-id\": \"phoenix-7448bc59-5\" }, \"Discover detailed information about cattle breeds from around the world. Compare breeds, learn about their characteristics, and find the perfect match for your needs.\"\n\n    )\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(\"section\", { className: \"py-8 bg-white border-b\", \"data-phoenix-id\": \"phoenix-7448bc59-6\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"container mx-auto px-4 lg:px-8\", \"data-phoenix-id\": \"phoenix-7448bc59-7\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex flex-col lg:flex-row gap-4 items-center justify-between\", \"data-phoenix-id\": \"phoenix-7448bc59-8\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"relative flex-1 max-w-md\", \"data-phoenix-id\": \"phoenix-7448bc59-9\" }, /*#__PURE__*/\n    React.createElement(Search, { className: \"absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5\", \"data-phoenix-id\": \"phoenix-7448bc59-10\" }), /*#__PURE__*/\n    React.createElement(Input, {\n      placeholder: \"Search breeds, origins, or characteristics...\",\n      value: searchQuery,\n      onChange: (e) => setSearchQuery(e.target.value),\n      className: \"pl-10\", \"data-phoenix-id\": \"phoenix-7448bc59-11\" }\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(\"div\", { className: \"flex flex-wrap gap-4 items-center\", \"data-phoenix-id\": \"phoenix-7448bc59-12\" }, /*#__PURE__*/\n    React.createElement(Select, { value: selectedCategory, onValueChange: setSelectedCategory, \"data-phoenix-id\": \"phoenix-7448bc59-13\" }, /*#__PURE__*/\n    React.createElement(SelectTrigger, { className: \"w-40\", \"data-phoenix-id\": \"phoenix-7448bc59-14\" }, /*#__PURE__*/\n    React.createElement(SelectValue, { placeholder: \"Category\", \"data-phoenix-id\": \"phoenix-7448bc59-15\" })\n    ), /*#__PURE__*/\n    React.createElement(SelectContent, { \"data-phoenix-id\": \"phoenix-7448bc59-16\" },\n    breedCategories.map((category) => /*#__PURE__*/\n    React.createElement(SelectItem, { key: category.id, value: category.id, \"data-phoenix-id\": \"phoenix-7448bc59-17\" },\n    category.name, \" (\", category.count, \")\"\n    )\n    )\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(Select, { value: sortBy, onValueChange: setSortBy, \"data-phoenix-id\": \"phoenix-7448bc59-18\" }, /*#__PURE__*/\n    React.createElement(SelectTrigger, { className: \"w-40\", \"data-phoenix-id\": \"phoenix-7448bc59-19\" }, /*#__PURE__*/\n    React.createElement(SelectValue, { placeholder: \"Sort by\", \"data-phoenix-id\": \"phoenix-7448bc59-20\" })\n    ), /*#__PURE__*/\n    React.createElement(SelectContent, { \"data-phoenix-id\": \"phoenix-7448bc59-21\" }, /*#__PURE__*/\n    React.createElement(SelectItem, { value: \"name\", \"data-phoenix-id\": \"phoenix-7448bc59-22\" }, \"Name\"), /*#__PURE__*/\n    React.createElement(SelectItem, { value: \"origin\", \"data-phoenix-id\": \"phoenix-7448bc59-23\" }, \"Origin\"), /*#__PURE__*/\n    React.createElement(SelectItem, { value: \"weight\", \"data-phoenix-id\": \"phoenix-7448bc59-24\" }, \"Weight\"), /*#__PURE__*/\n    React.createElement(SelectItem, { value: \"milk\", \"data-phoenix-id\": \"phoenix-7448bc59-25\" }, \"Milk Production\")\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(Button, {\n      variant: \"outline\",\n      size: \"icon\",\n      onClick: () => setShowFilters(!showFilters), \"data-phoenix-id\": \"phoenix-7448bc59-26\" }, /*#__PURE__*/\n\n    React.createElement(Filter, { className: \"w-4 h-4\", \"data-phoenix-id\": \"phoenix-7448bc59-27\" })\n    ),\n\n    (searchQuery || selectedCategory !== 'all' || sortBy !== 'name') && /*#__PURE__*/\n    React.createElement(Button, { variant: \"ghost\", onClick: clearAllFilters, size: \"sm\", \"data-phoenix-id\": \"phoenix-7448bc59-28\" }, /*#__PURE__*/\n    React.createElement(X, { className: \"w-4 h-4 mr-2\", \"data-phoenix-id\": \"phoenix-7448bc59-29\" }), \"Clear Filters\"\n\n    )\n\n    )\n    ),\n\n    (searchQuery || selectedCategory !== 'all') && /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex flex-wrap gap-2 mt-4\", \"data-phoenix-id\": \"phoenix-7448bc59-30\" },\n    searchQuery && /*#__PURE__*/\n    React.createElement(Badge, { variant: \"secondary\", \"data-phoenix-id\": \"phoenix-7448bc59-31\" }, \"Search: \",\n    searchQuery, /*#__PURE__*/\n    React.createElement(X, {\n      className: \"w-3 h-3 ml-2 cursor-pointer\",\n      onClick: () => setSearchQuery(''), \"data-phoenix-id\": \"phoenix-7448bc59-32\" }\n    )\n    ),\n\n    selectedCategory !== 'all' && /*#__PURE__*/\n    React.createElement(Badge, { variant: \"secondary\", \"data-phoenix-id\": \"phoenix-7448bc59-33\" }, \"Category: \",\n    breedCategories.find((c) => c.id === selectedCategory)?.name, /*#__PURE__*/\n    React.createElement(X, {\n      className: \"w-3 h-3 ml-2 cursor-pointer\",\n      onClick: () => setSelectedCategory('all'), \"data-phoenix-id\": \"phoenix-7448bc59-34\" }\n    )\n    )\n\n    )\n\n    )\n    ),\n\n    selectedBreeds.length > 0 && /*#__PURE__*/\n    React.createElement(\"section\", { className: \"py-4 bg-green-50 border-b\", \"data-phoenix-id\": \"phoenix-7448bc59-35\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"container mx-auto px-4 lg:px-8\", \"data-phoenix-id\": \"phoenix-7448bc59-36\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex items-center justify-between\", \"data-phoenix-id\": \"phoenix-7448bc59-37\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex items-center gap-4\", \"data-phoenix-id\": \"phoenix-7448bc59-38\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex items-center gap-2\", \"data-phoenix-id\": \"phoenix-7448bc59-39\" }, /*#__PURE__*/\n    React.createElement(GitCompare, { className: \"w-5 h-5 text-green-600\", \"data-phoenix-id\": \"phoenix-7448bc59-40\" }), /*#__PURE__*/\n    React.createElement(\"span\", { className: \"font-medium\", \"data-phoenix-id\": \"phoenix-7448bc59-41\" }, \"Comparing \",\n    selectedBreeds.length, \"/3 breeds\"\n    )\n    ), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex gap-2\", \"data-phoenix-id\": \"phoenix-7448bc59-42\" },\n    selectedBreeds.map((breed) => /*#__PURE__*/\n    React.createElement(Badge, { key: breed.id, variant: \"secondary\", \"data-phoenix-id\": \"phoenix-7448bc59-43\" },\n    breed.name, /*#__PURE__*/\n    React.createElement(X, {\n      className: \"w-3 h-3 ml-2 cursor-pointer\",\n      onClick: () => handleCompareBreed(breed), \"data-phoenix-id\": \"phoenix-7448bc59-44\" }\n    )\n    )\n    )\n    )\n    ), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex gap-2\", \"data-phoenix-id\": \"phoenix-7448bc59-45\" }, /*#__PURE__*/\n    React.createElement(Button, { size: \"sm\", asChild: true, disabled: selectedBreeds.length < 2, \"data-phoenix-id\": \"phoenix-7448bc59-46\" }, /*#__PURE__*/\n    React.createElement(Link, { href: `/breeds/compare?breeds=${selectedBreeds.map((b) => b.id).join(',')}`, \"data-phoenix-id\": \"phoenix-7448bc59-47\" }, \"Compare Now\"\n\n    )\n    ), /*#__PURE__*/\n    React.createElement(Button, { variant: \"ghost\", size: \"sm\", onClick: clearSelectedBreeds, \"data-phoenix-id\": \"phoenix-7448bc59-48\" }, \"Clear All\"\n\n    )\n    )\n    )\n    )\n    ), /*#__PURE__*/\n\n\n    React.createElement(\"section\", { className: \"py-12\", \"data-phoenix-id\": \"phoenix-7448bc59-49\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"container mx-auto px-4 lg:px-8\", \"data-phoenix-id\": \"phoenix-7448bc59-50\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex items-center justify-between mb-8\", \"data-phoenix-id\": \"phoenix-7448bc59-51\" }, /*#__PURE__*/\n    React.createElement(\"div\", { \"data-phoenix-id\": \"phoenix-7448bc59-52\" }, /*#__PURE__*/\n    React.createElement(\"h2\", { className: \"text-2xl font-bold text-gray-900\", \"data-phoenix-id\": \"phoenix-7448bc59-53\" },\n    filteredAndSortedBreeds.length, \" Breeds Found\"\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-gray-600 mt-1\", \"data-phoenix-id\": \"phoenix-7448bc59-54\" },\n    selectedCategory !== 'all' ?\n    `Showing ${breedCategories.find((c) => c.id === selectedCategory)?.name.toLowerCase()} breeds` :\n    'Showing all cattle breeds'\n    )\n    ), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex items-center gap-2 text-sm text-gray-500\", \"data-phoenix-id\": \"phoenix-7448bc59-55\" }, /*#__PURE__*/\n    React.createElement(ArrowUpDown, { className: \"w-4 h-4\", \"data-phoenix-id\": \"phoenix-7448bc59-56\" }), \"Sorted by \",\n    sortBy\n    )\n    ),\n\n    filteredAndSortedBreeds.length === 0 ? /*#__PURE__*/\n    React.createElement(Card, { className: \"text-center py-12\", \"data-phoenix-id\": \"phoenix-7448bc59-57\" }, /*#__PURE__*/\n    React.createElement(CardContent, { \"data-phoenix-id\": \"phoenix-7448bc59-58\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-6xl mb-4\", \"data-phoenix-id\": \"phoenix-7448bc59-59\" }, \"\\uD83D\\uDC04\"), /*#__PURE__*/\n    React.createElement(\"h3\", { className: \"text-xl font-semibold text-gray-900 mb-2\", \"data-phoenix-id\": \"phoenix-7448bc59-60\" }, \"No breeds found\"\n\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-gray-600 mb-4\", \"data-phoenix-id\": \"phoenix-7448bc59-61\" }, \"Try adjusting your search criteria or clearing filters.\"\n\n    ), /*#__PURE__*/\n    React.createElement(Button, { onClick: clearAllFilters, \"data-phoenix-id\": \"phoenix-7448bc59-62\" }, \"Clear All Filters\")\n    )\n    ) : /*#__PURE__*/\n\n    React.createElement(\"div\", { className: \"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8\", \"data-phoenix-id\": \"phoenix-7448bc59-63\" },\n    filteredAndSortedBreeds.map((breed) => /*#__PURE__*/\n    React.createElement(BreedCard, {\n      key: breed.id,\n      breed: breed,\n      onCompare: handleCompareBreed,\n      isSelected: selectedBreeds.some((b) => b.id === breed.id), \"data-phoenix-id\": \"phoenix-7448bc59-64\" }\n    )\n    )\n    )\n\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(\"section\", { className: \"py-12 bg-white\", \"data-phoenix-id\": \"phoenix-7448bc59-65\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"container mx-auto px-4 lg:px-8\", \"data-phoenix-id\": \"phoenix-7448bc59-66\" }, /*#__PURE__*/\n    React.createElement(\"h2\", { className: \"text-2xl font-bold text-gray-900 text-center mb-8\", \"data-phoenix-id\": \"phoenix-7448bc59-67\" }, \"Breed Categories\"\n\n    ), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"grid grid-cols-2 lg:grid-cols-4 gap-6\", \"data-phoenix-id\": \"phoenix-7448bc59-68\" },\n    breedCategories.slice(1).map((category) => /*#__PURE__*/\n    React.createElement(Card, {\n      key: category.id,\n      className: `cursor-pointer transition-all hover:shadow-lg ${\n      selectedCategory === category.id ? 'ring-2 ring-green-500' : ''}`,\n\n      onClick: () => setSelectedCategory(category.id), \"data-phoenix-id\": \"phoenix-7448bc59-69\" }, /*#__PURE__*/\n\n    React.createElement(CardHeader, { className: \"text-center\", \"data-phoenix-id\": \"phoenix-7448bc59-70\" }, /*#__PURE__*/\n    React.createElement(CardTitle, { className: \"text-lg\", \"data-phoenix-id\": \"phoenix-7448bc59-71\" }, category.name), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-3xl font-bold text-green-600\", \"data-phoenix-id\": \"phoenix-7448bc59-72\" },\n    category.count\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-sm text-gray-600\", \"data-phoenix-id\": \"phoenix-7448bc59-73\" }, \"breeds available\")\n    )\n    )\n    )\n    )\n    )\n    )\n    ));\n\n}",
       "props": [],
       "imports": [],
       "modificationHints": [
@@ -62,8 +62,8 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758295920368": {
-      "phoenixId": "phoenix-1758295920368",
+    "phoenix-1758298321624": {
+      "phoenixId": "phoenix-1758298321624",
       "componentName": "Error",
       "filePath": "src/app/error.tsx",
       "lineNumber": 7,
@@ -80,13 +80,13 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920369": {
-      "phoenixId": "phoenix-1758295920369",
+    "phoenix-1758298321625": {
+      "phoenixId": "phoenix-1758298321625",
       "componentName": "FactsPage",
       "filePath": "src/app/facts/page.tsx",
       "lineNumber": 21,
       "columnNumber": 15,
-      "sourceCode": "export default function FactsPage() {\n  const [selectedCategory, setSelectedCategory] = useState('all');\n  const [currentFactIndex, setCurrentFactIndex] = useState(0);\n  const [animateCounters, setAnimateCounters] = useState(false);\n  const [quiz, setQuiz] = useState({\n    currentQuestion: 0,\n    answers: new Array(quizQuestions.length).fill(null),\n    showResults: false,\n    score: 0\n  });\n\n  const filteredFacts = selectedCategory === 'all' ?\n    cowFacts :\n    cowFacts.filter((fact) => fact.category === selectedCategory);\n\n  useEffect(() => {\n    setAnimateCounters(true);\n  }, []);\n\n  const handleQuizAnswer = (answerIndex) => {\n    const newAnswers = [...quiz.answers];\n    newAnswers[quiz.currentQuestion] = answerIndex;\n\n    if (quiz.currentQuestion === quizQuestions.length - 1) {\n      const score = newAnswers.reduce((total, answer, index) => {\n        return answer === quizQuestions[index].correctAnswer ? total + 1 : total;\n      }, 0);\n\n      setQuiz({\n        ...quiz,\n        answers: newAnswers,\n        showResults: true,\n        score\n      });\n    } else {\n      setQuiz({\n        ...quiz,\n        answers: newAnswers,\n        currentQuestion: quiz.currentQuestion + 1\n      });\n    }\n  };\n\n  const resetQuiz = () => {\n    setQuiz({\n      currentQuestion: 0,\n      answers: new Array(quizQuestions.length).fill(null),\n      showResults: false,\n      score: 0\n    });\n  };\n\n  const goToPreviousQuestion = () => {\n    if (quiz.currentQuestion > 0) {\n      setQuiz((prev) => ({\n        ...prev,\n        currentQuestion: prev.currentQuestion - 1\n      }));\n    }\n  };\n\n  const nextFact = () => {\n    setCurrentFactIndex((prev) => (prev + 1) % filteredFacts.length);\n  };\n\n  const previousFact = () => {\n    setCurrentFactIndex((prev) => (prev - 1 + filteredFacts.length) % filteredFacts.length);\n  };\n\n  const shareCurrentFact = () => {\n    const fact = filteredFacts[currentFactIndex];\n    if (navigator.share) {\n      navigator.share({\n        title: `Cow Fact: ${fact.title}`,\n        text: fact.description,\n        url: window.location.href\n      });\n    } else {\n      navigator.clipboard.writeText(`${fact.title}: ${fact.description}`);\n    }\n  };\n\n  return (\n    <div className=\"min-h-screen bg-gradient-to-b from-white to-amber-50\">\n      <section className=\"py-16 bg-gradient-to-r from-amber-600 to-amber-700\">\n        <div className=\"container mx-auto px-4 lg:px-8 text-center\">\n          <h1 className=\"text-4xl lg:text-6xl font-bold text-white mb-6\">\n            Amazing Cow Facts\n          </h1>\n          <p className=\"text-xl text-amber-100 max-w-3xl mx-auto leading-relaxed\">\n            Discover fascinating facts about cows, test your knowledge with interactive quizzes, and explore amazing statistics about these incredible animals.\n          </p>\n        </div>\n      </section>\n\n      <section className=\"py-12 bg-white\">\n        <div className=\"container mx-auto px-4 lg:px-8\">\n          <div className=\"text-center mb-12\">\n            <h2 className=\"text-3xl font-bold text-gray-900 mb-4\">\n              Incredible Cattle Statistics\n            </h2>\n            <p className=\"text-lg text-gray-600\">\n              Mind-blowing numbers about our bovine friends\n            </p>\n          </div>\n\n          <div className=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8\">\n            {cowStatistics.map((stat, index) => (\n              <Card key={stat.id} className=\"cow-card text-center\">\n                <CardContent className=\"p-8\">\n                  <div className=\"text-5xl mb-4\">{stat.icon}</div>\n                  <div\n                    className={`stat-counter text-4xl lg:text-5xl font-bold mb-4 ${\n                      animateCounters ? 'animate-count-up' : ''\n                    }`}\n                    style={{ color: stat.color, animationDelay: `${index * 200}ms` }}\n                  >\n                    {stat.value.toLocaleString()}\n                  </div>\n                  <div className=\"text-lg font-medium text-gray-600 mb-2\">\n                    {stat.unit}\n                  </div>\n                  <div className=\"text-xl font-semibold text-gray-900 mb-3\">\n                    {stat.label}\n                  </div>\n                  <p className=\"text-gray-600 text-sm\">\n                    {stat.description}\n                  </p>\n                </CardContent>\n              </Card>\n            ))}\n          </div>\n        </div>\n      </section>\n\n      <section className=\"py-12\">\n        <div className=\"container mx-auto px-4 lg:px-8\">\n          <Tabs defaultValue=\"facts\" className=\"w-full\">\n            <TabsList className=\"grid w-full grid-cols-2 mb-8\">\n              <TabsTrigger value=\"facts\" className=\"flex items-center gap-2\">\n                <Lightbulb className=\"w-4 h-4\" />\n                Cow Facts\n              </TabsTrigger>\n              <TabsTrigger value=\"quiz\" className=\"flex items-center gap-2\">\n                <Brain className=\"w-4 h-4\" />\n                Knowledge Quiz\n              </TabsTrigger>\n            </TabsList>\n\n            <TabsContent value=\"facts\">\n              <div className=\"grid grid-cols-1 lg:grid-cols-3 gap-8\">\n                <div className=\"lg:col-span-1\">\n                  <Card>\n                    <CardHeader>\n                      <CardTitle>Categories</CardTitle>\n                    </CardHeader>\n                    <CardContent>\n                      <div className=\"space-y-2\">\n                        {factCategories.map((category) => (\n                          <Button\n                            key={category.id}\n                            variant={selectedCategory === category.id ? \"default\" : \"ghost\"}\n                            className=\"w-full justify-start\"\n                            onClick={() => {\n                              setSelectedCategory(category.id);\n                              setCurrentFactIndex(0);\n                            }}\n                          >\n                            <span className=\"mr-2\">{category.icon}</span>\n                            {category.name}\n                          </Button>\n                        ))}\n                      </div>\n                    </CardContent>\n                  </Card>\n                </div>\n\n                <div className=\"lg:col-span-2\">\n                  {filteredFacts.length > 0 && (\n                    <Card className=\"cow-card\">\n                      <CardHeader className=\"text-center\">\n                        <div className=\"flex items-center justify-between\">\n                          <Badge variant=\"secondary\">\n                            {factCategories.find((c) => c.id === filteredFacts[currentFactIndex]?.category)?.name}\n                          </Badge>\n                          <div className=\"flex gap-2\">\n                            <Button size=\"sm\" variant=\"ghost\" onClick={shareCurrentFact}>\n                              <Share className=\"w-4 h-4\" />\n                            </Button>\n                            <span className=\"text-sm text-gray-500\">\n                              {currentFactIndex + 1} of {filteredFacts.length}\n                            </span>\n                          </div>\n                        </div>\n                        <CardTitle className=\"text-2xl lg:text-3xl\">\n                          {filteredFacts[currentFactIndex]?.title}\n                        </CardTitle>\n                      </CardHeader>\n                      <CardContent className=\"text-center\">\n                        <div className=\"text-6xl mb-6\">\n                          {filteredFacts[currentFactIndex]?.icon}\n                        </div>\n                        <p className=\"text-lg text-gray-700 leading-relaxed mb-8\">\n                          {filteredFacts[currentFactIndex]?.description}\n                        </p>\n\n                        {filteredFacts[currentFactIndex]?.statValue && (\n                          <div className=\"bg-green-50 rounded-lg p-6 mb-6\">\n                            <div className=\"text-4xl font-bold text-green-600 mb-2\">\n                              {filteredFacts[currentFactIndex].statValue}\n                            </div>\n                            <div className=\"text-green-700 font-medium\">\n                              {filteredFacts[currentFactIndex].statUnit}\n                            </div>\n                          </div>\n                        )}\n\n                        <div className=\"flex justify-between items-center\">\n                          <Button variant=\"outline\" onClick={previousFact}>\n                            <ChevronLeft className=\"w-4 h-4 mr-2\" />\n                            Previous\n                          </Button>\n                          <Button onClick={nextFact}>\n                            Next\n                            <ChevronRight className=\"w-4 h-4 ml-2\" />\n                          </Button>\n                        </div>\n                      </CardContent>\n                    </Card>\n                  )}\n                </div>\n              </div>\n            </TabsContent>\n\n            <TabsContent value=\"quiz\">\n              <div className=\"max-w-4xl mx-auto\">\n                {!quiz.showResults ? (\n                  <Card className=\"cow-card\">\n                    <CardHeader>\n                      <div className=\"flex justify-between items-center mb-4\">\n                        <Badge variant=\"secondary\">\n                          Question {quiz.currentQuestion + 1} of {quizQuestions.length}\n                        </Badge>\n                        <Button\n                          variant=\"ghost\"\n                          size=\"sm\"\n                          onClick={goToPreviousQuestion}\n                          disabled={quiz.currentQuestion === 0}\n                        >\n                          <ChevronLeft className=\"w-4 h-4 mr-2\" />\n                          Previous\n                        </Button>\n                      </div>\n                      <Progress\n                        value={(quiz.currentQuestion / quizQuestions.length) * 100}\n                        className=\"mb-4\"\n                      />\n                      <CardTitle className=\"text-2xl lg:text-3xl\">\n                        {quizQuestions[quiz.currentQuestion]?.question}\n                      </CardTitle>\n                    </CardHeader>\n                    <CardContent>\n                      <div className=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n                        {quizQuestions[quiz.currentQuestion]?.options.map((option, index) => (\n                          <Button\n                            key={index}\n                            variant=\"outline\"\n                            className=\"h-auto p-6 text-left justify-start hover:bg-green-50\"\n                            onClick={() => handleQuizAnswer(index)}\n                          >\n                            <div className=\"flex items-center gap-3\">\n                              <div className=\"w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center font-semibold\">\n                                {String.fromCharCode(65 + index)}\n                              </div>\n                              {option}\n                            </div>\n                          </Button>\n                        ))}\n                      </div>\n                    </CardContent>\n                  </Card>\n                ) : (\n                  <Card className=\"cow-card text-center\">\n                    <CardHeader>\n                      <div className=\"text-6xl mb-4\">\n                        {quiz.score >= quizQuestions.length * 0.8 ? '🏆' :\n                         quiz.score >= quizQuestions.length * 0.6 ? '🎉' : '📚'}\n                      </div>\n                      <CardTitle className=\"text-3xl\">\n                        {quiz.score >= quizQuestions.length * 0.8 ?\n                          'Excellent! You\\'re a cow expert!' :\n                          quiz.score >= quizQuestions.length * 0.6 ?\n                            'Good job! You know your cows!' :\n                            'Keep learning about these amazing animals!'}\n                      </CardTitle>\n                      <div className=\"text-2xl font-bold text-green-600 mt-4\">\n                        {quiz.score} out of {quizQuestions.length} correct\n                      </div>\n                    </CardHeader>\n                    <CardContent>\n                      <div className=\"space-y-4 mb-8\">\n                        {quizQuestions.map((question, index) => (\n                          <div\n                            key={index}\n                            className={`p-4 rounded-lg border-2 ${\n                              quiz.answers[index] === question.correctAnswer ?\n                                'border-green-200 bg-green-50' :\n                                'border-red-200 bg-red-50'\n                            }`}\n                          >\n                            <div className=\"flex items-start gap-3\">\n                              <div className=\"flex-shrink-0\">\n                                {quiz.answers[index] === question.correctAnswer ? (\n                                  <CheckCircle className=\"w-6 h-6 text-green-600\" />\n                                ) : (\n                                  <XCircle className=\"w-6 h-6 text-red-600\" />\n                                )}\n                              </div>\n                              <div className=\"text-left\">\n                                <div className=\"font-semibold mb-2\">\n                                  Q{index + 1}: {question.question}\n                                </div>\n                                <div className=\"text-sm text-gray-600\">\n                                  <strong>Correct Answer:</strong> {question.options[question.correctAnswer]}\n                                </div>\n                                <div className=\"text-sm text-gray-700 mt-1\">\n                                  {question.explanation}\n                                </div>\n                              </div>\n                            </div>\n                          </div>\n                        ))}\n                      </div>\n                      <Button onClick={resetQuiz} size=\"lg\">\n                        <RotateCcw className=\"w-5 h-5 mr-2\" />\n                        Take Quiz Again\n                      </Button>\n                    </CardContent>\n                  </Card>\n                )}\n              </div>\n            </TabsContent>\n          </Tabs>\n        </div>\n      </section>\n    </div>\n  );\n}",
+      "sourceCode": "export default function FactsPage() {\n  const [selectedCategory, setSelectedCategory] = useState('all');\n  const [currentFactIndex, setCurrentFactIndex] = useState(0);\n  const [animateCounters, setAnimateCounters] = useState(false);\n  const [quiz, setQuiz] = useState({\n    currentQuestion: 0,\n    answers: new Array(quizQuestions.length).fill(null),\n    showResults: false,\n    score: 0\n  });\n\n  const filteredFacts = selectedCategory === 'all' ?\n  cowFacts :\n  cowFacts.filter((fact) => fact.category === selectedCategory);\n\n  useEffect(() => {\n    setAnimateCounters(true);\n  }, []);\n\n  const handleQuizAnswer = (answerIndex) => {\n    const newAnswers = [...quiz.answers];\n    newAnswers[quiz.currentQuestion] = answerIndex;\n\n    if (quiz.currentQuestion === quizQuestions.length - 1) {\n      const score = newAnswers.reduce((total, answer, index) => {\n        return answer === quizQuestions[index].correctAnswer ? total + 1 : total;\n      }, 0);\n\n      setQuiz({\n        ...quiz,\n        answers: newAnswers,\n        showResults: true,\n        score\n      });\n    } else {\n      setQuiz({\n        ...quiz,\n        answers: newAnswers,\n        currentQuestion: quiz.currentQuestion + 1\n      });\n    }\n  };\n\n  const resetQuiz = () => {\n    setQuiz({\n      currentQuestion: 0,\n      answers: new Array(quizQuestions.length).fill(null),\n      showResults: false,\n      score: 0\n    });\n  };\n\n  const goToPreviousQuestion = () => {\n    if (quiz.currentQuestion > 0) {\n      setQuiz((prev) => ({\n        ...prev,\n        currentQuestion: prev.currentQuestion - 1\n      }));\n    }\n  };\n\n  const nextFact = () => {\n    setCurrentFactIndex((prev) => (prev + 1) % filteredFacts.length);\n  };\n\n  const previousFact = () => {\n    setCurrentFactIndex((prev) => (prev - 1 + filteredFacts.length) % filteredFacts.length);\n  };\n\n  const shareCurrentFact = () => {\n    const fact = filteredFacts[currentFactIndex];\n    if (navigator.share) {\n      navigator.share({\n        title: `Cow Fact: ${fact.title}`,\n        text: fact.description,\n        url: window.location.href\n      });\n    } else {\n      navigator.clipboard.writeText(`${fact.title}: ${fact.description}`);\n    }\n  };\n\n  return (/*#__PURE__*/\n    React.createElement(\"div\", { className: \"min-h-screen bg-gradient-to-b from-white to-amber-50\", \"data-phoenix-id\": \"phoenix-7448bc59-1\" }, /*#__PURE__*/\n    React.createElement(\"section\", { className: \"py-16 bg-gradient-to-r from-amber-600 to-amber-700\", \"data-phoenix-id\": \"phoenix-7448bc59-2\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"container mx-auto px-4 lg:px-8 text-center\", \"data-phoenix-id\": \"phoenix-7448bc59-3\" }, /*#__PURE__*/\n    React.createElement(\"h1\", { className: \"text-4xl lg:text-6xl font-bold text-white mb-6\", \"data-phoenix-id\": \"phoenix-7448bc59-4\" }, \"Amazing Cow Facts\"\n\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-xl text-amber-100 max-w-3xl mx-auto leading-relaxed\", \"data-phoenix-id\": \"phoenix-7448bc59-5\" }, \"Discover fascinating facts about cows, test your knowledge with interactive quizzes, and explore amazing statistics about these incredible animals.\"\n\n    )\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(\"section\", { className: \"py-12 bg-white\", \"data-phoenix-id\": \"phoenix-7448bc59-6\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"container mx-auto px-4 lg:px-8\", \"data-phoenix-id\": \"phoenix-7448bc59-7\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-center mb-12\", \"data-phoenix-id\": \"phoenix-7448bc59-8\" }, /*#__PURE__*/\n    React.createElement(\"h2\", { className: \"text-3xl font-bold text-gray-900 mb-4\", \"data-phoenix-id\": \"phoenix-7448bc59-9\" }, \"Incredible Cattle Statistics\"\n\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-lg text-gray-600\", \"data-phoenix-id\": \"phoenix-7448bc59-10\" }, \"Mind-blowing numbers about our bovine friends\"\n\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(\"div\", { className: \"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8\", \"data-phoenix-id\": \"phoenix-7448bc59-11\" },\n    cowStatistics.map((stat, index) => /*#__PURE__*/\n    React.createElement(Card, { key: stat.id, className: \"cow-card text-center\", \"data-phoenix-id\": \"phoenix-7448bc59-12\" }, /*#__PURE__*/\n    React.createElement(CardContent, { className: \"p-8\", \"data-phoenix-id\": \"phoenix-7448bc59-13\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-5xl mb-4\", \"data-phoenix-id\": \"phoenix-7448bc59-14\" }, stat.icon), /*#__PURE__*/\n    React.createElement(\"div\", {\n      className: `stat-counter text-4xl lg:text-5xl font-bold mb-4 ${\n      animateCounters ? 'animate-count-up' : ''}`,\n\n      style: { color: stat.color, animationDelay: `${index * 200}ms` }, \"data-phoenix-id\": \"phoenix-7448bc59-15\" },\n\n    stat.value.toLocaleString()\n    ), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-lg font-medium text-gray-600 mb-2\", \"data-phoenix-id\": \"phoenix-7448bc59-16\" },\n    stat.unit\n    ), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-xl font-semibold text-gray-900 mb-3\", \"data-phoenix-id\": \"phoenix-7448bc59-17\" },\n    stat.label\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-gray-600 text-sm\", \"data-phoenix-id\": \"phoenix-7448bc59-18\" },\n    stat.description\n    )\n    )\n    )\n    )\n    )\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(\"section\", { className: \"py-12\", \"data-phoenix-id\": \"phoenix-7448bc59-19\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"container mx-auto px-4 lg:px-8\", \"data-phoenix-id\": \"phoenix-7448bc59-20\" }, /*#__PURE__*/\n    React.createElement(Tabs, { defaultValue: \"facts\", className: \"w-full\", \"data-phoenix-id\": \"phoenix-7448bc59-21\" }, /*#__PURE__*/\n    React.createElement(TabsList, { className: \"grid w-full grid-cols-2 mb-8\", \"data-phoenix-id\": \"phoenix-7448bc59-22\" }, /*#__PURE__*/\n    React.createElement(TabsTrigger, { value: \"facts\", className: \"flex items-center gap-2\", \"data-phoenix-id\": \"phoenix-7448bc59-23\" }, /*#__PURE__*/\n    React.createElement(Lightbulb, { className: \"w-4 h-4\", \"data-phoenix-id\": \"phoenix-7448bc59-24\" }), \"Cow Facts\"\n\n    ), /*#__PURE__*/\n    React.createElement(TabsTrigger, { value: \"quiz\", className: \"flex items-center gap-2\", \"data-phoenix-id\": \"phoenix-7448bc59-25\" }, /*#__PURE__*/\n    React.createElement(Brain, { className: \"w-4 h-4\", \"data-phoenix-id\": \"phoenix-7448bc59-26\" }), \"Knowledge Quiz\"\n\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(TabsContent, { value: \"facts\", \"data-phoenix-id\": \"phoenix-7448bc59-27\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"grid grid-cols-1 lg:grid-cols-3 gap-8\", \"data-phoenix-id\": \"phoenix-7448bc59-28\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"lg:col-span-1\", \"data-phoenix-id\": \"phoenix-7448bc59-29\" }, /*#__PURE__*/\n    React.createElement(Card, { \"data-phoenix-id\": \"phoenix-7448bc59-30\" }, /*#__PURE__*/\n    React.createElement(CardHeader, { \"data-phoenix-id\": \"phoenix-7448bc59-31\" }, /*#__PURE__*/\n    React.createElement(CardTitle, { \"data-phoenix-id\": \"phoenix-7448bc59-32\" }, \"Categories\")\n    ), /*#__PURE__*/\n    React.createElement(CardContent, { \"data-phoenix-id\": \"phoenix-7448bc59-33\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"space-y-2\", \"data-phoenix-id\": \"phoenix-7448bc59-34\" },\n    factCategories.map((category) => /*#__PURE__*/\n    React.createElement(Button, {\n      key: category.id,\n      variant: selectedCategory === category.id ? \"default\" : \"ghost\",\n      className: \"w-full justify-start\",\n      onClick: () => {\n        setSelectedCategory(category.id);\n        setCurrentFactIndex(0);\n      }, \"data-phoenix-id\": \"phoenix-7448bc59-35\" }, /*#__PURE__*/\n\n    React.createElement(\"span\", { className: \"mr-2\", \"data-phoenix-id\": \"phoenix-7448bc59-36\" }, category.icon),\n    category.name\n    )\n    )\n    )\n    )\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(\"div\", { className: \"lg:col-span-2\", \"data-phoenix-id\": \"phoenix-7448bc59-37\" },\n    filteredFacts.length > 0 && /*#__PURE__*/\n    React.createElement(Card, { className: \"cow-card\", \"data-phoenix-id\": \"phoenix-7448bc59-38\" }, /*#__PURE__*/\n    React.createElement(CardHeader, { className: \"text-center\", \"data-phoenix-id\": \"phoenix-7448bc59-39\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex items-center justify-between\", \"data-phoenix-id\": \"phoenix-7448bc59-40\" }, /*#__PURE__*/\n    React.createElement(Badge, { variant: \"secondary\", \"data-phoenix-id\": \"phoenix-7448bc59-41\" },\n    factCategories.find((c) => c.id === filteredFacts[currentFactIndex]?.category)?.name\n    ), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex gap-2\", \"data-phoenix-id\": \"phoenix-7448bc59-42\" }, /*#__PURE__*/\n    React.createElement(Button, { size: \"sm\", variant: \"ghost\", onClick: shareCurrentFact, \"data-phoenix-id\": \"phoenix-7448bc59-43\" }, /*#__PURE__*/\n    React.createElement(Share, { className: \"w-4 h-4\", \"data-phoenix-id\": \"phoenix-7448bc59-44\" })\n    ), /*#__PURE__*/\n    React.createElement(\"span\", { className: \"text-sm text-gray-500\", \"data-phoenix-id\": \"phoenix-7448bc59-45\" },\n    currentFactIndex + 1, \" of \", filteredFacts.length\n    )\n    )\n    ), /*#__PURE__*/\n    React.createElement(CardTitle, { className: \"text-2xl lg:text-3xl\", \"data-phoenix-id\": \"phoenix-7448bc59-46\" },\n    filteredFacts[currentFactIndex]?.title\n    )\n    ), /*#__PURE__*/\n    React.createElement(CardContent, { className: \"text-center\", \"data-phoenix-id\": \"phoenix-7448bc59-47\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-6xl mb-6\", \"data-phoenix-id\": \"phoenix-7448bc59-48\" },\n    filteredFacts[currentFactIndex]?.icon\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-lg text-gray-700 leading-relaxed mb-8\", \"data-phoenix-id\": \"phoenix-7448bc59-49\" },\n    filteredFacts[currentFactIndex]?.description\n    ),\n\n    filteredFacts[currentFactIndex]?.statValue && /*#__PURE__*/\n    React.createElement(\"div\", { className: \"bg-green-50 rounded-lg p-6 mb-6\", \"data-phoenix-id\": \"phoenix-7448bc59-50\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-4xl font-bold text-green-600 mb-2\", \"data-phoenix-id\": \"phoenix-7448bc59-51\" },\n    filteredFacts[currentFactIndex].statValue\n    ), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-green-700 font-medium\", \"data-phoenix-id\": \"phoenix-7448bc59-52\" },\n    filteredFacts[currentFactIndex].statUnit\n    )\n    ), /*#__PURE__*/\n\n\n    React.createElement(\"div\", { className: \"flex justify-between items-center\", \"data-phoenix-id\": \"phoenix-7448bc59-53\" }, /*#__PURE__*/\n    React.createElement(Button, { variant: \"outline\", onClick: previousFact, \"data-phoenix-id\": \"phoenix-7448bc59-54\" }, /*#__PURE__*/\n    React.createElement(ChevronLeft, { className: \"w-4 h-4 mr-2\", \"data-phoenix-id\": \"phoenix-7448bc59-55\" }), \"Previous\"\n\n    ), /*#__PURE__*/\n    React.createElement(Button, { onClick: nextFact, \"data-phoenix-id\": \"phoenix-7448bc59-56\" }, \"Next\", /*#__PURE__*/\n\n    React.createElement(ChevronRight, { className: \"w-4 h-4 ml-2\", \"data-phoenix-id\": \"phoenix-7448bc59-57\" })\n    )\n    )\n    )\n    )\n\n    )\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(TabsContent, { value: \"quiz\", \"data-phoenix-id\": \"phoenix-7448bc59-58\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"max-w-4xl mx-auto\", \"data-phoenix-id\": \"phoenix-7448bc59-59\" },\n    !quiz.showResults ? /*#__PURE__*/\n    React.createElement(Card, { className: \"cow-card\", \"data-phoenix-id\": \"phoenix-7448bc59-60\" }, /*#__PURE__*/\n    React.createElement(CardHeader, { \"data-phoenix-id\": \"phoenix-7448bc59-61\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex justify-between items-center mb-4\", \"data-phoenix-id\": \"phoenix-7448bc59-62\" }, /*#__PURE__*/\n    React.createElement(Badge, { variant: \"secondary\", \"data-phoenix-id\": \"phoenix-7448bc59-63\" }, \"Question \",\n    quiz.currentQuestion + 1, \" of \", quizQuestions.length\n    ), /*#__PURE__*/\n    React.createElement(Button, {\n      variant: \"ghost\",\n      size: \"sm\",\n      onClick: goToPreviousQuestion,\n      disabled: quiz.currentQuestion === 0, \"data-phoenix-id\": \"phoenix-7448bc59-64\" }, /*#__PURE__*/\n\n    React.createElement(ChevronLeft, { className: \"w-4 h-4 mr-2\", \"data-phoenix-id\": \"phoenix-7448bc59-65\" }), \"Previous\"\n\n    )\n    ), /*#__PURE__*/\n    React.createElement(Progress, {\n      value: quiz.currentQuestion / quizQuestions.length * 100,\n      className: \"mb-4\", \"data-phoenix-id\": \"phoenix-7448bc59-66\" }\n    ), /*#__PURE__*/\n    React.createElement(CardTitle, { className: \"text-2xl lg:text-3xl\", \"data-phoenix-id\": \"phoenix-7448bc59-67\" },\n    quizQuestions[quiz.currentQuestion]?.question\n    )\n    ), /*#__PURE__*/\n    React.createElement(CardContent, { \"data-phoenix-id\": \"phoenix-7448bc59-68\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"grid grid-cols-1 md:grid-cols-2 gap-4\", \"data-phoenix-id\": \"phoenix-7448bc59-69\" },\n    quizQuestions[quiz.currentQuestion]?.options.map((option, index) => /*#__PURE__*/\n    React.createElement(Button, {\n      key: index,\n      variant: \"outline\",\n      className: \"h-auto p-6 text-left justify-start hover:bg-green-50\",\n      onClick: () => handleQuizAnswer(index), \"data-phoenix-id\": \"phoenix-7448bc59-70\" }, /*#__PURE__*/\n\n    React.createElement(\"div\", { className: \"flex items-center gap-3\", \"data-phoenix-id\": \"phoenix-7448bc59-71\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center font-semibold\", \"data-phoenix-id\": \"phoenix-7448bc59-72\" },\n    String.fromCharCode(65 + index)\n    ),\n    option\n    )\n    )\n    )\n    )\n    )\n    ) : /*#__PURE__*/\n\n    React.createElement(Card, { className: \"cow-card text-center\", \"data-phoenix-id\": \"phoenix-7448bc59-73\" }, /*#__PURE__*/\n    React.createElement(CardHeader, { \"data-phoenix-id\": \"phoenix-7448bc59-74\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-6xl mb-4\", \"data-phoenix-id\": \"phoenix-7448bc59-75\" },\n    quiz.score >= quizQuestions.length * 0.8 ? '🏆' :\n    quiz.score >= quizQuestions.length * 0.6 ? '🎉' : '📚'\n    ), /*#__PURE__*/\n    React.createElement(CardTitle, { className: \"text-3xl\", \"data-phoenix-id\": \"phoenix-7448bc59-76\" },\n    quiz.score >= quizQuestions.length * 0.8 ?\n    'Excellent! You\\'re a cow expert!' :\n    quiz.score >= quizQuestions.length * 0.6 ?\n    'Good job! You know your cows!' :\n    'Keep learning about these amazing animals!'\n    ), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-2xl font-bold text-green-600 mt-4\", \"data-phoenix-id\": \"phoenix-7448bc59-77\" },\n    quiz.score, \" out of \", quizQuestions.length, \" correct\"\n    )\n    ), /*#__PURE__*/\n    React.createElement(CardContent, { \"data-phoenix-id\": \"phoenix-7448bc59-78\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"space-y-4 mb-8\", \"data-phoenix-id\": \"phoenix-7448bc59-79\" },\n    quizQuestions.map((question, index) => /*#__PURE__*/\n    React.createElement(\"div\", {\n      key: index,\n      className: `p-4 rounded-lg border-2 ${\n      quiz.answers[index] === question.correctAnswer ?\n      'border-green-200 bg-green-50' :\n      'border-red-200 bg-red-50'}`, \"data-phoenix-id\": \"phoenix-7448bc59-80\" }, /*#__PURE__*/\n\n\n    React.createElement(\"div\", { className: \"flex items-start gap-3\", \"data-phoenix-id\": \"phoenix-7448bc59-81\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex-shrink-0\", \"data-phoenix-id\": \"phoenix-7448bc59-82\" },\n    quiz.answers[index] === question.correctAnswer ? /*#__PURE__*/\n    React.createElement(CheckCircle, { className: \"w-6 h-6 text-green-600\", \"data-phoenix-id\": \"phoenix-7448bc59-83\" }) : /*#__PURE__*/\n\n    React.createElement(XCircle, { className: \"w-6 h-6 text-red-600\", \"data-phoenix-id\": \"phoenix-7448bc59-84\" })\n\n    ), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-left\", \"data-phoenix-id\": \"phoenix-7448bc59-85\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"font-semibold mb-2\", \"data-phoenix-id\": \"phoenix-7448bc59-86\" }, \"Q\",\n    index + 1, \": \", question.question\n    ), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-sm text-gray-600\", \"data-phoenix-id\": \"phoenix-7448bc59-87\" }, /*#__PURE__*/\n    React.createElement(\"strong\", { \"data-phoenix-id\": \"phoenix-7448bc59-88\" }, \"Correct Answer:\"), \" \", question.options[question.correctAnswer]\n    ), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-sm text-gray-700 mt-1\", \"data-phoenix-id\": \"phoenix-7448bc59-89\" },\n    question.explanation\n    )\n    )\n    )\n    )\n    )\n    ), /*#__PURE__*/\n    React.createElement(Button, { onClick: resetQuiz, size: \"lg\", \"data-phoenix-id\": \"phoenix-7448bc59-90\" }, /*#__PURE__*/\n    React.createElement(RotateCcw, { className: \"w-5 h-5 mr-2\", \"data-phoenix-id\": \"phoenix-7448bc59-91\" }), \"Take Quiz Again\"\n\n    )\n    )\n    )\n\n    )\n    )\n    )\n    )\n    )\n    ));\n\n}",
       "props": [],
       "imports": [],
       "modificationHints": [
@@ -110,8 +110,8 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758295920370": {
-      "phoenixId": "phoenix-1758295920370",
+    "phoenix-1758298321626": {
+      "phoenixId": "phoenix-1758298321626",
       "componentName": "GlobalError",
       "filePath": "src/app/global-error.tsx",
       "lineNumber": 6,
@@ -141,13 +141,13 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758295920371": {
-      "phoenixId": "phoenix-1758295920371",
+    "phoenix-1758298321627": {
+      "phoenixId": "phoenix-1758298321627",
       "componentName": "RootLayout",
       "filePath": "src/app/layout.tsx",
       "lineNumber": 27,
       "columnNumber": 15,
-      "sourceCode": "export default function RootLayout({\n  children\n}: {\n  children: React.ReactNode;\n}) {\n  return (\n    <html lang=\"en\" suppressHydrationWarning>\n      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>\n        <QueryProvider>\n          <ThemeProvider\n            attribute=\"class\"\n            defaultTheme=\"system\"\n            enableSystem\n            disableTransitionOnChange\n          >\n            <TooltipProvider>\n              <Header />\n              {children}\n              <Footer />\n              <Toaster />\n              <Sonner />\n            </TooltipProvider>\n          </ThemeProvider>\n        </QueryProvider>\n      </body>\n    </html>\n  );\n}",
+      "sourceCode": "export default function RootLayout({\n  children\n}: {\n  children: React.ReactNode;\n}) {\n  return (\n    <html lang=\"en\" suppressHydrationWarning data-phoenix-id=\"phoenix-7448bc59-1\">\n      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} data-phoenix-id=\"phoenix-7448bc59-2\">\n        <QueryProvider data-phoenix-id=\"phoenix-7448bc59-3\">\n          <ThemeProvider\n            attribute=\"class\"\n            defaultTheme=\"system\"\n            enableSystem\n            disableTransitionOnChange\n            data-phoenix-id=\"phoenix-7448bc59-4\"\n          >\n            <TooltipProvider data-phoenix-id=\"phoenix-7448bc59-5\">\n              <Header data-phoenix-id=\"phoenix-7448bc59-6\" />\n              {children}\n              <Footer data-phoenix-id=\"phoenix-7448bc59-7\" />\n              <Toaster data-phoenix-id=\"phoenix-7448bc59-8\" />\n              <Sonner data-phoenix-id=\"phoenix-7448bc59-9\" />\n            </TooltipProvider>\n          </ThemeProvider>\n        </QueryProvider>\n      </body>\n    </html>\n  );\n}",
       "props": [
         {
           "name": "children",
@@ -158,15 +158,17 @@
       "imports": [],
       "modificationHints": [
         "text-update",
-        "style-change"
+        "style-change",
+        "careful-modification",
+        "test-thoroughly"
       ],
       "astAnalysis": {
         "componentType": "functional",
-        "complexity": "moderate"
+        "complexity": "complex"
       }
     },
-    "phoenix-1758295920372": {
-      "phoenixId": "phoenix-1758295920372",
+    "phoenix-1758298321628": {
+      "phoenixId": "phoenix-1758298321628",
       "componentName": "Loading",
       "filePath": "src/app/loading.tsx",
       "lineNumber": 3,
@@ -183,13 +185,13 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920373": {
-      "phoenixId": "phoenix-1758295920373",
+    "phoenix-1758298321629": {
+      "phoenixId": "phoenix-1758298321629",
       "componentName": "NotFound",
       "filePath": "src/app/not-found.tsx",
       "lineNumber": 5,
       "columnNumber": 15,
-      "sourceCode": "export default function NotFound() {\n  return (/*#__PURE__*/\n    React.createElement(\"div\", { className: \"min-h-screen flex items-center justify-center\", \"data-phoenix-id\": \"phoenix-7448bc59-1\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-center\", \"data-phoenix-id\": \"phoenix-7448bc59-2\" }, /*#__PURE__*/\n    React.createElement(\"h1\", { className: \"text-4xl font-bold mb-4\", \"data-phoenix-id\": \"phoenix-7448bc59-3\" }, \"404 - Page Not Found\"), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-xl mb-4\", \"data-phoenix-id\": \"phoenix-7448bc59-4\" }, \"The page you are looking for does not exist.\"), /*#__PURE__*/\n    React.createElement(\"a\", { href: \"/\", className: \"text-blue-500 hover:text-blue-700 underline\", \"data-phoenix-id\": \"phoenix-7448bc59-5\" }, \"Return to Home\"\n\n    )\n    )\n    ));\n\n}",
+      "sourceCode": "export default function NotFound() {\n  return (\n    <div className=\"min-h-screen flex items-center justify-center\" data-phoenix-id=\"phoenix-7448bc59-1\">\n      <div className=\"text-center\" data-phoenix-id=\"phoenix-7448bc59-2\">\n        <h1 className=\"text-4xl font-bold mb-4\" data-phoenix-id=\"phoenix-7448bc59-3\">404 - Page Not Found</h1>\n        <p className=\"text-xl mb-4\" data-phoenix-id=\"phoenix-7448bc59-4\">The page you are looking for does not exist.</p>\n        <a href=\"/\" className=\"text-blue-500 hover:text-blue-700 underline\" data-phoenix-id=\"phoenix-7448bc59-5\">Return to Home</a>\n      </div>\n    </div>\n  );\n}",
       "props": [],
       "imports": [],
       "modificationHints": [
@@ -201,8 +203,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920374": {
-      "phoenixId": "phoenix-1758295920374",
+    "phoenix-1758298321630": {
+      "phoenixId": "phoenix-1758298321630",
       "componentName": "HomePage",
       "filePath": "src/app/page.tsx",
       "lineNumber": 13,
@@ -221,8 +223,8 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758295920375": {
-      "phoenixId": "phoenix-1758295920375",
+    "phoenix-1758298321631": {
+      "phoenixId": "phoenix-1758298321631",
       "componentName": "BreedCard",
       "filePath": "src/components/breed-card.tsx",
       "lineNumber": 17,
@@ -261,8 +263,8 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758295920376": {
-      "phoenixId": "phoenix-1758295920376",
+    "phoenix-1758298321632": {
+      "phoenixId": "phoenix-1758298321632",
       "componentName": "Footer",
       "filePath": "src/components/footer.tsx",
       "lineNumber": 5,
@@ -281,13 +283,13 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758295920377": {
-      "phoenixId": "phoenix-1758295920377",
+    "phoenix-1758298321633": {
+      "phoenixId": "phoenix-1758298321633",
       "componentName": "Header",
       "filePath": "src/components/header.tsx",
       "lineNumber": 46,
       "columnNumber": 7,
-      "sourceCode": "export function Header() {\n  const [isMenuOpen, setIsMenuOpen] = useState(false);\n\n  return (/*#__PURE__*/\n    React.createElement(\"header\", { className: \"sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border\", \"data-phoenix-id\": \"phoenix-7448bc59-1\" }, /*#__PURE__*/\n    React.createElement(\"nav\", { className: \"container mx-auto px-4 lg:px-8\", \"data-phoenix-id\": \"phoenix-7448bc59-2\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex items-center justify-between h-16\", \"data-phoenix-id\": \"phoenix-7448bc59-3\" }, /*#__PURE__*/\n\n    React.createElement(\"div\", { className: \"flex items-center\", \"data-phoenix-id\": \"phoenix-7448bc59-4\" }, /*#__PURE__*/\n    React.createElement(Link, { href: \"/\", className: \"flex items-center space-x-2\", \"data-phoenix-id\": \"phoenix-7448bc59-5\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-2xl\", \"data-phoenix-id\": \"phoenix-7448bc59-6\" }, \"\\uD83D\\uDC04\"), /*#__PURE__*/\n    React.createElement(\"div\", { \"data-phoenix-id\": \"phoenix-7448bc59-7\" }, /*#__PURE__*/\n    React.createElement(\"span\", { className: \"text-xl font-bold text-foreground\", \"data-phoenix-id\": \"phoenix-7448bc59-8\" }, \"Pasture\"), /*#__PURE__*/\n    React.createElement(\"span\", { className: \"text-xl font-bold text-accent\", \"data-phoenix-id\": \"phoenix-7448bc59-9\" }, \"Perfect\")\n    )\n    )\n    ), /*#__PURE__*/\n\n\n    React.createElement(\"div\", { className: \"hidden lg:block\", \"data-phoenix-id\": \"phoenix-7448bc59-10\" }, /*#__PURE__*/\n    React.createElement(NavigationMenu, { \"data-phoenix-id\": \"phoenix-7448bc59-11\" }, /*#__PURE__*/\n    React.createElement(NavigationMenuList, { className: \"space-x-2\", \"data-phoenix-id\": \"phoenix-7448bc59-12\" },\n    navigation.map((item) => /*#__PURE__*/\n    React.createElement(NavigationMenuItem, { key: item.name, \"data-phoenix-id\": \"phoenix-7448bc59-13\" },\n    item.submenu ? /*#__PURE__*/\n    React.createElement(React.Fragment, null, /*#__PURE__*/\n    React.createElement(NavigationMenuTrigger, { className: \"font-medium text-muted-foreground hover:text-accent transition-colors\", \"data-phoenix-id\": \"phoenix-7448bc59-14\" },\n    item.name\n    ), /*#__PURE__*/\n    React.createElement(NavigationMenuContent, { \"data-phoenix-id\": \"phoenix-7448bc59-15\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"w-80 p-6\", \"data-phoenix-id\": \"phoenix-7448bc59-16\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"mb-4\", \"data-phoenix-id\": \"phoenix-7448bc59-17\" }, /*#__PURE__*/\n    React.createElement(\"h4\", { className: \"text-lg font-semibold text-foreground mb-2\", \"data-phoenix-id\": \"phoenix-7448bc59-18\" }, item.name), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-sm text-muted-foreground\", \"data-phoenix-id\": \"phoenix-7448bc59-19\" }, item.description)\n    ), /*#__PURE__*/\n    React.createElement(\"ul\", { className: \"space-y-3\", \"data-phoenix-id\": \"phoenix-7448bc59-20\" },\n    item.submenu.map((subItem) => /*#__PURE__*/\n    React.createElement(\"li\", { key: subItem.name, \"data-phoenix-id\": \"phoenix-7448bc59-21\" }, /*#__PURE__*/\n    React.createElement(NavigationMenuLink, { asChild: true, \"data-phoenix-id\": \"phoenix-7448bc59-22\" }, /*#__PURE__*/\n    React.createElement(Link, {\n      href: subItem.href,\n      className: \"block p-3 rounded-lg hover:bg-muted transition-colors\", \"data-phoenix-id\": \"phoenix-7448bc59-23\" }, /*#__PURE__*/\n\n    React.createElement(\"div\", { className: \"font-medium text-foreground mb-1\", \"data-phoenix-id\": \"phoenix-7448bc59-24\" },\n    subItem.name\n    ), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-sm text-muted-foreground\", \"data-phoenix-id\": \"phoenix-7448bc59-25\" },\n    subItem.description\n    )\n    )\n    )\n    )\n    )\n    )\n    )\n    )\n    ) : /*#__PURE__*/\n\n    React.createElement(NavigationMenuLink, { asChild: true, \"data-phoenix-id\": \"phoenix-7448bc59-26\" }, /*#__PURE__*/\n    React.createElement(Link, {\n      href: item.href,\n      className: \"font-medium text-muted-foreground hover:text-accent transition-colors px-3 py-2 rounded-md\", \"data-phoenix-id\": \"phoenix-7448bc59-27\" },\n\n    item.name\n    )\n    )\n\n    )\n    )\n    )\n    )\n    ), /*#__PURE__*/\n\n\n    React.createElement(\"div\", { className: \"hidden lg:flex items-center space-x-4\", \"data-phoenix-id\": \"phoenix-7448bc59-28\" }, /*#__PURE__*/\n    React.createElement(Button, { variant: \"ghost\", size: \"icon\", \"data-phoenix-id\": \"phoenix-7448bc59-29\" }, /*#__PURE__*/\n    React.createElement(Search, { className: \"h-5 w-5\", \"data-phoenix-id\": \"phoenix-7448bc59-30\" })\n    ), /*#__PURE__*/\n    React.createElement(Button, { className: \"hero-gradient text-background font-semibold hover:opacity-90 transition-opacity\", \"data-phoenix-id\": \"phoenix-7448bc59-31\" }, \"Learn More\"\n\n    )\n    ), /*#__PURE__*/\n\n\n    React.createElement(\"div\", { className: \"lg:hidden\", \"data-phoenix-id\": \"phoenix-7448bc59-32\" }, /*#__PURE__*/\n    React.createElement(Button, {\n      variant: \"ghost\",\n      size: \"icon\",\n      onClick: () => setIsMenuOpen(!isMenuOpen), \"data-phoenix-id\": \"phoenix-7448bc59-33\" },\n\n    isMenuOpen ? /*#__PURE__*/React.createElement(X, { className: \"h-6 w-6\", \"data-phoenix-id\": \"phoenix-7448bc59-34\" }) : /*#__PURE__*/React.createElement(Menu, { className: \"h-6 w-6\", \"data-phoenix-id\": \"phoenix-7448bc59-35\" })\n    )\n    )\n    ),\n\n\n    isMenuOpen && /*#__PURE__*/\n    React.createElement(\"div\", { className: \"lg:hidden border-t border-border py-4\", \"data-phoenix-id\": \"phoenix-7448bc59-36\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"space-y-4\", \"data-phoenix-id\": \"phoenix-7448bc59-37\" },\n    navigation.map((item) => /*#__PURE__*/\n    React.createElement(\"div\", { key: item.name, className: \"space-y-2\", \"data-phoenix-id\": \"phoenix-7448bc59-38\" }, /*#__PURE__*/\n    React.createElement(Link, {\n      href: item.href,\n      className: \"block font-medium text-muted-foreground hover:text-accent transition-colors\",\n      onClick: () => setIsMenuOpen(false), \"data-phoenix-id\": \"phoenix-7448bc59-39\" },\n\n    item.name\n    ),\n    item.submenu && /*#__PURE__*/\n    React.createElement(\"div\", { className: \"ml-4 space-y-2\", \"data-phoenix-id\": \"phoenix-7448bc59-40\" },\n    item.submenu.map((subItem) => /*#__PURE__*/\n    React.createElement(Link, {\n      key: subItem.name,\n      href: subItem.href,\n      className: \"block text-sm text-muted-foreground hover:text-accent transition-colors\",\n      onClick: () => setIsMenuOpen(false), \"data-phoenix-id\": \"phoenix-7448bc59-41\" },\n\n    subItem.name\n    )\n    )\n    )\n\n    )\n    ), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"pt-4 border-t border-border\", \"data-phoenix-id\": \"phoenix-7448bc59-42\" }, /*#__PURE__*/\n    React.createElement(Button, { className: \"w-full hero-gradient text-background font-semibold hover:opacity-90 transition-opacity\", \"data-phoenix-id\": \"phoenix-7448bc59-43\" }, \"Learn More\"\n\n    )\n    )\n    )\n    )\n\n    )\n    ));\n\n}",
+      "sourceCode": "export function Header() {\n  const [isMenuOpen, setIsMenuOpen] = useState(false);\n\n  return (/*#__PURE__*/\n    React.createElement(\"header\", { className: \"sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border\", \"data-phoenix-id\": \"phoenix-7448bc59-1\" }, /*#__PURE__*/\n    React.createElement(\"nav\", { className: \"container mx-auto px-4 lg:px-8\", \"data-phoenix-id\": \"phoenix-7448bc59-2\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex items-center justify-between h-16\", \"data-phoenix-id\": \"phoenix-7448bc59-3\" }, /*#__PURE__*/\n\n    React.createElement(\"div\", { className: \"flex items-center\", \"data-phoenix-id\": \"phoenix-7448bc59-4\" }, /*#__PURE__*/\n    React.createElement(Link, { href: \"/\", className: \"flex items-center space-x-3\", \"data-phoenix-id\": \"phoenix-7448bc59-5\" }, /*#__PURE__*/\n    React.createElement(\"img\", { \n      src: \"/generated/patsture-logo-icon.png\",\n      alt: \"Patsture Perfect Logo\",\n      className: \"w-10 h-10 rounded-full\",\n      \"data-phoenix-id\": \"phoenix-7448bc59-6\" \n    }), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"font-brand\", \"data-phoenix-id\": \"phoenix-7448bc59-7\" }, /*#__PURE__*/\n    React.createElement(\"span\", { className: \"text-2xl font-bold text-foreground tracking-tight\", \"data-phoenix-id\": \"phoenix-7448bc59-8\" }, \"patsture\"), /*#__PURE__*/\n    React.createElement(\"span\", { className: \"text-2xl font-bold text-accent tracking-tight ml-1\", \"data-phoenix-id\": \"phoenix-7448bc59-9\" }, \"perfect\")\n    )\n    )\n    ), /*#__PURE__*/\n\n\n    React.createElement(\"div\", { className: \"hidden lg:block\", \"data-phoenix-id\": \"phoenix-7448bc59-10\" }, /*#__PURE__*/\n    React.createElement(NavigationMenu, { \"data-phoenix-id\": \"phoenix-7448bc59-11\" }, /*#__PURE__*/\n    React.createElement(NavigationMenuList, { className: \"space-x-2\", \"data-phoenix-id\": \"phoenix-7448bc59-12\" },\n    navigation.map((item) => /*#__PURE__*/\n    React.createElement(NavigationMenuItem, { key: item.name, \"data-phoenix-id\": \"phoenix-7448bc59-13\" },\n    item.submenu ? /*#__PURE__*/\n    React.createElement(React.Fragment, null, /*#__PURE__*/\n    React.createElement(NavigationMenuTrigger, { className: \"font-medium text-muted-foreground hover:text-accent transition-colors\", \"data-phoenix-id\": \"phoenix-7448bc59-14\" },\n    item.name\n    ), /*#__PURE__*/\n    React.createElement(NavigationMenuContent, { \"data-phoenix-id\": \"phoenix-7448bc59-15\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"w-80 p-6\", \"data-phoenix-id\": \"phoenix-7448bc59-16\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"mb-4\", \"data-phoenix-id\": \"phoenix-7448bc59-17\" }, /*#__PURE__*/\n    React.createElement(\"h4\", { className: \"text-lg font-semibold text-foreground mb-2\", \"data-phoenix-id\": \"phoenix-7448bc59-18\" }, item.name), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-sm text-muted-foreground\", \"data-phoenix-id\": \"phoenix-7448bc59-19\" }, item.description)\n    ), /*#__PURE__*/\n    React.createElement(\"ul\", { className: \"space-y-3\", \"data-phoenix-id\": \"phoenix-7448bc59-20\" },\n    item.submenu.map((subItem) => /*#__PURE__*/\n    React.createElement(\"li\", { key: subItem.name, \"data-phoenix-id\": \"phoenix-7448bc59-21\" }, /*#__PURE__*/\n    React.createElement(NavigationMenuLink, { asChild: true, \"data-phoenix-id\": \"phoenix-7448bc59-22\" }, /*#__PURE__*/\n    React.createElement(Link, {\n      href: subItem.href,\n      className: \"block p-3 rounded-lg hover:bg-muted transition-colors\", \"data-phoenix-id\": \"phoenix-7448bc59-23\" }, /*#__PURE__*/\n\n    React.createElement(\"div\", { className: \"font-medium text-foreground mb-1\", \"data-phoenix-id\": \"phoenix-7448bc59-24\" },\n    subItem.name\n    ), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-sm text-muted-foreground\", \"data-phoenix-id\": \"phoenix-7448bc59-25\" },\n    subItem.description\n    )\n    )\n    )\n    )\n    )\n    )\n    )\n    )\n    ) : /*#__PURE__*/\n\n    React.createElement(NavigationMenuLink, { asChild: true, \"data-phoenix-id\": \"phoenix-7448bc59-26\" }, /*#__PURE__*/\n    React.createElement(Link, {\n      href: item.href,\n      className: \"font-medium text-muted-foreground hover:text-accent transition-colors px-3 py-2 rounded-md\", \"data-phoenix-id\": \"phoenix-7448bc59-27\" },\n\n    item.name\n    )\n    )\n\n    )\n    )\n    )\n    )\n    ), /*#__PURE__*/\n\n\n    React.createElement(\"div\", { className: \"hidden lg:flex items-center space-x-4\", \"data-phoenix-id\": \"phoenix-7448bc59-28\" }, /*#__PURE__*/\n    React.createElement(Button, { variant: \"ghost\", size: \"icon\", \"data-phoenix-id\": \"phoenix-7448bc59-29\" }, /*#__PURE__*/\n    React.createElement(Search, { className: \"h-5 w-5\", \"data-phoenix-id\": \"phoenix-7448bc59-30\" })\n    ), /*#__PURE__*/\n    React.createElement(Button, { className: \"hero-gradient text-background font-semibold hover:opacity-90 transition-opacity\", \"data-phoenix-id\": \"phoenix-7448bc59-31\" }, \"Learn More\"\n\n    )\n    ), /*#__PURE__*/\n\n\n    React.createElement(\"div\", { className: \"lg:hidden\", \"data-phoenix-id\": \"phoenix-7448bc59-32\" }, /*#__PURE__*/\n    React.createElement(Button, {\n      variant: \"ghost\",\n      size: \"icon\",\n      onClick: () => setIsMenuOpen(!isMenuOpen), \"data-phoenix-id\": \"phoenix-7448bc59-33\" },\n\n    isMenuOpen ? /*#__PURE__*/React.createElement(X, { className: \"h-6 w-6\", \"data-phoenix-id\": \"phoenix-7448bc59-34\" }) : /*#__PURE__*/React.createElement(Menu, { className: \"h-6 w-6\", \"data-phoenix-id\": \"phoenix-7448bc59-35\" })\n    )\n    )\n    ),\n\n\n    isMenuOpen && /*#__PURE__*/\n    React.createElement(\"div\", { className: \"lg:hidden border-t border-border py-4\", \"data-phoenix-id\": \"phoenix-7448bc59-36\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"space-y-4\", \"data-phoenix-id\": \"phoenix-7448bc59-37\" },\n    navigation.map((item) => /*#__PURE__*/\n    React.createElement(\"div\", { key: item.name, className: \"space-y-2\", \"data-phoenix-id\": \"phoenix-7448bc59-38\" }, /*#__PURE__*/\n    React.createElement(Link, {\n      href: item.href,\n      className: \"block font-medium text-muted-foreground hover:text-accent transition-colors\",\n      onClick: () => setIsMenuOpen(false), \"data-phoenix-id\": \"phoenix-7448bc59-39\" },\n\n    item.name\n    ),\n    item.submenu && /*#__PURE__*/\n    React.createElement(\"div\", { className: \"ml-4 space-y-2\", \"data-phoenix-id\": \"phoenix-7448bc59-40\" },\n    item.submenu.map((subItem) => /*#__PURE__*/\n    React.createElement(Link, {\n      key: subItem.name,\n      href: subItem.href,\n      className: \"block text-sm text-muted-foreground hover:text-accent transition-colors\",\n      onClick: () => setIsMenuOpen(false), \"data-phoenix-id\": \"phoenix-7448bc59-41\" },\n\n    subItem.name\n    )\n    )\n    )\n\n    )\n    ), /*#__PURE__*/\n    React.createElement(\"div\", { className: \"pt-4 border-t border-border\", \"data-phoenix-id\": \"phoenix-7448bc59-42\" }, /*#__PURE__*/\n    React.createElement(Button, { className: \"w-full hero-gradient text-background font-semibold hover:opacity-90 transition-opacity\", \"data-phoenix-id\": \"phoenix-7448bc59-43\" }, \"Learn More\"\n\n    )\n    )\n    )\n    )\n\n    )\n    ));\n\n}",
       "props": [],
       "imports": [],
       "modificationHints": [
@@ -305,8 +307,8 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758295920378": {
-      "phoenixId": "phoenix-1758295920378",
+    "phoenix-1758298321634": {
+      "phoenixId": "phoenix-1758298321634",
       "componentName": "HeroCarousel",
       "filePath": "src/components/hero-carousel.tsx",
       "lineNumber": 41,
@@ -337,8 +339,8 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758295920379": {
-      "phoenixId": "phoenix-1758295920379",
+    "phoenix-1758298321635": {
+      "phoenixId": "phoenix-1758298321635",
       "componentName": "QueryProvider",
       "filePath": "src/components/query-provider.tsx",
       "lineNumber": 7,
@@ -365,8 +367,8 @@
         "complexity": "simple"
       }
     },
-    "phoenix-1758295920380": {
-      "phoenixId": "phoenix-1758295920380",
+    "phoenix-1758298321636": {
+      "phoenixId": "phoenix-1758298321636",
       "componentName": "_extends",
       "filePath": "src/components/theme-provider.tsx",
       "lineNumber": 1,
@@ -383,8 +385,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920381": {
-      "phoenixId": "phoenix-1758295920381",
+    "phoenix-1758298321637": {
+      "phoenixId": "phoenix-1758298321637",
       "componentName": "ThemeProvider",
       "filePath": "src/components/theme-provider.tsx",
       "lineNumber": 6,
@@ -407,8 +409,8 @@
         "complexity": "simple"
       }
     },
-    "phoenix-1758295920382": {
-      "phoenixId": "phoenix-1758295920382",
+    "phoenix-1758298321638": {
+      "phoenixId": "phoenix-1758298321638",
       "componentName": "_extends",
       "filePath": "src/components/ui/accordion.tsx",
       "lineNumber": 1,
@@ -425,8 +427,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920383": {
-      "phoenixId": "phoenix-1758295920383",
+    "phoenix-1758298321639": {
+      "phoenixId": "phoenix-1758298321639",
       "componentName": "_extends",
       "filePath": "src/components/ui/alert-dialog.tsx",
       "lineNumber": 1,
@@ -443,8 +445,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920384": {
-      "phoenixId": "phoenix-1758295920384",
+    "phoenix-1758298321640": {
+      "phoenixId": "phoenix-1758298321640",
       "componentName": "_extends",
       "filePath": "src/components/ui/alert.tsx",
       "lineNumber": 1,
@@ -461,8 +463,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920385": {
-      "phoenixId": "phoenix-1758295920385",
+    "phoenix-1758298321641": {
+      "phoenixId": "phoenix-1758298321641",
       "componentName": "_extends",
       "filePath": "src/components/ui/avatar.tsx",
       "lineNumber": 1,
@@ -479,8 +481,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920386": {
-      "phoenixId": "phoenix-1758295920386",
+    "phoenix-1758298321642": {
+      "phoenixId": "phoenix-1758298321642",
       "componentName": "Badge",
       "filePath": "src/components/ui/badge.tsx",
       "lineNumber": 30,
@@ -508,8 +510,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920387": {
-      "phoenixId": "phoenix-1758295920387",
+    "phoenix-1758298321643": {
+      "phoenixId": "phoenix-1758298321643",
       "componentName": "_extends",
       "filePath": "src/components/ui/breadcrumb.tsx",
       "lineNumber": 1,
@@ -526,8 +528,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920388": {
-      "phoenixId": "phoenix-1758295920388",
+    "phoenix-1758298321644": {
+      "phoenixId": "phoenix-1758298321644",
       "componentName": "_extends",
       "filePath": "src/components/ui/calendar.tsx",
       "lineNumber": 1,
@@ -544,8 +546,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920389": {
-      "phoenixId": "phoenix-1758295920389",
+    "phoenix-1758298321645": {
+      "phoenixId": "phoenix-1758298321645",
       "componentName": "Calendar",
       "filePath": "src/components/ui/calendar.tsx",
       "lineNumber": 10,
@@ -580,8 +582,8 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758295920390": {
-      "phoenixId": "phoenix-1758295920390",
+    "phoenix-1758298321646": {
+      "phoenixId": "phoenix-1758298321646",
       "componentName": "_extends",
       "filePath": "src/components/ui/carousel.tsx",
       "lineNumber": 1,
@@ -598,8 +600,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920391": {
-      "phoenixId": "phoenix-1758295920391",
+    "phoenix-1758298321647": {
+      "phoenixId": "phoenix-1758298321647",
       "componentName": "_extends",
       "filePath": "src/components/ui/chart.tsx",
       "lineNumber": 1,
@@ -616,8 +618,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920392": {
-      "phoenixId": "phoenix-1758295920392",
+    "phoenix-1758298321648": {
+      "phoenixId": "phoenix-1758298321648",
       "componentName": "_extends",
       "filePath": "src/components/ui/checkbox.tsx",
       "lineNumber": 1,
@@ -634,8 +636,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920393": {
-      "phoenixId": "phoenix-1758295920393",
+    "phoenix-1758298321649": {
+      "phoenixId": "phoenix-1758298321649",
       "componentName": "_extends",
       "filePath": "src/components/ui/command.tsx",
       "lineNumber": 1,
@@ -652,8 +654,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920394": {
-      "phoenixId": "phoenix-1758295920394",
+    "phoenix-1758298321650": {
+      "phoenixId": "phoenix-1758298321650",
       "componentName": "_extends",
       "filePath": "src/components/ui/context-menu.tsx",
       "lineNumber": 1,
@@ -670,8 +672,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920395": {
-      "phoenixId": "phoenix-1758295920395",
+    "phoenix-1758298321651": {
+      "phoenixId": "phoenix-1758298321651",
       "componentName": "_extends",
       "filePath": "src/components/ui/dialog.tsx",
       "lineNumber": 1,
@@ -688,8 +690,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920396": {
-      "phoenixId": "phoenix-1758295920396",
+    "phoenix-1758298321652": {
+      "phoenixId": "phoenix-1758298321652",
       "componentName": "_extends",
       "filePath": "src/components/ui/drawer.tsx",
       "lineNumber": 1,
@@ -706,8 +708,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920397": {
-      "phoenixId": "phoenix-1758295920397",
+    "phoenix-1758298321653": {
+      "phoenixId": "phoenix-1758298321653",
       "componentName": "_extends",
       "filePath": "src/components/ui/dropdown-menu.tsx",
       "lineNumber": 1,
@@ -724,8 +726,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920398": {
-      "phoenixId": "phoenix-1758295920398",
+    "phoenix-1758298321654": {
+      "phoenixId": "phoenix-1758298321654",
       "componentName": "_extends",
       "filePath": "src/components/ui/form.tsx",
       "lineNumber": 1,
@@ -742,8 +744,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920399": {
-      "phoenixId": "phoenix-1758295920399",
+    "phoenix-1758298321655": {
+      "phoenixId": "phoenix-1758298321655",
       "componentName": "_extends",
       "filePath": "src/components/ui/hover-card.tsx",
       "lineNumber": 1,
@@ -760,8 +762,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920400": {
-      "phoenixId": "phoenix-1758295920400",
+    "phoenix-1758298321656": {
+      "phoenixId": "phoenix-1758298321656",
       "componentName": "_extends",
       "filePath": "src/components/ui/input-otp.tsx",
       "lineNumber": 1,
@@ -778,8 +780,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920401": {
-      "phoenixId": "phoenix-1758295920401",
+    "phoenix-1758298321657": {
+      "phoenixId": "phoenix-1758298321657",
       "componentName": "_extends",
       "filePath": "src/components/ui/input.tsx",
       "lineNumber": 1,
@@ -796,8 +798,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920402": {
-      "phoenixId": "phoenix-1758295920402",
+    "phoenix-1758298321658": {
+      "phoenixId": "phoenix-1758298321658",
       "componentName": "_extends",
       "filePath": "src/components/ui/label.tsx",
       "lineNumber": 1,
@@ -814,8 +816,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920403": {
-      "phoenixId": "phoenix-1758295920403",
+    "phoenix-1758298321659": {
+      "phoenixId": "phoenix-1758298321659",
       "componentName": "_extends",
       "filePath": "src/components/ui/menubar.tsx",
       "lineNumber": 1,
@@ -832,8 +834,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920404": {
-      "phoenixId": "phoenix-1758295920404",
+    "phoenix-1758298321660": {
+      "phoenixId": "phoenix-1758298321660",
       "componentName": "_extends",
       "filePath": "src/components/ui/navigation-menu.tsx",
       "lineNumber": 1,
@@ -850,8 +852,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920405": {
-      "phoenixId": "phoenix-1758295920405",
+    "phoenix-1758298321661": {
+      "phoenixId": "phoenix-1758298321661",
       "componentName": "_extends",
       "filePath": "src/components/ui/pagination.tsx",
       "lineNumber": 1,
@@ -868,8 +870,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920406": {
-      "phoenixId": "phoenix-1758295920406",
+    "phoenix-1758298321662": {
+      "phoenixId": "phoenix-1758298321662",
       "componentName": "_extends",
       "filePath": "src/components/ui/popover.tsx",
       "lineNumber": 1,
@@ -886,8 +888,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920407": {
-      "phoenixId": "phoenix-1758295920407",
+    "phoenix-1758298321663": {
+      "phoenixId": "phoenix-1758298321663",
       "componentName": "_extends",
       "filePath": "src/components/ui/radio-group.tsx",
       "lineNumber": 1,
@@ -904,8 +906,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920408": {
-      "phoenixId": "phoenix-1758295920408",
+    "phoenix-1758298321664": {
+      "phoenixId": "phoenix-1758298321664",
       "componentName": "_extends",
       "filePath": "src/components/ui/resizable.tsx",
       "lineNumber": 2,
@@ -922,8 +924,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920409": {
-      "phoenixId": "phoenix-1758295920409",
+    "phoenix-1758298321665": {
+      "phoenixId": "phoenix-1758298321665",
       "componentName": "_extends",
       "filePath": "src/components/ui/scroll-area.tsx",
       "lineNumber": 1,
@@ -940,8 +942,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920410": {
-      "phoenixId": "phoenix-1758295920410",
+    "phoenix-1758298321666": {
+      "phoenixId": "phoenix-1758298321666",
       "componentName": "_extends",
       "filePath": "src/components/ui/select.tsx",
       "lineNumber": 1,
@@ -958,8 +960,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920411": {
-      "phoenixId": "phoenix-1758295920411",
+    "phoenix-1758298321667": {
+      "phoenixId": "phoenix-1758298321667",
       "componentName": "_extends",
       "filePath": "src/components/ui/separator.tsx",
       "lineNumber": 1,
@@ -976,8 +978,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920412": {
-      "phoenixId": "phoenix-1758295920412",
+    "phoenix-1758298321668": {
+      "phoenixId": "phoenix-1758298321668",
       "componentName": "_extends",
       "filePath": "src/components/ui/sheet.tsx",
       "lineNumber": 1,
@@ -994,8 +996,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920413": {
-      "phoenixId": "phoenix-1758295920413",
+    "phoenix-1758298321669": {
+      "phoenixId": "phoenix-1758298321669",
       "componentName": "_extends",
       "filePath": "src/components/ui/sidebar.tsx",
       "lineNumber": 1,
@@ -1012,8 +1014,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920414": {
-      "phoenixId": "phoenix-1758295920414",
+    "phoenix-1758298321670": {
+      "phoenixId": "phoenix-1758298321670",
       "componentName": "_extends",
       "filePath": "src/components/ui/skeleton.tsx",
       "lineNumber": 2,
@@ -1030,8 +1032,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920415": {
-      "phoenixId": "phoenix-1758295920415",
+    "phoenix-1758298321671": {
+      "phoenixId": "phoenix-1758298321671",
       "componentName": "Skeleton",
       "filePath": "src/components/ui/skeleton.tsx",
       "lineNumber": 4,
@@ -1054,8 +1056,8 @@
         "complexity": "simple"
       }
     },
-    "phoenix-1758295920416": {
-      "phoenixId": "phoenix-1758295920416",
+    "phoenix-1758298321672": {
+      "phoenixId": "phoenix-1758298321672",
       "componentName": "_extends",
       "filePath": "src/components/ui/slider.tsx",
       "lineNumber": 1,
@@ -1072,8 +1074,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920417": {
-      "phoenixId": "phoenix-1758295920417",
+    "phoenix-1758298321673": {
+      "phoenixId": "phoenix-1758298321673",
       "componentName": "_extends",
       "filePath": "src/components/ui/sonner.tsx",
       "lineNumber": 5,
@@ -1090,8 +1092,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920418": {
-      "phoenixId": "phoenix-1758295920418",
+    "phoenix-1758298321674": {
+      "phoenixId": "phoenix-1758298321674",
       "componentName": "_extends",
       "filePath": "src/components/ui/switch.tsx",
       "lineNumber": 1,
@@ -1108,8 +1110,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920419": {
-      "phoenixId": "phoenix-1758295920419",
+    "phoenix-1758298321675": {
+      "phoenixId": "phoenix-1758298321675",
       "componentName": "_extends",
       "filePath": "src/components/ui/table.tsx",
       "lineNumber": 1,
@@ -1126,8 +1128,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920420": {
-      "phoenixId": "phoenix-1758295920420",
+    "phoenix-1758298321676": {
+      "phoenixId": "phoenix-1758298321676",
       "componentName": "_extends",
       "filePath": "src/components/ui/textarea.tsx",
       "lineNumber": 1,
@@ -1144,8 +1146,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920421": {
-      "phoenixId": "phoenix-1758295920421",
+    "phoenix-1758298321677": {
+      "phoenixId": "phoenix-1758298321677",
       "componentName": "_extends",
       "filePath": "src/components/ui/toast.tsx",
       "lineNumber": 1,
@@ -1162,8 +1164,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920422": {
-      "phoenixId": "phoenix-1758295920422",
+    "phoenix-1758298321678": {
+      "phoenixId": "phoenix-1758298321678",
       "componentName": "_extends",
       "filePath": "src/components/ui/toaster.tsx",
       "lineNumber": 5,
@@ -1180,8 +1182,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920423": {
-      "phoenixId": "phoenix-1758295920423",
+    "phoenix-1758298321679": {
+      "phoenixId": "phoenix-1758298321679",
       "componentName": "Toaster",
       "filePath": "src/components/ui/toaster.tsx",
       "lineNumber": 17,
@@ -1203,8 +1205,8 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758295920424": {
-      "phoenixId": "phoenix-1758295920424",
+    "phoenix-1758298321680": {
+      "phoenixId": "phoenix-1758298321680",
       "componentName": "_extends",
       "filePath": "src/components/ui/toggle-group.tsx",
       "lineNumber": 1,
@@ -1221,8 +1223,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920425": {
-      "phoenixId": "phoenix-1758295920425",
+    "phoenix-1758298321681": {
+      "phoenixId": "phoenix-1758298321681",
       "componentName": "_extends",
       "filePath": "src/components/ui/toggle.tsx",
       "lineNumber": 1,
@@ -1239,8 +1241,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758295920426": {
-      "phoenixId": "phoenix-1758295920426",
+    "phoenix-1758298321682": {
+      "phoenixId": "phoenix-1758298321682",
       "componentName": "_extends",
       "filePath": "src/components/ui/tooltip.tsx",
       "lineNumber": 1,
@@ -1261,6 +1263,6 @@
   "stats": {
     "totalComponents": 61,
     "totalFiles": 71,
-    "processingTimeMs": 453
+    "processingTimeMs": 330
   }
 }

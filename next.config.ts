@@ -17,6 +17,16 @@ const nextConfig: NextConfig = {
   // Basic performance settings
   poweredByHeader: false,
   
+  // Skip error pages during static generation
+  generateBuildId: async () => {
+    return 'phoenix-build'
+  },
+  
+  experimental: {
+    // Skip problematic static page generation
+    skipTrailingSlashRedirect: true,
+  },
+  
   // Flexible iframe embedding
   async headers() {
     return [

@@ -9,6 +9,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 
+import { PhoenixTracker } from "@/components/PhoenixTracker";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"]
@@ -48,7 +49,8 @@ export default function RootLayout({
               <Sonner data-phoenix-id="phoenix-7448bc59-9" />
             </TooltipProvider>
           </ThemeProvider>
-        </QueryProvider>
+        </QueryProvider>        <PhoenixTracker />
+
       </body>
     </html>
   );
