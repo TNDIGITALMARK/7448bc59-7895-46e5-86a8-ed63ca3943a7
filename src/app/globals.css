@@ -180,6 +180,28 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
 }
 
+/* Brand Typography */
+.font-brand {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.font-brand span {
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.font-brand:hover span:first-child {
+  color: hsl(var(--cow-brown));
+}
+
+.font-brand:hover span:last-child {
+  color: hsl(var(--grass-green));
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
 /* Cow Portal Specific Styles */
 .hero-gradient {
   background: linear-gradient(135deg, hsl(var(--cow-brown)) 0%, hsl(var(--golden-wheat)) 50%, hsl(var(--grass-green)) 100%);

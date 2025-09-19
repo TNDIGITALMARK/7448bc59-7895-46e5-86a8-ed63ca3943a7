@@ -52,11 +52,16 @@ export function Header() {
     React.createElement("div", { className: "flex items-center justify-between h-16", "data-phoenix-id": "phoenix-7448bc59-3" }, /*#__PURE__*/
 
     React.createElement("div", { className: "flex items-center", "data-phoenix-id": "phoenix-7448bc59-4" }, /*#__PURE__*/
-    React.createElement(Link, { href: "/", className: "flex items-center space-x-2", "data-phoenix-id": "phoenix-7448bc59-5" }, /*#__PURE__*/
-    React.createElement("div", { className: "text-2xl", "data-phoenix-id": "phoenix-7448bc59-6" }, "\uD83D\uDC04"), /*#__PURE__*/
-    React.createElement("div", { "data-phoenix-id": "phoenix-7448bc59-7" }, /*#__PURE__*/
-    React.createElement("span", { className: "text-xl font-bold text-foreground", "data-phoenix-id": "phoenix-7448bc59-8" }, "Pasture"), /*#__PURE__*/
-    React.createElement("span", { className: "text-xl font-bold text-accent", "data-phoenix-id": "phoenix-7448bc59-9" }, "Perfect")
+    React.createElement(Link, { href: "/", className: "flex items-center space-x-3", "data-phoenix-id": "phoenix-7448bc59-5" }, /*#__PURE__*/
+    React.createElement("img", { 
+      src: "/generated/patsture-logo-icon.png",
+      alt: "Patsture Perfect Logo",
+      className: "w-10 h-10 rounded-full",
+      "data-phoenix-id": "phoenix-7448bc59-6" 
+    }), /*#__PURE__*/
+    React.createElement("div", { className: "font-brand", "data-phoenix-id": "phoenix-7448bc59-7" }, /*#__PURE__*/
+    React.createElement("span", { className: "text-2xl font-bold text-foreground tracking-tight", "data-phoenix-id": "phoenix-7448bc59-8" }, "patsture"), /*#__PURE__*/
+    React.createElement("span", { className: "text-2xl font-bold text-accent tracking-tight ml-1", "data-phoenix-id": "phoenix-7448bc59-9" }, "perfect")
     )
     )
     ), /*#__PURE__*/
