@@ -126,8 +126,10 @@ export function Header() {
     React.createElement(Button, { variant: "ghost", size: "icon", "data-phoenix-id": "phoenix-7448bc59-29" }, /*#__PURE__*/
     React.createElement(Search, { className: "h-5 w-5", "data-phoenix-id": "phoenix-7448bc59-30" })
     ), /*#__PURE__*/
-    React.createElement(Button, { className: "hero-gradient text-background font-semibold hover:opacity-90 transition-opacity", "data-phoenix-id": "phoenix-7448bc59-31" }, "Learn More"
+    React.createElement(Link, { href: "/contact", "data-phoenix-id": "phoenix-7448bc59-31" }, /*#__PURE__*/
+    React.createElement(Button, { className: "hero-gradient text-background font-semibold hover:opacity-90 transition-opacity" }, "Learn More"
 
+    )
     )
     ), /*#__PURE__*/
 
@@ -173,8 +175,10 @@ export function Header() {
     )
     ), /*#__PURE__*/
     React.createElement("div", { className: "pt-4 border-t border-border", "data-phoenix-id": "phoenix-7448bc59-42" }, /*#__PURE__*/
-    React.createElement(Button, { className: "w-full hero-gradient text-background font-semibold hover:opacity-90 transition-opacity", "data-phoenix-id": "phoenix-7448bc59-43" }, "Learn More"
+    React.createElement(Link, { href: "/contact", "data-phoenix-id": "phoenix-7448bc59-43" }, /*#__PURE__*/
+    React.createElement(Button, { className: "w-full hero-gradient text-background font-semibold hover:opacity-90 transition-opacity" }, "Learn More"
 
+    )
     )
     )
     )
