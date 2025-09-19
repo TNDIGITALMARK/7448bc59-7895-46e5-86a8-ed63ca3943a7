@@ -8,8 +8,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, TrendingUp, Users, Award, Globe } from 'lucide-react';
 import Link from 'next/link';
 
-export const dynamic = 'force-dynamic';
-
 export default function HomePage() {
   const featuredBreeds = cowBreeds.slice(0, 3);
   const topStats = cowStatistics.slice(0, 4);

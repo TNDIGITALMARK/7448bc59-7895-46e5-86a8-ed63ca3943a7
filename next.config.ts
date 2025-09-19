@@ -24,6 +24,15 @@ const nextConfig: NextConfig = {
   
   skipTrailingSlashRedirect: true,
   
+  // Try to prevent prerendering issues
+  output: 'export',
+  trailingSlash: true,
+  
+  // Disable automatic static generation for problematic pages
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
+  
   // Flexible iframe embedding
   async headers() {
     return [

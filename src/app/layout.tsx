@@ -8,8 +8,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { PhoenixTracker } from "@/components/PhoenixTracker";
 
-// import { PhoenixTracker } from "@/components/PhoenixTracker";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"]
@@ -31,23 +31,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning data-phoenix-id="phoenix-7448bc59-1">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} data-phoenix-id="phoenix-7448bc59-2">
-        <QueryProvider data-phoenix-id="phoenix-7448bc59-3">
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <QueryProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
-            data-phoenix-id="phoenix-7448bc59-4"
           >
-            <TooltipProvider data-phoenix-id="phoenix-7448bc59-5">
-              <Header data-phoenix-id="phoenix-7448bc59-6" />
+            <TooltipProvider>
+              <Header />
               {children}
-              <Footer data-phoenix-id="phoenix-7448bc59-7" />
-              <Toaster data-phoenix-id="phoenix-7448bc59-8" />
-              <Sonner data-phoenix-id="phoenix-7448bc59-9" />
-              {/* <PhoenixTracker data-phoenix-id="phoenix-7448bc59-10" /> */}
+              
+              <Footer />
+              <Toaster />
+              <Sonner />
+              <PhoenixTracker />
             </TooltipProvider>
           </ThemeProvider>
         </QueryProvider>
