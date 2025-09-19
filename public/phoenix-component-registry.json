@@ -2,10 +2,10 @@
   "projectId": "7448bc59-7895-46e5-86a8-ed63ca3943a7",
   "userId": "2luDlbgjvhO32uRKNns0OwSKemA3",
   "version": "1.0.0",
-  "generatedAt": "2025-09-19T16:34:00.101Z",
+  "generatedAt": "2025-09-19T17:00:19.516Z",
   "components": {
-    "phoenix-1758299640086": {
-      "phoenixId": "phoenix-1758299640086",
+    "phoenix-1758301219501": {
+      "phoenixId": "phoenix-1758301219501",
       "componentName": "CompareBreeds",
       "filePath": "src/app/breeds/compare/page.tsx",
       "lineNumber": 20,
@@ -33,8 +33,8 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758299640087": {
-      "phoenixId": "phoenix-1758299640087",
+    "phoenix-1758301219502": {
+      "phoenixId": "phoenix-1758301219502",
       "componentName": "BreedsPage",
       "filePath": "src/app/breeds/page.tsx",
       "lineNumber": 20,
@@ -62,13 +62,13 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758299640088": {
-      "phoenixId": "phoenix-1758299640088",
+    "phoenix-1758301219503": {
+      "phoenixId": "phoenix-1758301219503",
       "componentName": "ContactPage",
       "filePath": "src/app/contact/page.tsx",
       "lineNumber": 69,
       "columnNumber": 15,
-      "sourceCode": "export default function ContactPage() {\n  const [formData, setFormData] = useState({\n    name: '',\n    email: '',\n    subject: '',\n    message: ''\n  });\n  const [isSubmitting, setIsSubmitting] = useState(false);\n  const [submitted, setSubmitted] = useState(false);\n\n  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {\n    const { name, value } = e.target;\n    setFormData(prev => ({\n      ...prev,\n      [name]: value\n    }));\n  };\n\n  const handleSubmit = async (e: React.FormEvent) => {\n    e.preventDefault();\n    setIsSubmitting(true);\n    \n    // Simulate form submission\n    await new Promise(resolve => setTimeout(resolve, 1000));\n    \n    setSubmitted(true);\n    setIsSubmitting(false);\n    \n    // Reset form after success message\n    setTimeout(() => {\n      setSubmitted(false);\n      setFormData({ name: '', email: '', subject: '', message: '' });\n    }, 3000);\n  };\n\n  return (\n    <div className=\"min-h-screen bg-gradient-to-b from-white to-amber-50\">\n      {/* Hero Section */}\n      <section className=\"py-16 bg-gradient-to-r from-amber-600 to-amber-700\">\n        <div className=\"container mx-auto px-4 lg:px-8 text-center\">\n          <h1 className=\"text-4xl lg:text-6xl font-bold text-white mb-6\">\n            Get In Touch\n          </h1>\n          <p className=\"text-xl text-amber-100 max-w-3xl mx-auto leading-relaxed\">\n            Have questions about cattle breeds, need farming advice, or want to learn more about our services? \n            We're here to help with all your pasture perfect needs.\n          </p>\n        </div>\n      </section>\n\n      {/* Contact Information Section */}\n      <section className=\"py-12 bg-white\">\n        <div className=\"container mx-auto px-4 lg:px-8\">\n          <div className=\"text-center mb-12\">\n            <h2 className=\"text-3xl font-bold text-gray-900 mb-4\">\n              Contact Information\n            </h2>\n            <p className=\"text-lg text-gray-600\">\n              Multiple ways to reach our expert team\n            </p>\n          </div>\n\n          <div className=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6\">\n            {contactInfo.map((info, index) => (\n              <Card key={index} className=\"cow-card text-center\">\n                <CardContent className=\"p-6\">\n                  <div className=\"flex justify-center mb-4\">\n                    <info.icon className={`w-8 h-8 ${info.color}`} />\n                  </div>\n                  <h3 className=\"text-lg font-semibold text-gray-900 mb-2\">\n                    {info.title}\n                  </h3>\n                  <p className=\"text-base font-medium text-gray-800 mb-2\">\n                    {info.value}\n                  </p>\n                  <p className=\"text-sm text-gray-600\">\n                    {info.description}\n                  </p>\n                </CardContent>\n              </Card>\n            ))}\n          </div>\n        </div>\n      </section>\n\n      {/* Contact Form and Team Section */}\n      <section className=\"py-12\">\n        <div className=\"container mx-auto px-4 lg:px-8\">\n          <div className=\"grid grid-cols-1 lg:grid-cols-3 gap-8\">\n            {/* Contact Form */}\n            <div className=\"lg:col-span-2\">\n              <Card className=\"cow-card\">\n                <CardHeader>\n                  <CardTitle className=\"text-2xl flex items-center gap-2\">\n                    <MessageSquare className=\"w-6 h-6 text-green-600\" />\n                    Send Us a Message\n                  </CardTitle>\n                  <p className=\"text-gray-600\">\n                    Fill out the form below and we'll get back to you as soon as possible.\n                  </p>\n                </CardHeader>\n                <CardContent>\n                  {submitted ? (\n                    <div className=\"text-center py-8\">\n                      <div className=\"text-6xl mb-4\">🎉</div>\n                      <h3 className=\"text-2xl font-bold text-green-600 mb-2\">\n                        Message Sent Successfully!\n                      </h3>\n                      <p className=\"text-gray-600\">\n                        Thank you for contacting us. We'll respond within 24 hours.\n                      </p>\n                    </div>\n                  ) : (\n                    <form onSubmit={handleSubmit} className=\"space-y-6\">\n                      <div className=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n                        <div>\n                          <label htmlFor=\"name\" className=\"block text-sm font-medium text-gray-700 mb-2\">\n                            Full Name *\n                          </label>\n                          <Input\n                            id=\"name\"\n                            name=\"name\"\n                            type=\"text\"\n                            required\n                            value={formData.name}\n                            onChange={handleInputChange}\n                            placeholder=\"Enter your full name\"\n                            className=\"w-full\"\n                          />\n                        </div>\n                        <div>\n                          <label htmlFor=\"email\" className=\"block text-sm font-medium text-gray-700 mb-2\">\n                            Email Address *\n                          </label>\n                          <Input\n                            id=\"email\"\n                            name=\"email\"\n                            type=\"email\"\n                            required\n                            value={formData.email}\n                            onChange={handleInputChange}\n                            placeholder=\"Enter your email address\"\n                            className=\"w-full\"\n                          />\n                        </div>\n                      </div>\n                      \n                      <div>\n                        <label htmlFor=\"subject\" className=\"block text-sm font-medium text-gray-700 mb-2\">\n                          Subject *\n                        </label>\n                        <Input\n                          id=\"subject\"\n                          name=\"subject\"\n                          type=\"text\"\n                          required\n                          value={formData.subject}\n                          onChange={handleInputChange}\n                          placeholder=\"What's this about?\"\n                          className=\"w-full\"\n                        />\n                      </div>\n                      \n                      <div>\n                        <label htmlFor=\"message\" className=\"block text-sm font-medium text-gray-700 mb-2\">\n                          Message *\n                        </label>\n                        <Textarea\n                          id=\"message\"\n                          name=\"message\"\n                          required\n                          rows={6}\n                          value={formData.message}\n                          onChange={handleInputChange}\n                          placeholder=\"Tell us more about your inquiry...\"\n                          className=\"w-full resize-none\"\n                        />\n                      </div>\n                      \n                      <Button \n                        type=\"submit\" \n                        className=\"w-full hero-gradient text-background font-semibold hover:opacity-90 transition-opacity\"\n                        disabled={isSubmitting}\n                      >\n                        {isSubmitting ? (\n                          <>Sending...</>\n                        ) : (\n                          <>\n                            <Send className=\"w-5 h-5 mr-2\" />\n                            Send Message\n                          </>\n                        )}\n                      </Button>\n                    </form>\n                  )}\n                </CardContent>\n              </Card>\n            </div>\n\n            {/* Team and Additional Info */}\n            <div className=\"space-y-6\">\n              <Card className=\"cow-card\">\n                <CardHeader>\n                  <CardTitle className=\"text-xl flex items-center gap-2\">\n                    <Users className=\"w-5 h-5 text-blue-600\" />\n                    Our Expert Team\n                  </CardTitle>\n                </CardHeader>\n                <CardContent className=\"space-y-4\">\n                  {teamMembers.map((member, index) => (\n                    <div key={index} className=\"border-b border-gray-200 last:border-b-0 pb-3 last:pb-0\">\n                      <h4 className=\"font-semibold text-gray-900\">{member.name}</h4>\n                      <p className=\"text-sm text-gray-600\">{member.role}</p>\n                      <p className=\"text-xs text-gray-500 mt-1\">{member.specialty}</p>\n                    </div>\n                  ))}\n                </CardContent>\n              </Card>\n\n              <Card className=\"cow-card\">\n                <CardHeader>\n                  <CardTitle className=\"text-xl flex items-center gap-2\">\n                    <Award className=\"w-5 h-5 text-amber-600\" />\n                    Why Choose Us?\n                  </CardTitle>\n                </CardHeader>\n                <CardContent className=\"space-y-3\">\n                  <div className=\"flex items-center gap-2\">\n                    <Badge variant=\"secondary\" className=\"bg-green-100 text-green-800\">\n                      Expert Knowledge\n                    </Badge>\n                  </div>\n                  <p className=\"text-sm text-gray-600\">\n                    Over 20 years of combined experience in cattle breeding and ranch management.\n                  </p>\n                  \n                  <div className=\"flex items-center gap-2\">\n                    <Badge variant=\"secondary\" className=\"bg-blue-100 text-blue-800\">\n                      24/7 Support\n                    </Badge>\n                  </div>\n                  <p className=\"text-sm text-gray-600\">\n                    Quick response times and comprehensive support for all your questions.\n                  </p>\n                  \n                  <div className=\"flex items-center gap-2\">\n                    <Badge variant=\"secondary\" className=\"bg-amber-100 text-amber-800\">\n                      Educational Focus\n                    </Badge>\n                  </div>\n                  <p className=\"text-sm text-gray-600\">\n                    Committed to sharing knowledge and helping you succeed in cattle farming.\n                  </p>\n                </CardContent>\n              </Card>\n            </div>\n          </div>\n        </div>\n      </section>\n\n      {/* FAQ Section */}\n      <section className=\"py-12 bg-white\">\n        <div className=\"container mx-auto px-4 lg:px-8\">\n          <div className=\"text-center mb-12\">\n            <h2 className=\"text-3xl font-bold text-gray-900 mb-4\">\n              Frequently Asked Questions\n            </h2>\n            <p className=\"text-lg text-gray-600\">\n              Quick answers to common questions\n            </p>\n          </div>\n\n          <div className=\"grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto\">\n            <Card className=\"cow-card\">\n              <CardHeader>\n                <CardTitle className=\"text-lg\">How quickly do you respond to inquiries?</CardTitle>\n              </CardHeader>\n              <CardContent>\n                <p className=\"text-gray-600\">\n                  We typically respond to all inquiries within 24 hours during business days. \n                  Urgent matters may receive faster responses.\n                </p>\n              </CardContent>\n            </Card>\n\n            <Card className=\"cow-card\">\n              <CardHeader>\n                <CardTitle className=\"text-lg\">Do you offer on-site consultations?</CardTitle>\n              </CardHeader>\n              <CardContent>\n                <p className=\"text-gray-600\">\n                  Yes! We provide on-site consultations for ranch management, breed selection, \n                  and pasture optimization within a 200-mile radius of our headquarters.\n                </p>\n              </CardContent>\n            </Card>\n\n            <Card className=\"cow-card\">\n              <CardHeader>\n                <CardTitle className=\"text-lg\">Can you help with breed selection?</CardTitle>\n              </CardHeader>\n              <CardContent>\n                <p className=\"text-gray-600\">\n                  Absolutely! Our experts can help you choose the perfect breeds based on your \n                  climate, land conditions, and farming goals.\n                </p>\n              </CardContent>\n            </Card>\n\n            <Card className=\"cow-card\">\n              <CardHeader>\n                <CardTitle className=\"text-lg\">Do you offer educational resources?</CardTitle>\n              </CardHeader>\n              <CardContent>\n                <p className=\"text-gray-600\">\n                  Yes, we provide comprehensive guides, fact sheets, and educational materials \n                  for both beginners and experienced cattle farmers.\n                </p>\n              </CardContent>\n            </Card>\n          </div>\n        </div>\n      </section>\n    </div>\n  );\n}",
+      "sourceCode": "export default function ContactPage() {\n  const [formData, setFormData] = useState({\n    name: '',\n    email: '',\n    subject: '',\n    message: ''\n  });\n  const [isSubmitting, setIsSubmitting] = useState(false);\n  const [submitted, setSubmitted] = useState(false);\n\n  const handleInputChange = (e) => {\n    const { name, value } = e.target;\n    setFormData((prev) => ({\n      ...prev,\n      [name]: value\n    }));\n  };\n\n  const handleSubmit = async (e) => {\n    e.preventDefault();\n    setIsSubmitting(true);\n\n    // Simulate form submission\n    await new Promise((resolve) => setTimeout(resolve, 1000));\n\n    setSubmitted(true);\n    setIsSubmitting(false);\n\n    // Reset form after success message\n    setTimeout(() => {\n      setSubmitted(false);\n      setFormData({ name: '', email: '', subject: '', message: '' });\n    }, 3000);\n  };\n\n  return (/*#__PURE__*/\n    React.createElement(\"div\", { className: \"min-h-screen bg-gradient-to-b from-white to-amber-50\", \"data-phoenix-id\": \"phoenix-7448bc59-1\" }, /*#__PURE__*/\n\n    React.createElement(\"section\", { className: \"py-16 bg-gradient-to-r from-amber-600 to-amber-700\", \"data-phoenix-id\": \"phoenix-7448bc59-2\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"container mx-auto px-4 lg:px-8 text-center\", \"data-phoenix-id\": \"phoenix-7448bc59-3\" }, /*#__PURE__*/\n    React.createElement(\"h1\", { className: \"text-4xl lg:text-6xl font-bold text-white mb-6\", \"data-phoenix-id\": \"phoenix-7448bc59-4\" }, \"Get In Touch\"\n\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-xl text-amber-100 max-w-3xl mx-auto leading-relaxed\", \"data-phoenix-id\": \"phoenix-7448bc59-5\" }, \"Have questions about cattle breeds, need farming advice, or want to learn more about our services? We're here to help with all your pasture perfect needs.\"\n\n\n    )\n    )\n    ), /*#__PURE__*/\n\n\n    React.createElement(\"section\", { className: \"py-12 bg-white\", \"data-phoenix-id\": \"phoenix-7448bc59-6\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"container mx-auto px-4 lg:px-8\", \"data-phoenix-id\": \"phoenix-7448bc59-7\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-center mb-12\", \"data-phoenix-id\": \"phoenix-7448bc59-8\" }, /*#__PURE__*/\n    React.createElement(\"h2\", { className: \"text-3xl font-bold text-gray-900 mb-4\", \"data-phoenix-id\": \"phoenix-7448bc59-9\" }, \"Contact Information\"\n\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-lg text-gray-600\", \"data-phoenix-id\": \"phoenix-7448bc59-10\" }, \"Multiple ways to reach our expert team\"\n\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(\"div\", { className: \"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6\", \"data-phoenix-id\": \"phoenix-7448bc59-11\" },\n    contactInfo.map((info, index) => /*#__PURE__*/\n    React.createElement(Card, { key: index, className: \"cow-card text-center\", \"data-phoenix-id\": \"phoenix-7448bc59-12\" }, /*#__PURE__*/\n    React.createElement(CardContent, { className: \"p-6\", \"data-phoenix-id\": \"phoenix-7448bc59-13\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex justify-center mb-4\", \"data-phoenix-id\": \"phoenix-7448bc59-14\" }, /*#__PURE__*/\n    React.createElement(info.icon, { className: `w-8 h-8 ${info.color}`, \"data-phoenix-id\": \"phoenix-7448bc59-15\" })\n    ), /*#__PURE__*/\n    React.createElement(\"h3\", { className: \"text-lg font-semibold text-gray-900 mb-2\", \"data-phoenix-id\": \"phoenix-7448bc59-16\" },\n    info.title\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-base font-medium text-gray-800 mb-2\", \"data-phoenix-id\": \"phoenix-7448bc59-17\" },\n    info.value\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-sm text-gray-600\", \"data-phoenix-id\": \"phoenix-7448bc59-18\" },\n    info.description\n    )\n    )\n    )\n    )\n    )\n    )\n    ), /*#__PURE__*/\n\n\n    React.createElement(\"section\", { className: \"py-12\", \"data-phoenix-id\": \"phoenix-7448bc59-19\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"container mx-auto px-4 lg:px-8\", \"data-phoenix-id\": \"phoenix-7448bc59-20\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"grid grid-cols-1 lg:grid-cols-3 gap-8\", \"data-phoenix-id\": \"phoenix-7448bc59-21\" }, /*#__PURE__*/\n\n    React.createElement(\"div\", { className: \"lg:col-span-2\", \"data-phoenix-id\": \"phoenix-7448bc59-22\" }, /*#__PURE__*/\n    React.createElement(Card, { className: \"cow-card\", \"data-phoenix-id\": \"phoenix-7448bc59-23\" }, /*#__PURE__*/\n    React.createElement(CardHeader, { \"data-phoenix-id\": \"phoenix-7448bc59-24\" }, /*#__PURE__*/\n    React.createElement(CardTitle, { className: \"text-2xl flex items-center gap-2\", \"data-phoenix-id\": \"phoenix-7448bc59-25\" }, /*#__PURE__*/\n    React.createElement(MessageSquare, { className: \"w-6 h-6 text-green-600\", \"data-phoenix-id\": \"phoenix-7448bc59-26\" }), \"Send Us a Message\"\n\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-gray-600\", \"data-phoenix-id\": \"phoenix-7448bc59-27\" }, \"Fill out the form below and we'll get back to you as soon as possible.\"\n\n    )\n    ), /*#__PURE__*/\n    React.createElement(CardContent, { \"data-phoenix-id\": \"phoenix-7448bc59-28\" },\n    submitted ? /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-center py-8\", \"data-phoenix-id\": \"phoenix-7448bc59-29\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-6xl mb-4\", \"data-phoenix-id\": \"phoenix-7448bc59-30\" }, \"\\uD83C\\uDF89\"), /*#__PURE__*/\n    React.createElement(\"h3\", { className: \"text-2xl font-bold text-green-600 mb-2\", \"data-phoenix-id\": \"phoenix-7448bc59-31\" }, \"Message Sent Successfully!\"\n\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-gray-600\", \"data-phoenix-id\": \"phoenix-7448bc59-32\" }, \"Thank you for contacting us. We'll respond within 24 hours.\"\n\n    )\n    ) : /*#__PURE__*/\n\n    React.createElement(\"form\", { onSubmit: handleSubmit, className: \"space-y-6\", \"data-phoenix-id\": \"phoenix-7448bc59-33\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"grid grid-cols-1 md:grid-cols-2 gap-4\", \"data-phoenix-id\": \"phoenix-7448bc59-34\" }, /*#__PURE__*/\n    React.createElement(\"div\", { \"data-phoenix-id\": \"phoenix-7448bc59-35\" }, /*#__PURE__*/\n    React.createElement(\"label\", { htmlFor: \"name\", className: \"block text-sm font-medium text-gray-700 mb-2\", \"data-phoenix-id\": \"phoenix-7448bc59-36\" }, \"Full Name *\"\n\n    ), /*#__PURE__*/\n    React.createElement(Input, {\n      id: \"name\",\n      name: \"name\",\n      type: \"text\",\n      required: true,\n      value: formData.name,\n      onChange: handleInputChange,\n      placeholder: \"Enter your full name\",\n      className: \"w-full\", \"data-phoenix-id\": \"phoenix-7448bc59-37\" }\n    )\n    ), /*#__PURE__*/\n    React.createElement(\"div\", { \"data-phoenix-id\": \"phoenix-7448bc59-38\" }, /*#__PURE__*/\n    React.createElement(\"label\", { htmlFor: \"email\", className: \"block text-sm font-medium text-gray-700 mb-2\", \"data-phoenix-id\": \"phoenix-7448bc59-39\" }, \"Email Address *\"\n\n    ), /*#__PURE__*/\n    React.createElement(Input, {\n      id: \"email\",\n      name: \"email\",\n      type: \"email\",\n      required: true,\n      value: formData.email,\n      onChange: handleInputChange,\n      placeholder: \"Enter your email address\",\n      className: \"w-full\", \"data-phoenix-id\": \"phoenix-7448bc59-40\" }\n    )\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(\"div\", { \"data-phoenix-id\": \"phoenix-7448bc59-41\" }, /*#__PURE__*/\n    React.createElement(\"label\", { htmlFor: \"subject\", className: \"block text-sm font-medium text-gray-700 mb-2\", \"data-phoenix-id\": \"phoenix-7448bc59-42\" }, \"Subject *\"\n\n    ), /*#__PURE__*/\n    React.createElement(Input, {\n      id: \"subject\",\n      name: \"subject\",\n      type: \"text\",\n      required: true,\n      value: formData.subject,\n      onChange: handleInputChange,\n      placeholder: \"What's this about?\",\n      className: \"w-full\", \"data-phoenix-id\": \"phoenix-7448bc59-43\" }\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(\"div\", { \"data-phoenix-id\": \"phoenix-7448bc59-44\" }, /*#__PURE__*/\n    React.createElement(\"label\", { htmlFor: \"message\", className: \"block text-sm font-medium text-gray-700 mb-2\", \"data-phoenix-id\": \"phoenix-7448bc59-45\" }, \"Message *\"\n\n    ), /*#__PURE__*/\n    React.createElement(Textarea, {\n      id: \"message\",\n      name: \"message\",\n      required: true,\n      rows: 6,\n      value: formData.message,\n      onChange: handleInputChange,\n      placeholder: \"Tell us more about your inquiry...\",\n      className: \"w-full resize-none\", \"data-phoenix-id\": \"phoenix-7448bc59-46\" }\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(Button, {\n      type: \"submit\",\n      className: \"w-full hero-gradient text-background font-semibold hover:opacity-90 transition-opacity\",\n      disabled: isSubmitting, \"data-phoenix-id\": \"phoenix-7448bc59-47\" },\n\n    isSubmitting ? /*#__PURE__*/\n    React.createElement(React.Fragment, null, \"Sending...\") : /*#__PURE__*/\n\n    React.createElement(React.Fragment, null, /*#__PURE__*/\n    React.createElement(Send, { className: \"w-5 h-5 mr-2\", \"data-phoenix-id\": \"phoenix-7448bc59-48\" }), \"Send Message\"\n\n    )\n\n    )\n    )\n\n    )\n    )\n    ), /*#__PURE__*/\n\n\n    React.createElement(\"div\", { className: \"space-y-6\", \"data-phoenix-id\": \"phoenix-7448bc59-49\" }, /*#__PURE__*/\n    React.createElement(Card, { className: \"cow-card\", \"data-phoenix-id\": \"phoenix-7448bc59-50\" }, /*#__PURE__*/\n    React.createElement(CardHeader, { \"data-phoenix-id\": \"phoenix-7448bc59-51\" }, /*#__PURE__*/\n    React.createElement(CardTitle, { className: \"text-xl flex items-center gap-2\", \"data-phoenix-id\": \"phoenix-7448bc59-52\" }, /*#__PURE__*/\n    React.createElement(Users, { className: \"w-5 h-5 text-blue-600\", \"data-phoenix-id\": \"phoenix-7448bc59-53\" }), \"Our Expert Team\"\n\n    )\n    ), /*#__PURE__*/\n    React.createElement(CardContent, { className: \"space-y-4\", \"data-phoenix-id\": \"phoenix-7448bc59-54\" },\n    teamMembers.map((member, index) => /*#__PURE__*/\n    React.createElement(\"div\", { key: index, className: \"border-b border-gray-200 last:border-b-0 pb-3 last:pb-0\", \"data-phoenix-id\": \"phoenix-7448bc59-55\" }, /*#__PURE__*/\n    React.createElement(\"h4\", { className: \"font-semibold text-gray-900\", \"data-phoenix-id\": \"phoenix-7448bc59-56\" }, member.name), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-sm text-gray-600\", \"data-phoenix-id\": \"phoenix-7448bc59-57\" }, member.role), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-xs text-gray-500 mt-1\", \"data-phoenix-id\": \"phoenix-7448bc59-58\" }, member.specialty)\n    )\n    )\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(Card, { className: \"cow-card\", \"data-phoenix-id\": \"phoenix-7448bc59-59\" }, /*#__PURE__*/\n    React.createElement(CardHeader, { \"data-phoenix-id\": \"phoenix-7448bc59-60\" }, /*#__PURE__*/\n    React.createElement(CardTitle, { className: \"text-xl flex items-center gap-2\", \"data-phoenix-id\": \"phoenix-7448bc59-61\" }, /*#__PURE__*/\n    React.createElement(Award, { className: \"w-5 h-5 text-amber-600\", \"data-phoenix-id\": \"phoenix-7448bc59-62\" }), \"Why Choose Us?\"\n\n    )\n    ), /*#__PURE__*/\n    React.createElement(CardContent, { className: \"space-y-3\", \"data-phoenix-id\": \"phoenix-7448bc59-63\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"flex items-center gap-2\", \"data-phoenix-id\": \"phoenix-7448bc59-64\" }, /*#__PURE__*/\n    React.createElement(Badge, { variant: \"secondary\", className: \"bg-green-100 text-green-800\", \"data-phoenix-id\": \"phoenix-7448bc59-65\" }, \"Expert Knowledge\"\n\n    )\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-sm text-gray-600\", \"data-phoenix-id\": \"phoenix-7448bc59-66\" }, \"Over 20 years of combined experience in cattle breeding and ranch management.\"\n\n    ), /*#__PURE__*/\n\n    React.createElement(\"div\", { className: \"flex items-center gap-2\", \"data-phoenix-id\": \"phoenix-7448bc59-67\" }, /*#__PURE__*/\n    React.createElement(Badge, { variant: \"secondary\", className: \"bg-blue-100 text-blue-800\", \"data-phoenix-id\": \"phoenix-7448bc59-68\" }, \"24/7 Support\"\n\n    )\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-sm text-gray-600\", \"data-phoenix-id\": \"phoenix-7448bc59-69\" }, \"Quick response times and comprehensive support for all your questions.\"\n\n    ), /*#__PURE__*/\n\n    React.createElement(\"div\", { className: \"flex items-center gap-2\", \"data-phoenix-id\": \"phoenix-7448bc59-70\" }, /*#__PURE__*/\n    React.createElement(Badge, { variant: \"secondary\", className: \"bg-amber-100 text-amber-800\", \"data-phoenix-id\": \"phoenix-7448bc59-71\" }, \"Educational Focus\"\n\n    )\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-sm text-gray-600\", \"data-phoenix-id\": \"phoenix-7448bc59-72\" }, \"Committed to sharing knowledge and helping you succeed in cattle farming.\"\n\n    )\n    )\n    )\n    )\n    )\n    )\n    ), /*#__PURE__*/\n\n\n    React.createElement(\"section\", { className: \"py-12 bg-white\", \"data-phoenix-id\": \"phoenix-7448bc59-73\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"container mx-auto px-4 lg:px-8\", \"data-phoenix-id\": \"phoenix-7448bc59-74\" }, /*#__PURE__*/\n    React.createElement(\"div\", { className: \"text-center mb-12\", \"data-phoenix-id\": \"phoenix-7448bc59-75\" }, /*#__PURE__*/\n    React.createElement(\"h2\", { className: \"text-3xl font-bold text-gray-900 mb-4\", \"data-phoenix-id\": \"phoenix-7448bc59-76\" }, \"Frequently Asked Questions\"\n\n    ), /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-lg text-gray-600\", \"data-phoenix-id\": \"phoenix-7448bc59-77\" }, \"Quick answers to common questions\"\n\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(\"div\", { className: \"grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto\", \"data-phoenix-id\": \"phoenix-7448bc59-78\" }, /*#__PURE__*/\n    React.createElement(Card, { className: \"cow-card\", \"data-phoenix-id\": \"phoenix-7448bc59-79\" }, /*#__PURE__*/\n    React.createElement(CardHeader, { \"data-phoenix-id\": \"phoenix-7448bc59-80\" }, /*#__PURE__*/\n    React.createElement(CardTitle, { className: \"text-lg\", \"data-phoenix-id\": \"phoenix-7448bc59-81\" }, \"How quickly do you respond to inquiries?\")\n    ), /*#__PURE__*/\n    React.createElement(CardContent, { \"data-phoenix-id\": \"phoenix-7448bc59-82\" }, /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-gray-600\", \"data-phoenix-id\": \"phoenix-7448bc59-83\" }, \"We typically respond to all inquiries within 24 hours during business days. Urgent matters may receive faster responses.\"\n\n\n    )\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(Card, { className: \"cow-card\", \"data-phoenix-id\": \"phoenix-7448bc59-84\" }, /*#__PURE__*/\n    React.createElement(CardHeader, { \"data-phoenix-id\": \"phoenix-7448bc59-85\" }, /*#__PURE__*/\n    React.createElement(CardTitle, { className: \"text-lg\", \"data-phoenix-id\": \"phoenix-7448bc59-86\" }, \"Do you offer on-site consultations?\")\n    ), /*#__PURE__*/\n    React.createElement(CardContent, { \"data-phoenix-id\": \"phoenix-7448bc59-87\" }, /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-gray-600\", \"data-phoenix-id\": \"phoenix-7448bc59-88\" }, \"Yes! We provide on-site consultations for ranch management, breed selection, and pasture optimization within a 200-mile radius of our headquarters.\"\n\n\n    )\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(Card, { className: \"cow-card\", \"data-phoenix-id\": \"phoenix-7448bc59-89\" }, /*#__PURE__*/\n    React.createElement(CardHeader, { \"data-phoenix-id\": \"phoenix-7448bc59-90\" }, /*#__PURE__*/\n    React.createElement(CardTitle, { className: \"text-lg\", \"data-phoenix-id\": \"phoenix-7448bc59-91\" }, \"Can you help with breed selection?\")\n    ), /*#__PURE__*/\n    React.createElement(CardContent, { \"data-phoenix-id\": \"phoenix-7448bc59-92\" }, /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-gray-600\", \"data-phoenix-id\": \"phoenix-7448bc59-93\" }, \"Absolutely! Our experts can help you choose the perfect breeds based on your climate, land conditions, and farming goals.\"\n\n\n    )\n    )\n    ), /*#__PURE__*/\n\n    React.createElement(Card, { className: \"cow-card\", \"data-phoenix-id\": \"phoenix-7448bc59-94\" }, /*#__PURE__*/\n    React.createElement(CardHeader, { \"data-phoenix-id\": \"phoenix-7448bc59-95\" }, /*#__PURE__*/\n    React.createElement(CardTitle, { className: \"text-lg\", \"data-phoenix-id\": \"phoenix-7448bc59-96\" }, \"Do you offer educational resources?\")\n    ), /*#__PURE__*/\n    React.createElement(CardContent, { \"data-phoenix-id\": \"phoenix-7448bc59-97\" }, /*#__PURE__*/\n    React.createElement(\"p\", { className: \"text-gray-600\", \"data-phoenix-id\": \"phoenix-7448bc59-98\" }, \"Yes, we provide comprehensive guides, fact sheets, and educational materials for both beginners and experienced cattle farmers.\"\n\n\n    )\n    )\n    )\n    )\n    )\n    )\n    ));\n\n}",
       "props": [],
       "imports": [],
       "modificationHints": [
@@ -88,8 +88,8 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758299640089": {
-      "phoenixId": "phoenix-1758299640089",
+    "phoenix-1758301219504": {
+      "phoenixId": "phoenix-1758301219504",
       "componentName": "Error",
       "filePath": "src/app/error.tsx",
       "lineNumber": 7,
@@ -106,8 +106,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640090": {
-      "phoenixId": "phoenix-1758299640090",
+    "phoenix-1758301219505": {
+      "phoenixId": "phoenix-1758301219505",
       "componentName": "FactsPage",
       "filePath": "src/app/facts/page.tsx",
       "lineNumber": 21,
@@ -136,8 +136,35 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758299640091": {
-      "phoenixId": "phoenix-1758299640091",
+    "phoenix-1758301219506": {
+      "phoenixId": "phoenix-1758301219506",
+      "componentName": "GalleryPage",
+      "filePath": "src/app/gallery/page.tsx",
+      "lineNumber": 118,
+      "columnNumber": 15,
+      "sourceCode": "export default function GalleryPage() {\n  const [searchQuery, setSearchQuery] = useState('');\n  const [selectedCategory, setSelectedCategory] = useState('all');\n  const [selectedImage, setSelectedImage] = useState(null);\n  const [likedImages, setLikedImages] = useState(new Set());\n\n  // Filter images based on search and category\n  const filteredImages = galleryImages.filter(image => {\n    const matchesSearch = searchQuery === '' || \n      image.title.toLowerCase().includes(searchQuery.toLowerCase()) ||\n      image.description.toLowerCase().includes(searchQuery.toLowerCase()) ||\n      image.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));\n    \n    const matchesCategory = selectedCategory === 'all' || image.category === selectedCategory;\n    \n    return matchesSearch && matchesCategory;\n  });\n\n  const handleLike = (imageId) => {\n    const newLikedImages = new Set(likedImages);\n    if (newLikedImages.has(imageId)) {\n      newLikedImages.delete(imageId);\n    } else {\n      newLikedImages.add(imageId);\n    }\n    setLikedImages(newLikedImages);\n  };\n\n  const clearFilters = () => {\n    setSearchQuery('');\n    setSelectedCategory('all');\n  };\n\n  return (\n    <div className=\"min-h-screen bg-gradient-to-b from-background to-muted/20\">\n      {/* Hero Section */}\n      <section className=\"py-16 bg-gradient-to-r from-primary to-accent\">\n        <div className=\"container mx-auto px-4 lg:px-8 text-center\">\n          <div className=\"flex items-center justify-center gap-3 mb-6\">\n            <Camera className=\"w-12 h-12 text-primary-foreground\" />\n            <h1 className=\"text-4xl lg:text-6xl font-bold text-primary-foreground\">\n              Cow Gallery\n            </h1>\n          </div>\n          <p className=\"text-xl text-primary-foreground/90 max-w-3xl mx-auto leading-relaxed\">\n            Explore our beautiful collection of cow photography showcasing the majesty and \n            diversity of cattle breeds from around the world.\n          </p>\n        </div>\n      </section>\n\n      {/* Search and Filter Section */}\n      <section className=\"py-8 bg-card border-b\">\n        <div className=\"container mx-auto px-4 lg:px-8\">\n          <div className=\"flex flex-col lg:flex-row gap-4 items-center justify-between\">\n            {/* Search */}\n            <div className=\"relative flex-1 max-w-md\">\n              <Search className=\"absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5\" />\n              <Input\n                placeholder=\"Search photos, breeds, or tags...\"\n                value={searchQuery}\n                onChange={(e) => setSearchQuery(e.target.value)}\n                className=\"pl-10\"\n              />\n            </div>\n\n            {/* Category Filter */}\n            <div className=\"flex flex-wrap gap-2 items-center\">\n              {categories.map((category) => (\n                <Button\n                  key={category.id}\n                  variant={selectedCategory === category.id ? \"default\" : \"outline\"}\n                  size=\"sm\"\n                  onClick={() => setSelectedCategory(category.id)}\n                  className=\"hover:bg-accent hover:text-accent-foreground\"\n                >\n                  {category.name} ({category.count})\n                </Button>\n              ))}\n            </div>\n\n            {/* Clear Filters */}\n            {(searchQuery || selectedCategory !== 'all') && (\n              <Button \n                variant=\"ghost\" \n                onClick={clearFilters}\n                size=\"sm\"\n                className=\"flex items-center gap-2\"\n              >\n                <X className=\"w-4 h-4\" />\n                Clear\n              </Button>\n            )}\n          </div>\n\n          {/* Active Filters */}\n          {(searchQuery || selectedCategory !== 'all') && (\n            <div className=\"flex flex-wrap gap-2 mt-4\">\n              {searchQuery && (\n                <Badge variant=\"secondary\" className=\"flex items-center gap-1\">\n                  Search: {searchQuery}\n                  <X \n                    className=\"w-3 h-3 cursor-pointer hover:text-destructive\" \n                    onClick={() => setSearchQuery('')}\n                  />\n                </Badge>\n              )}\n              {selectedCategory !== 'all' && (\n                <Badge variant=\"secondary\" className=\"flex items-center gap-1\">\n                  Category: {categories.find(c => c.id === selectedCategory)?.name}\n                  <X \n                    className=\"w-3 h-3 cursor-pointer hover:text-destructive\" \n                    onClick={() => setSelectedCategory('all')}\n                  />\n                </Badge>\n              )}\n            </div>\n          )}\n        </div>\n      </section>\n\n      {/* Gallery Grid */}\n      <section className=\"py-12\">\n        <div className=\"container mx-auto px-4 lg:px-8\">\n          <div className=\"flex items-center justify-between mb-8\">\n            <div>\n              <h2 className=\"text-2xl font-bold text-foreground\">\n                {filteredImages.length} {filteredImages.length === 1 ? 'Photo' : 'Photos'} Found\n              </h2>\n              <p className=\"text-muted-foreground mt-1\">\n                {selectedCategory !== 'all' \n                  ? `Showing ${categories.find(c => c.id === selectedCategory)?.name.toLowerCase()}`\n                  : 'Showing all photos'\n                }\n              </p>\n            </div>\n          </div>\n\n          {filteredImages.length === 0 ? (\n            <Card className=\"text-center py-12\">\n              <CardContent className=\"space-y-4\">\n                <div className=\"text-6xl\">🐄</div>\n                <h3 className=\"text-xl font-semibold\">No photos found</h3>\n                <p className=\"text-muted-foreground\">\n                  Try adjusting your search criteria or clearing filters.\n                </p>\n                <Button onClick={clearFilters}>Clear All Filters</Button>\n              </CardContent>\n            </Card>\n          ) : (\n            <div className=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6\">\n              {filteredImages.map((image) => (\n                <Card key={image.id} className=\"group cow-card overflow-hidden\">\n                  <div className=\"relative aspect-square overflow-hidden\">\n                    <img\n                      src={image.src}\n                      alt={image.title}\n                      className=\"w-full h-full object-cover transition-transform duration-300 group-hover:scale-105\"\n                    />\n                    <div className=\"absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center\">\n                      <div className=\"flex gap-2\">\n                        <Button \n                          size=\"icon\" \n                          variant=\"secondary\"\n                          onClick={() => handleLike(image.id)}\n                          className=\"hover:bg-red-100 hover:text-red-600\"\n                        >\n                          <Heart \n                            className={`w-4 h-4 ${likedImages.has(image.id) ? 'fill-red-500 text-red-500' : ''}`} \n                          />\n                        </Button>\n                        <Button size=\"icon\" variant=\"secondary\">\n                          <Share2 className=\"w-4 h-4\" />\n                        </Button>\n                        <Button size=\"icon\" variant=\"secondary\">\n                          <Download className=\"w-4 h-4\" />\n                        </Button>\n                      </div>\n                    </div>\n                  </div>\n                  <CardContent className=\"p-4\">\n                    <div className=\"space-y-2\">\n                      <h3 className=\"font-semibold text-lg leading-tight\">{image.title}</h3>\n                      <p className=\"text-sm text-muted-foreground line-clamp-2\">\n                        {image.description}\n                      </p>\n                      <div className=\"flex flex-wrap gap-1\">\n                        {image.tags.slice(0, 3).map((tag) => (\n                          <Badge key={tag} variant=\"outline\" className=\"text-xs\">\n                            {tag}\n                          </Badge>\n                        ))}\n                      </div>\n                      <div className=\"flex items-center justify-between pt-2 text-sm text-muted-foreground\">\n                        <div className=\"flex items-center gap-3\">\n                          <span className=\"flex items-center gap-1\">\n                            <Heart className=\"w-3 h-3\" />\n                            {image.likes + (likedImages.has(image.id) ? 1 : 0)}\n                          </span>\n                          <span className=\"flex items-center gap-1\">\n                            <Eye className=\"w-3 h-3\" />\n                            {image.views}\n                          </span>\n                        </div>\n                        <span className=\"text-xs\">by {image.photographer}</span>\n                      </div>\n                    </div>\n                  </CardContent>\n                </Card>\n              ))}\n            </div>\n          )}\n        </div>\n      </section>\n\n      {/* Gallery Stats */}\n      <section className=\"py-12 bg-muted/30\">\n        <div className=\"container mx-auto px-4 lg:px-8\">\n          <h2 className=\"text-2xl font-bold text-center mb-8\">Gallery Statistics</h2>\n          <div className=\"grid grid-cols-2 lg:grid-cols-4 gap-6\">\n            {categories.slice(1).map((category) => (\n              <Card \n                key={category.id}\n                className={`text-center cursor-pointer transition-all hover:shadow-lg ${\n                  selectedCategory === category.id ? 'ring-2 ring-accent' : ''\n                }`}\n                onClick={() => setSelectedCategory(category.id)}\n              >\n                <CardContent className=\"p-6\">\n                  <div className=\"text-3xl font-bold text-accent mb-2\">\n                    {category.count}\n                  </div>\n                  <div className=\"font-medium\">{category.name}</div>\n                  <div className=\"text-sm text-muted-foreground\">photos available</div>\n                </CardContent>\n              </Card>\n            ))}\n          </div>\n        </div>\n      </section>\n    </div>\n  );\n}",
+      "props": [],
+      "imports": [],
+      "modificationHints": [
+        "text-update",
+        "style-change",
+        "careful-modification",
+        "test-thoroughly",
+        "state-management"
+      ],
+      "astAnalysis": {
+        "componentType": "functional",
+        "hooks": [
+          "useState",
+          "useState",
+          "useState",
+          "useState"
+        ],
+        "complexity": "complex"
+      }
+    },
+    "phoenix-1758301219507": {
+      "phoenixId": "phoenix-1758301219507",
       "componentName": "GlobalError",
       "filePath": "src/app/global-error.tsx",
       "lineNumber": 6,
@@ -167,13 +194,13 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758299640092": {
-      "phoenixId": "phoenix-1758299640092",
+    "phoenix-1758301219508": {
+      "phoenixId": "phoenix-1758301219508",
       "componentName": "RootLayout",
       "filePath": "src/app/layout.tsx",
       "lineNumber": 28,
       "columnNumber": 15,
-      "sourceCode": "export default function RootLayout({\n  children\n}: {\n  children: React.ReactNode;\n}) {\n  return (\n    <html lang=\"en\" suppressHydrationWarning data-phoenix-id=\"phoenix-7448bc59-1\">\n      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} data-phoenix-id=\"phoenix-7448bc59-2\">\n        <QueryProvider data-phoenix-id=\"phoenix-7448bc59-3\">\n          <ThemeProvider\n            attribute=\"class\"\n            defaultTheme=\"system\"\n            enableSystem\n            disableTransitionOnChange\n            data-phoenix-id=\"phoenix-7448bc59-4\"\n          >\n            <TooltipProvider data-phoenix-id=\"phoenix-7448bc59-5\">\n              <Header data-phoenix-id=\"phoenix-7448bc59-6\" />\n              {children}\n              <Footer data-phoenix-id=\"phoenix-7448bc59-7\" />\n              <Toaster data-phoenix-id=\"phoenix-7448bc59-8\" />\n              <Sonner data-phoenix-id=\"phoenix-7448bc59-9\" />\n            </TooltipProvider>\n          </ThemeProvider>\n        </QueryProvider>        <PhoenixTracker />\n\n      </body>\n    </html>\n  );\n}",
+      "sourceCode": "export default function RootLayout({\n  children\n}) {\n  return (\n    React.createElement(\"html\", { lang: \"en\", suppressHydrationWarning: true, \"data-phoenix-id\": \"phoenix-7448bc59-1\" }, \n    React.createElement(\"body\", { className: `${geistSans.variable} ${geistMono.variable} antialiased`, \"data-phoenix-id\": \"phoenix-7448bc59-2\" }, \n    React.createElement(QueryProvider, { \"data-phoenix-id\": \"phoenix-7448bc59-3\" }, \n    React.createElement(ThemeProvider, {\n      attribute: \"class\",\n      defaultTheme: \"system\",\n      enableSystem: true,\n      disableTransitionOnChange: true,\n      \"data-phoenix-id\": \"phoenix-7448bc59-4\" }, \n    React.createElement(TooltipProvider, { \"data-phoenix-id\": \"phoenix-7448bc59-5\" }, \n    React.createElement(Header, null),\n    children,\n    React.createElement(Footer, null),\n    React.createElement(Toaster, null),\n    React.createElement(Sonner, null, \"        \", React.createElement(PhoenixTracker, null)))))))\n  );\n}",
       "props": [
         {
           "name": "children",
@@ -193,8 +220,8 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758299640093": {
-      "phoenixId": "phoenix-1758299640093",
+    "phoenix-1758301219509": {
+      "phoenixId": "phoenix-1758301219509",
       "componentName": "Loading",
       "filePath": "src/app/loading.tsx",
       "lineNumber": 3,
@@ -211,8 +238,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640094": {
-      "phoenixId": "phoenix-1758299640094",
+    "phoenix-1758301219510": {
+      "phoenixId": "phoenix-1758301219510",
       "componentName": "NotFound",
       "filePath": "src/app/not-found.tsx",
       "lineNumber": 5,
@@ -229,8 +256,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640095": {
-      "phoenixId": "phoenix-1758299640095",
+    "phoenix-1758301219511": {
+      "phoenixId": "phoenix-1758301219511",
       "componentName": "HomePage",
       "filePath": "src/app/page.tsx",
       "lineNumber": 13,
@@ -249,8 +276,8 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758299640096": {
-      "phoenixId": "phoenix-1758299640096",
+    "phoenix-1758301219512": {
+      "phoenixId": "phoenix-1758301219512",
       "componentName": "BreedCard",
       "filePath": "src/components/breed-card.tsx",
       "lineNumber": 17,
@@ -289,8 +316,8 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758299640097": {
-      "phoenixId": "phoenix-1758299640097",
+    "phoenix-1758301219513": {
+      "phoenixId": "phoenix-1758301219513",
       "componentName": "Footer",
       "filePath": "src/components/footer.tsx",
       "lineNumber": 5,
@@ -309,8 +336,8 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758299640098": {
-      "phoenixId": "phoenix-1758299640098",
+    "phoenix-1758301219514": {
+      "phoenixId": "phoenix-1758301219514",
       "componentName": "Header",
       "filePath": "src/components/header.tsx",
       "lineNumber": 46,
@@ -333,8 +360,8 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758299640099": {
-      "phoenixId": "phoenix-1758299640099",
+    "phoenix-1758301219515": {
+      "phoenixId": "phoenix-1758301219515",
       "componentName": "HeroCarousel",
       "filePath": "src/components/hero-carousel.tsx",
       "lineNumber": 41,
@@ -365,13 +392,13 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758299640100": {
-      "phoenixId": "phoenix-1758299640100",
+    "phoenix-1758301219516": {
+      "phoenixId": "phoenix-1758301219516",
       "componentName": "PhoenixTracker",
       "filePath": "src/components/PhoenixTracker.tsx",
       "lineNumber": 6,
       "columnNumber": 7,
-      "sourceCode": "export function PhoenixTracker() {\n  useEffect(() => {\n    // Dynamically add CSS to head\n    if (typeof document !== 'undefined') {\n      const link = document.createElement('link');\n      link.rel = 'stylesheet';\n      link.href = '/phoenix-tracking.css';\n      document.head.appendChild(link);\n      \n      return () => {\n        // Cleanup\n        if (document.head.contains(link)) {\n          document.head.removeChild(link);\n        }\n      };\n    }\n  }, []);\n\n  return (\n    <Script\n      src=\"/phoenix-tracking.js\"\n      strategy=\"afterInteractive\"\n    />\n  );\n}",
+      "sourceCode": "export function PhoenixTracker() {\n  useEffect(() => {\n    // Dynamically add CSS to head\n    if (typeof document !== 'undefined') {\n      const link = document.createElement('link');\n      link.rel = 'stylesheet';\n      link.href = '/phoenix-tracking.css';\n      document.head.appendChild(link);\n\n      return () => {\n        // Cleanup\n        if (document.head.contains(link)) {\n          document.head.removeChild(link);\n        }\n      };\n    }\n  }, []);\n\n  return (/*#__PURE__*/\n    React.createElement(Script, {\n      src: \"/phoenix-tracking.js\",\n      strategy: \"afterInteractive\", \"data-phoenix-id\": \"phoenix-7448bc59-1\" }\n    ));\n\n}",
       "props": [],
       "imports": [],
       "modificationHints": [
@@ -388,8 +415,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640101": {
-      "phoenixId": "phoenix-1758299640101",
+    "phoenix-1758301219517": {
+      "phoenixId": "phoenix-1758301219517",
       "componentName": "QueryProvider",
       "filePath": "src/components/query-provider.tsx",
       "lineNumber": 7,
@@ -416,8 +443,8 @@
         "complexity": "simple"
       }
     },
-    "phoenix-1758299640102": {
-      "phoenixId": "phoenix-1758299640102",
+    "phoenix-1758301219518": {
+      "phoenixId": "phoenix-1758301219518",
       "componentName": "_extends",
       "filePath": "src/components/theme-provider.tsx",
       "lineNumber": 1,
@@ -434,8 +461,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640103": {
-      "phoenixId": "phoenix-1758299640103",
+    "phoenix-1758301219519": {
+      "phoenixId": "phoenix-1758301219519",
       "componentName": "ThemeProvider",
       "filePath": "src/components/theme-provider.tsx",
       "lineNumber": 6,
@@ -458,8 +485,8 @@
         "complexity": "simple"
       }
     },
-    "phoenix-1758299640104": {
-      "phoenixId": "phoenix-1758299640104",
+    "phoenix-1758301219520": {
+      "phoenixId": "phoenix-1758301219520",
       "componentName": "_extends",
       "filePath": "src/components/ui/accordion.tsx",
       "lineNumber": 1,
@@ -476,8 +503,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640105": {
-      "phoenixId": "phoenix-1758299640105",
+    "phoenix-1758301219521": {
+      "phoenixId": "phoenix-1758301219521",
       "componentName": "_extends",
       "filePath": "src/components/ui/alert-dialog.tsx",
       "lineNumber": 1,
@@ -494,8 +521,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640106": {
-      "phoenixId": "phoenix-1758299640106",
+    "phoenix-1758301219522": {
+      "phoenixId": "phoenix-1758301219522",
       "componentName": "_extends",
       "filePath": "src/components/ui/alert.tsx",
       "lineNumber": 1,
@@ -512,8 +539,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640107": {
-      "phoenixId": "phoenix-1758299640107",
+    "phoenix-1758301219523": {
+      "phoenixId": "phoenix-1758301219523",
       "componentName": "_extends",
       "filePath": "src/components/ui/avatar.tsx",
       "lineNumber": 1,
@@ -530,8 +557,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640108": {
-      "phoenixId": "phoenix-1758299640108",
+    "phoenix-1758301219524": {
+      "phoenixId": "phoenix-1758301219524",
       "componentName": "Badge",
       "filePath": "src/components/ui/badge.tsx",
       "lineNumber": 30,
@@ -559,8 +586,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640109": {
-      "phoenixId": "phoenix-1758299640109",
+    "phoenix-1758301219525": {
+      "phoenixId": "phoenix-1758301219525",
       "componentName": "_extends",
       "filePath": "src/components/ui/breadcrumb.tsx",
       "lineNumber": 1,
@@ -577,8 +604,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640110": {
-      "phoenixId": "phoenix-1758299640110",
+    "phoenix-1758301219526": {
+      "phoenixId": "phoenix-1758301219526",
       "componentName": "_extends",
       "filePath": "src/components/ui/calendar.tsx",
       "lineNumber": 1,
@@ -595,8 +622,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640111": {
-      "phoenixId": "phoenix-1758299640111",
+    "phoenix-1758301219527": {
+      "phoenixId": "phoenix-1758301219527",
       "componentName": "Calendar",
       "filePath": "src/components/ui/calendar.tsx",
       "lineNumber": 10,
@@ -631,8 +658,8 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758299640112": {
-      "phoenixId": "phoenix-1758299640112",
+    "phoenix-1758301219528": {
+      "phoenixId": "phoenix-1758301219528",
       "componentName": "_extends",
       "filePath": "src/components/ui/carousel.tsx",
       "lineNumber": 1,
@@ -649,8 +676,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640113": {
-      "phoenixId": "phoenix-1758299640113",
+    "phoenix-1758301219529": {
+      "phoenixId": "phoenix-1758301219529",
       "componentName": "_extends",
       "filePath": "src/components/ui/chart.tsx",
       "lineNumber": 1,
@@ -667,8 +694,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640114": {
-      "phoenixId": "phoenix-1758299640114",
+    "phoenix-1758301219530": {
+      "phoenixId": "phoenix-1758301219530",
       "componentName": "_extends",
       "filePath": "src/components/ui/checkbox.tsx",
       "lineNumber": 1,
@@ -685,8 +712,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640115": {
-      "phoenixId": "phoenix-1758299640115",
+    "phoenix-1758301219531": {
+      "phoenixId": "phoenix-1758301219531",
       "componentName": "_extends",
       "filePath": "src/components/ui/command.tsx",
       "lineNumber": 1,
@@ -703,8 +730,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640116": {
-      "phoenixId": "phoenix-1758299640116",
+    "phoenix-1758301219532": {
+      "phoenixId": "phoenix-1758301219532",
       "componentName": "_extends",
       "filePath": "src/components/ui/context-menu.tsx",
       "lineNumber": 1,
@@ -721,8 +748,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640117": {
-      "phoenixId": "phoenix-1758299640117",
+    "phoenix-1758301219533": {
+      "phoenixId": "phoenix-1758301219533",
       "componentName": "_extends",
       "filePath": "src/components/ui/dialog.tsx",
       "lineNumber": 1,
@@ -739,8 +766,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640118": {
-      "phoenixId": "phoenix-1758299640118",
+    "phoenix-1758301219534": {
+      "phoenixId": "phoenix-1758301219534",
       "componentName": "_extends",
       "filePath": "src/components/ui/drawer.tsx",
       "lineNumber": 1,
@@ -757,8 +784,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640119": {
-      "phoenixId": "phoenix-1758299640119",
+    "phoenix-1758301219535": {
+      "phoenixId": "phoenix-1758301219535",
       "componentName": "_extends",
       "filePath": "src/components/ui/dropdown-menu.tsx",
       "lineNumber": 1,
@@ -775,8 +802,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640120": {
-      "phoenixId": "phoenix-1758299640120",
+    "phoenix-1758301219536": {
+      "phoenixId": "phoenix-1758301219536",
       "componentName": "_extends",
       "filePath": "src/components/ui/form.tsx",
       "lineNumber": 1,
@@ -793,8 +820,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640121": {
-      "phoenixId": "phoenix-1758299640121",
+    "phoenix-1758301219537": {
+      "phoenixId": "phoenix-1758301219537",
       "componentName": "_extends",
       "filePath": "src/components/ui/hover-card.tsx",
       "lineNumber": 1,
@@ -811,8 +838,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640122": {
-      "phoenixId": "phoenix-1758299640122",
+    "phoenix-1758301219538": {
+      "phoenixId": "phoenix-1758301219538",
       "componentName": "_extends",
       "filePath": "src/components/ui/input-otp.tsx",
       "lineNumber": 1,
@@ -829,8 +856,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640123": {
-      "phoenixId": "phoenix-1758299640123",
+    "phoenix-1758301219539": {
+      "phoenixId": "phoenix-1758301219539",
       "componentName": "_extends",
       "filePath": "src/components/ui/input.tsx",
       "lineNumber": 1,
@@ -847,8 +874,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640124": {
-      "phoenixId": "phoenix-1758299640124",
+    "phoenix-1758301219540": {
+      "phoenixId": "phoenix-1758301219540",
       "componentName": "_extends",
       "filePath": "src/components/ui/label.tsx",
       "lineNumber": 1,
@@ -865,8 +892,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640125": {
-      "phoenixId": "phoenix-1758299640125",
+    "phoenix-1758301219541": {
+      "phoenixId": "phoenix-1758301219541",
       "componentName": "_extends",
       "filePath": "src/components/ui/menubar.tsx",
       "lineNumber": 1,
@@ -883,8 +910,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640126": {
-      "phoenixId": "phoenix-1758299640126",
+    "phoenix-1758301219542": {
+      "phoenixId": "phoenix-1758301219542",
       "componentName": "_extends",
       "filePath": "src/components/ui/navigation-menu.tsx",
       "lineNumber": 1,
@@ -901,8 +928,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640127": {
-      "phoenixId": "phoenix-1758299640127",
+    "phoenix-1758301219543": {
+      "phoenixId": "phoenix-1758301219543",
       "componentName": "_extends",
       "filePath": "src/components/ui/pagination.tsx",
       "lineNumber": 1,
@@ -919,8 +946,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640128": {
-      "phoenixId": "phoenix-1758299640128",
+    "phoenix-1758301219544": {
+      "phoenixId": "phoenix-1758301219544",
       "componentName": "_extends",
       "filePath": "src/components/ui/popover.tsx",
       "lineNumber": 1,
@@ -937,8 +964,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640129": {
-      "phoenixId": "phoenix-1758299640129",
+    "phoenix-1758301219545": {
+      "phoenixId": "phoenix-1758301219545",
       "componentName": "_extends",
       "filePath": "src/components/ui/radio-group.tsx",
       "lineNumber": 1,
@@ -955,8 +982,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640130": {
-      "phoenixId": "phoenix-1758299640130",
+    "phoenix-1758301219546": {
+      "phoenixId": "phoenix-1758301219546",
       "componentName": "_extends",
       "filePath": "src/components/ui/resizable.tsx",
       "lineNumber": 2,
@@ -973,8 +1000,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640131": {
-      "phoenixId": "phoenix-1758299640131",
+    "phoenix-1758301219547": {
+      "phoenixId": "phoenix-1758301219547",
       "componentName": "_extends",
       "filePath": "src/components/ui/scroll-area.tsx",
       "lineNumber": 1,
@@ -991,8 +1018,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640132": {
-      "phoenixId": "phoenix-1758299640132",
+    "phoenix-1758301219548": {
+      "phoenixId": "phoenix-1758301219548",
       "componentName": "_extends",
       "filePath": "src/components/ui/select.tsx",
       "lineNumber": 1,
@@ -1009,8 +1036,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640133": {
-      "phoenixId": "phoenix-1758299640133",
+    "phoenix-1758301219549": {
+      "phoenixId": "phoenix-1758301219549",
       "componentName": "_extends",
       "filePath": "src/components/ui/separator.tsx",
       "lineNumber": 1,
@@ -1027,8 +1054,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640134": {
-      "phoenixId": "phoenix-1758299640134",
+    "phoenix-1758301219550": {
+      "phoenixId": "phoenix-1758301219550",
       "componentName": "_extends",
       "filePath": "src/components/ui/sheet.tsx",
       "lineNumber": 1,
@@ -1045,8 +1072,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640135": {
-      "phoenixId": "phoenix-1758299640135",
+    "phoenix-1758301219551": {
+      "phoenixId": "phoenix-1758301219551",
       "componentName": "_extends",
       "filePath": "src/components/ui/sidebar.tsx",
       "lineNumber": 1,
@@ -1063,8 +1090,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640136": {
-      "phoenixId": "phoenix-1758299640136",
+    "phoenix-1758301219552": {
+      "phoenixId": "phoenix-1758301219552",
       "componentName": "_extends",
       "filePath": "src/components/ui/skeleton.tsx",
       "lineNumber": 2,
@@ -1081,8 +1108,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640137": {
-      "phoenixId": "phoenix-1758299640137",
+    "phoenix-1758301219553": {
+      "phoenixId": "phoenix-1758301219553",
       "componentName": "Skeleton",
       "filePath": "src/components/ui/skeleton.tsx",
       "lineNumber": 4,
@@ -1105,8 +1132,8 @@
         "complexity": "simple"
       }
     },
-    "phoenix-1758299640138": {
-      "phoenixId": "phoenix-1758299640138",
+    "phoenix-1758301219554": {
+      "phoenixId": "phoenix-1758301219554",
       "componentName": "_extends",
       "filePath": "src/components/ui/slider.tsx",
       "lineNumber": 1,
@@ -1123,8 +1150,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640139": {
-      "phoenixId": "phoenix-1758299640139",
+    "phoenix-1758301219555": {
+      "phoenixId": "phoenix-1758301219555",
       "componentName": "_extends",
       "filePath": "src/components/ui/sonner.tsx",
       "lineNumber": 5,
@@ -1141,8 +1168,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640140": {
-      "phoenixId": "phoenix-1758299640140",
+    "phoenix-1758301219556": {
+      "phoenixId": "phoenix-1758301219556",
       "componentName": "_extends",
       "filePath": "src/components/ui/switch.tsx",
       "lineNumber": 1,
@@ -1159,8 +1186,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640141": {
-      "phoenixId": "phoenix-1758299640141",
+    "phoenix-1758301219557": {
+      "phoenixId": "phoenix-1758301219557",
       "componentName": "_extends",
       "filePath": "src/components/ui/table.tsx",
       "lineNumber": 1,
@@ -1177,8 +1204,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640142": {
-      "phoenixId": "phoenix-1758299640142",
+    "phoenix-1758301219558": {
+      "phoenixId": "phoenix-1758301219558",
       "componentName": "_extends",
       "filePath": "src/components/ui/textarea.tsx",
       "lineNumber": 1,
@@ -1195,8 +1222,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640143": {
-      "phoenixId": "phoenix-1758299640143",
+    "phoenix-1758301219559": {
+      "phoenixId": "phoenix-1758301219559",
       "componentName": "_extends",
       "filePath": "src/components/ui/toast.tsx",
       "lineNumber": 1,
@@ -1213,8 +1240,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640144": {
-      "phoenixId": "phoenix-1758299640144",
+    "phoenix-1758301219560": {
+      "phoenixId": "phoenix-1758301219560",
       "componentName": "_extends",
       "filePath": "src/components/ui/toaster.tsx",
       "lineNumber": 5,
@@ -1231,8 +1258,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640145": {
-      "phoenixId": "phoenix-1758299640145",
+    "phoenix-1758301219561": {
+      "phoenixId": "phoenix-1758301219561",
       "componentName": "Toaster",
       "filePath": "src/components/ui/toaster.tsx",
       "lineNumber": 17,
@@ -1254,8 +1281,8 @@
         "complexity": "complex"
       }
     },
-    "phoenix-1758299640146": {
-      "phoenixId": "phoenix-1758299640146",
+    "phoenix-1758301219562": {
+      "phoenixId": "phoenix-1758301219562",
       "componentName": "_extends",
       "filePath": "src/components/ui/toggle-group.tsx",
       "lineNumber": 1,
@@ -1272,8 +1299,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640147": {
-      "phoenixId": "phoenix-1758299640147",
+    "phoenix-1758301219563": {
+      "phoenixId": "phoenix-1758301219563",
       "componentName": "_extends",
       "filePath": "src/components/ui/toggle.tsx",
       "lineNumber": 1,
@@ -1290,8 +1317,8 @@
         "complexity": "moderate"
       }
     },
-    "phoenix-1758299640148": {
-      "phoenixId": "phoenix-1758299640148",
+    "phoenix-1758301219564": {
+      "phoenixId": "phoenix-1758301219564",
       "componentName": "_extends",
       "filePath": "src/components/ui/tooltip.tsx",
       "lineNumber": 1,
@@ -1310,8 +1337,8 @@
     }
   },
   "stats": {
-    "totalComponents": 63,
-    "totalFiles": 73,
-    "processingTimeMs": 339
+    "totalComponents": 64,
+    "totalFiles": 74,
+    "processingTimeMs": 391
   }
 }

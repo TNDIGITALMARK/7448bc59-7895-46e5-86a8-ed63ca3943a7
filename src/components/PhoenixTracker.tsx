@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import Script from 'next/script';
 import { useEffect } from 'react';
 
@@ -21,10 +22,11 @@ export function PhoenixTracker() {
     }
   }, []);
 
-  return (/*#__PURE__*/
-    React.createElement(Script, {
-      src: "/phoenix-tracking.js",
-      strategy: "afterInteractive", "data-phoenix-id": "phoenix-7448bc59-1" }
-    ));
-
+  return (
+    <Script
+      src="/phoenix-tracking.js"
+      strategy="afterInteractive"
+      data-phoenix-id="phoenix-7448bc59-1"
+    />
+  );
 }
