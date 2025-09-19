@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Heart, Mail, Globe, Users } from 'lucide-react';
 
 export function Footer() {
@@ -10,7 +11,14 @@ export function Footer() {
 
     React.createElement("div", { className: "lg:col-span-1", "data-phoenix-id": "phoenix-7448bc59-4" }, /*#__PURE__*/
     React.createElement("div", { className: "flex items-center space-x-2 mb-4", "data-phoenix-id": "phoenix-7448bc59-5" }, /*#__PURE__*/
-    React.createElement("div", { className: "text-2xl", "data-phoenix-id": "phoenix-7448bc59-6" }, "\uD83D\uDC04"), /*#__PURE__*/
+    React.createElement(Image, { 
+      src: "/generated/patsture-logo-icon.png", 
+      alt: "Pasture Perfect Logo", 
+      width: 40, 
+      height: 40, 
+      className: "rounded-lg", 
+      "data-phoenix-id": "phoenix-7448bc59-6" 
+    }), /*#__PURE__*/
     React.createElement("div", { "data-phoenix-id": "phoenix-7448bc59-7" }, /*#__PURE__*/
     React.createElement("span", { className: "text-xl font-bold", "data-phoenix-id": "phoenix-7448bc59-8" }, "Pasture"), /*#__PURE__*/
     React.createElement("span", { className: "text-xl font-bold text-green-300", "data-phoenix-id": "phoenix-7448bc59-9" }, "Perfect")
