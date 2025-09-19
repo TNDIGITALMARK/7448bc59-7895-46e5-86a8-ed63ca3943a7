@@ -30,21 +30,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <QueryProvider>
+    <html lang="en" suppressHydrationWarning data-phoenix-id="phoenix-7448bc59-1">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} data-phoenix-id="phoenix-7448bc59-2">
+        <QueryProvider data-phoenix-id="phoenix-7448bc59-3">
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
+            data-phoenix-id="phoenix-7448bc59-4"
           >
-            <TooltipProvider>
-              <Header />
+            <TooltipProvider data-phoenix-id="phoenix-7448bc59-5">
+              <Header data-phoenix-id="phoenix-7448bc59-6" />
               {children}
-              <Footer />
-              <Toaster />
-              <Sonner />
+              <Footer data-phoenix-id="phoenix-7448bc59-7" />
+              <Toaster data-phoenix-id="phoenix-7448bc59-8" />
+              <Sonner data-phoenix-id="phoenix-7448bc59-9" />
             </TooltipProvider>
           </ThemeProvider>
         </QueryProvider>
